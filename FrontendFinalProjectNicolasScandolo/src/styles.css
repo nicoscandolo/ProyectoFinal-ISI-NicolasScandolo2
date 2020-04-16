@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+.big-banner
+{
+
+  background-image: url("src\Images\lapicesypapel.jpg");
+  background-size: cover;
+}
+/* @media only screen and (max-width: 767px) {
+
+  .big-banner
+  {
+
+    background-image: url("src\Images\lapicesypapel.jpg");
+    background-size: cover;
+  }
+  }
+ */

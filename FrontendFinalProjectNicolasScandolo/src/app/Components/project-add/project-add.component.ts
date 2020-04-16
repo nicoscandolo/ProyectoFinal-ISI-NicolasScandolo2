@@ -22,7 +22,7 @@ export class ProjectAddComponent implements OnInit {
       mensaje: ['', [Validators.required, Validators.minLength(6)]], */
 
 
-      this.projectoAdd = new FormGroup({
+/*       this.projectoAdd = new FormGroup({
         name: new FormControl(this.newMovie.name, Validators.required),
         genre: new FormControl(this.newMovie.genre, Validators.required),
         year: new FormControl(this.newMovie.year, Validators.required),
@@ -30,7 +30,7 @@ export class ProjectAddComponent implements OnInit {
         poster: new FormControl(this.newMovie.img_path, Validators.required)
       });
 
-  });
+  }); */
   }
 
 }
