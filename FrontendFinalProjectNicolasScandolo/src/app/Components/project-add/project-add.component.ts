@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ProjectService } from 'src/app/Services/project.service';
+import { Project } from 'src/app/Models/project.model';
 
 @Component({
   selector: 'app-project-add',
@@ -8,10 +10,11 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class ProjectAddComponent implements OnInit {
 
+  formData: Project;
   projectoAdd: FormGroup;
   submitted = false;
   titulo = 'Add new project';
-  constructor() { }
+  constructor(private service: ProjectService) { }
 
   ngOnInit() {
 /*     this.projectoAdd = this.FormBuilder.FormGroup.group({

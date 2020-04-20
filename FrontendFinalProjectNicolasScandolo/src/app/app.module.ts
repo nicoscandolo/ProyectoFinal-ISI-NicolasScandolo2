@@ -7,6 +7,9 @@ import { ProjectsListComponent } from './Components/projects-list/projects-list.
 import { ProjectDetailsComponent } from './Components/project-details/project-details.component';
 import { ProjectService } from './Services/project.service';
 import { ProjectAddComponent } from './Components/project-add/project-add.component';
+import { Form, FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { ProjectAddComponent } from './Components/project-add/project-add.compon
     ProjectAddComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [ProjectService],
   bootstrap: [AppComponent]
