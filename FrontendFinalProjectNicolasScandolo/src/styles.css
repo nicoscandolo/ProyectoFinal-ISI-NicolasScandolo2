@@ -5,6 +5,16 @@
   background-image: url("src\Images\lapicesypapel.jpg");
   background-size: cover;
 }
+
+input .ng-touched .ng-invalid {
+  border-color: red;
+}
+
+input .ng-valid {
+  border-color: green;
+}
+
+
 /* @media only screen and (max-width: 767px) {
 
   .big-banner

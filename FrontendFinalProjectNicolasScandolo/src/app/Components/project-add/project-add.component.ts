@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { ProjectService } from 'src/app/Services/project.service';
 import { Project } from 'src/app/Models/project.model';
+import { toDate } from '@angular/common/src/i18n/format_date';
+/* import { NgxSpinnerService } from 'ngx-spinner'; */
+
 
 @Component({
   selector: 'app-project-add',
@@ -14,26 +17,44 @@ export class ProjectAddComponent implements OnInit {
   projectoAdd: FormGroup;
   submitted = false;
   titulo = 'Add new project';
-  constructor(private service: ProjectService) { }
+  constructor(private service: ProjectService/* ,
+              private spinner: NgxSpinnerService */) { }
 
   ngOnInit() {
-/*     this.projectoAdd = this.FormBuilder.FormGroup.group({
-      nya: ['', Validators.required],
-       email: ['', [Validators.required, Validators.email]],
-      asunto: ['', Validators.required],
-      postre: ['', Validators.required],
-      mensaje: ['', [Validators.required, Validators.minLength(6)]], */
+this.resetform();
 
-
-/*       this.projectoAdd = new FormGroup({
-        name: new FormControl(this.newMovie.name, Validators.required),
-        genre: new FormControl(this.newMovie.genre, Validators.required),
-        year: new FormControl(this.newMovie.year, Validators.required),
-        releaseDate: new FormControl(this.newMovie.release_date),
-        poster: new FormControl(this.newMovie.img_path, Validators.required)
-      });
-
-  }); */
+/*     this.projectoAdd = new FormGroup({
+      name: new FormControl(this.formData.Nombre, Validators.required),
+      genre: new FormControl(this.formData.Descripcion, Validators.required),
+    }); */
   }
 
+  resetform(form?: NgForm) {
+    if (form != null) {
+      form.resetForm();
+    }
+
+    this.service.formData = {
+      IdProyecto: 0,
+      Descripcion: '',
+      FechaCreacion: new Date(),
+      Nombre: ''
+    };
+  }
+
+  onSubmit(form: NgForm) {
+    /* this.spinner.show(); */
+    // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
+    this.service.postProject(form.value).subscribe(
+      res => {
+        console.log(res);
+        this.resetform(form);
+        /* this.spinner.hide(); */
+      },
+      err => {
+        console.log(err);
+        /* this.spinner.show(); */
+      }
+    );
+  }
 }

@@ -8,8 +8,8 @@ import { ProjectDetailsComponent } from './Components/project-details/project-de
 import { ProjectService } from './Services/project.service';
 import { ProjectAddComponent } from './Components/project-add/project-add.component';
 import { Form, FormsModule } from '@angular/forms';
-
-
+import { HttpClientModule } from '@angular/common/http';
+/* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import { Form, FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+   /*  NgxSpinnerService */
   ],
   providers: [ProjectService],
   bootstrap: [AppComponent]

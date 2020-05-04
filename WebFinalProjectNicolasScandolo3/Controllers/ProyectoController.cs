@@ -79,6 +79,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         [HttpPost]
         public async Task<ActionResult<Proyecto>> PostProyecto(Proyecto proyecto)
         {
+            proyecto.FechaCreacion = DateTime.Now;
             _context.Proyectos.Add(proyecto);
             await _context.SaveChangesAsync();
 
