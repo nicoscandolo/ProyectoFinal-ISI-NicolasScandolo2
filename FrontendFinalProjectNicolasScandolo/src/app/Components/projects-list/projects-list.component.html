@@ -1,12 +1,29 @@
-<div class="jumbtron">
-  <h1 class="display-4 text-center"> project-list works!</h1>
-<hr>
-<div class="row">
-  <div class="col-md-5">
-    <app-project-details></app-project-details>
 
+<!-- Jumbotron -->
+<!-- <div class="jumbotron text-center">
+  <h1 class="display-4">Now Playing Movies</h1>
+  <p class="lead">
+<strong>{{ dateToday }}</strong>
+  </p>
+</div> -->
+<!-- Películas con card-->
+<div *ngIf="ProjectsList.length" class="container mt-2">
+  <div class="card-deck">
+    <app-project
+      *ngFor="let project of ProjectsList"
+      [project]="project"
+      class="col-4"
+    ></app-project>
   </div>
-  <div class="col-md-7"></div>
 </div>
-
+<!-- Alert messages -->
+<div *ngIf="!ProjectsList.length" class="container text-center">
+  <div *ngIf="!ProjectsList.length" class="alert alert-primary" role="alert">
+    No Projects Found!
+  </div>
+</div>
+<div *ngIf="errorMessage" class="container text-center">
+  <div class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
 </div>

@@ -9,6 +9,7 @@ import { ProjectService } from './Services/project.service';
 import { ProjectAddComponent } from './Components/project-add/project-add.component';
 import { Form, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectComponent } from './Components/project/project.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     ProjectsListComponent,
     ProjectDetailsComponent,
-    ProjectAddComponent
+    ProjectAddComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,

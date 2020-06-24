@@ -5,12 +5,17 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProjectService {
+
   formData: Project;
-  readonly rootURL = 'http://localhost:52116/api/';
+  readonly rootURL = 'http://localhost:5000/api/';
   constructor(private http: HttpClient) { }
 
 
   postProject(formData: Project) {
    return this.http.post(this.rootURL + 'Proyecto', formData);
+  }
+
+  searchProjectsList() {
+    return this.http.get(this.rootURL + 'Proyecto');
   }
 }
