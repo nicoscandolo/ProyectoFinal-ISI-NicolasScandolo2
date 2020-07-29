@@ -41,6 +41,25 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             return usuario;
         }
 
+        // POST: api/signin
+        [HttpPost]
+        public async Task<ActionResult<Usuario>> Signin(Usuario usuarioRequest)
+        {
+             Usuario user = (from x in _context.Usuarios
+                             where x.Nombre == usuarioRequest.Nombre &
+                            x.Password == usuarioRequest.Password
+                             select x).FirstOrDefault();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
+
+
         // PUT: api/Usuario/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

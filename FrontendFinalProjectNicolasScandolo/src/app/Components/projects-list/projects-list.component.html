@@ -1,13 +1,6 @@
-
-<!-- Jumbotron -->
-<!-- <div class="jumbotron text-center">
-  <h1 class="display-4">Now Playing Movies</h1>
-  <p class="lead">
-<strong>{{ dateToday }}</strong>
-  </p>
-</div> -->
-<!-- Películas con card-->
 <div *ngIf="ProjectsList.length" class="container mt-2">
+  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">Your Projects</h1>
+  <br></br>
   <div class="card-deck">
     <app-project
       *ngFor="let project of ProjectsList"

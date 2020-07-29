@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="starter-template">
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">Sign In</h1>
+
+        <form #form="ngForm" autocomplete="off"  (submit)="onSubmit(form)">
+
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <input name="Nombre" #Nombre="ngModel" [(ngModel)]="service.formData.Nombre" class="form-control"
+                placeholder="Nombre Usuario" autofocus required>
+            </div>
+
+            <!-- Valid message -->
+            <div *ngIf="Nombre.valid && (Nombre.dirty || Nombre.touched)">
+              <span class="badge badge-success">Se ve bien!</span>
+            </div>
+            <!-- Error message -->
+            <div *ngIf="Nombre.invalid && (Nombre.dirty || Nombre.touched)">
+              <small  class="badge badge-danger">Usuario es requerido.</small>
+            </div>
+          </div>
+          <!-- //////////////////////////////////////////////// -->
+
+          <div class="form-group">
+            <div class="input-group">
+              <input name="Password" #Descripcion="ngModel" [(ngModel)]="service.formData.Password"
+                class="form-control" placeholder="Password" required>
+            </div>
+            <!-- Valid message -->
+            <div *ngIf="Password.valid && (Password.dirty || Password.touched)">
+              <span class="badge badge-success">Se ve bien!</span>
+            </div>
+            <!-- Error message -->
+            <div *ngIf="Password.invalid && (Password.dirty || Password.touched)">
+              <small class="badge badge-danger">Password es requerida.</small>
+            </div>
+          </div>
+          <div class="container col-md-6">
+            <div class="form-group">
+              <button type="submit" class="btn btn-outline-success btn-lg btn-block" [disabled]="form.invalid">Enter</button>
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-outline-secondary btn-lg btn-block">Volver</button>
+            </div>
+          </div>
+        </form>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

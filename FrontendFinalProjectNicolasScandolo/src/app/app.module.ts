@@ -10,6 +10,7 @@ import { ProjectAddComponent } from './Components/project-add/project-add.compon
 import { Form, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './Components/project/project.component';
+import { SignInComponent } from './Components/sign-in/sign-in.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProjectComponent } from './Components/project/project.component';
     ProjectsListComponent,
     ProjectDetailsComponent,
     ProjectAddComponent,
-    ProjectComponent
+    ProjectComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

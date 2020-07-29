@@ -17,6 +17,7 @@ namespace WebFinalProjectNicolasScandolo3.Models
         public int IdUsuario { get; set; }
         public Usuario usuario { get; set; }
         public string PathDocumento { get; set; }
+        public byte[] File { get; set; }
 
 
     }

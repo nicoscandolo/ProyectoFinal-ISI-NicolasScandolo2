@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,22 +11,27 @@ namespace WebFinalProjectNicolasScandolo3.Models
 {
     public class Usuario
     {
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [Key]
         public long IdUsuario { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Nombre { get; set; }
 
-        public string Apellido { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string Password { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public bool IsAdmin { get; set; }
 
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public DateTime FechaCreacion { get; set; }
 
-       
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string ImagenUsuarioPath { get; set; }
 
 
-
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         private ICollection<UsuariosProjecto> usuariosProjectos;
 
         public ICollection<UsuariosProjecto> GetUsuariosProjectos()
