@@ -11,6 +11,7 @@ import { Form, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './Components/project/project.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { AppRoutingModule } from './app-routing./app-routing.module';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -27,6 +28,7 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule
    /*  NgxSpinnerService */
   ],
   providers: [ProjectService],
