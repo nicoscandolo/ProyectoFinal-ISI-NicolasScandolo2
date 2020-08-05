@@ -20,5 +20,6 @@ namespace WebFinalProjectNicolasScandolo3.Models
         public byte[] File { get; set; }
 
 
+
     }
 }

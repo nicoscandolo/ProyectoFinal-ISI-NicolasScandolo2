@@ -43,12 +43,12 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // POST: api/signin
         [HttpPost]
-        public async Task<ActionResult<Usuario>> Signin(Usuario usuarioRequest)
+        public ActionResult<Usuario> Signin(Usuario usuarioRequest)
         {
-             Usuario user = (from x in _context.Usuarios
-                             where x.Nombre == usuarioRequest.Nombre &
-                            x.Password == usuarioRequest.Password
-                             select x).FirstOrDefault();
+            Usuario user = (from x in _context.Usuarios
+                            where x.Nombre == usuarioRequest.Nombre &
+                           x.Password == usuarioRequest.Password
+                            select x).FirstOrDefault();
 
             if (user == null)
             {

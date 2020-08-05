@@ -13,18 +13,18 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  signUp(formData: Usuario) {
+/*   signUp(formData: Usuario) {
     // se puede mejorar poniendo interfaz para el tipo de dato de usuario
     return this.http.post<any>(this.rootURL + '/signup', formData);
-  }
+  } */
 
   signIn(formData: Usuario) {
     return this.http.post<any>(this.rootURL + '/signin', formData);
   }
 
-  loggedIn(): boolean {
+/*   loggedIn(): boolean {
     return !!localStorage.getItem('token');
-  }
+  } */
 
   logOut() {
     localStorage.removeItem('token');

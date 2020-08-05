@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/Models/usuario.model';
 import { AuthService } from 'src/app/Services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // import { NgxSpinnerService } from 'ngx-spinner';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
   errorMessage: string;
 
   constructor(
+    private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router) { }
     // private spinner: NgxSpinnerService) { }
@@ -47,7 +48,7 @@ export class SignInComponent implements OnInit {
       res => {
         console.log(res);
         // Setear token en el localStorage
-        localStorage.setItem('token', res.data.token);
+        // localStorage.setItem('token', res.data.token);
         // Redireccionar
         this.router.navigate(['/landingpage']);
         this.resetform(form);

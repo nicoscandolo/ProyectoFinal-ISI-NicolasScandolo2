@@ -21,7 +21,7 @@ export class ProjectsListComponent implements OnInit {
       (response: any) => {
        /*  console.log(response);
         console.log(response.data); */
-        let testt = response;
+        const testt = response;
        /*  console.log(testt); */
         this.ProjectsList = testt;
         console.log(this.ProjectsList);
