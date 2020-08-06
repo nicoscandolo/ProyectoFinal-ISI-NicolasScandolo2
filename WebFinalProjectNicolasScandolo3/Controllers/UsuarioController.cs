@@ -42,7 +42,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         }
 
         // POST: api/signin
-        [HttpPost]
+        [HttpPost("signin")]
         public ActionResult<Usuario> Signin(Usuario usuarioRequest)
         {
             Usuario user = (from x in _context.Usuarios

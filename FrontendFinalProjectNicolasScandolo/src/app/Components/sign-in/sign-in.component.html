@@ -10,7 +10,7 @@
 
           <div class="form-group">
             <div class="input-group">
-              <input name="Nombre" #Nombre="ngModel" [(ngModel)]="service.formData.Nombre" class="form-control"
+              <input name="Nombre" #Nombre="ngModel" [(ngModel)]="authService.formData.Nombre" class="form-control"
                 placeholder="Nombre Usuario" autofocus required>
             </div>
 
@@ -27,7 +27,7 @@
 
           <div class="form-group">
             <div class="input-group">
-              <input name="Password" #Descripcion="ngModel" [(ngModel)]="service.formData.Password"
+              <input name="Password" #Password="ngModel" [(ngModel)]="authService.formData.Password"
                 class="form-control" placeholder="Password" required>
             </div>
             <!-- Valid message -->

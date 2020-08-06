@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   formData: Usuario;
-  readonly rootURL = 'http://localhost:5000/api/';
+  readonly rootURL = 'http://localhost:5000/api/Usuario';
   constructor(private http: HttpClient, private router: Router) { }
 
 
