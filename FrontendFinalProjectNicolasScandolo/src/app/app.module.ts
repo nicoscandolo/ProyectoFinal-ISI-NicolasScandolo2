@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectComponent } from './Components/project/project.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     ProjectDetailsComponent,
     ProjectAddComponent,
     ProjectComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -8,13 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProjectComponent implements OnInit {
   @Input() project: any;
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
   }
 
-  goToDetails(movie: any) {
-    // console.log(movie._id);
-    // this.route.navigate(["movie-details", movie._id]);
+  goToDetails(project: any) {
+    console.log(project.id);
+    this.route.navigate(['project-details', project.idProyecto]);
   }
 }

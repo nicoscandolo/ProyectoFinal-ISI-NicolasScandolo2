@@ -10,7 +10,7 @@ import { AppComponent } from '../app.component';
 import { NavbarComponent } from '../Components/navbar/navbar.component';
 import { ProjectsListComponent } from '../Components/projects-list/projects-list.component';
 import { SignInComponent } from '../Components/sign-in/sign-in.component';
-
+import { SignUpComponent } from '../Components/sign-up/sign-up.component';
 
 // Guard
 import { AuthGuard } from '../auth.guard';
@@ -37,20 +37,19 @@ const routes: Routes = [
     path: "consultas",
     component: ConsultasComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: "movie-details/:query",
-    component: MovieDetailsComponent,
-    canActivate: [AuthGuard]
   }, */
+  {
+    path: 'project-details/:query',
+    component: ProjectDetailsComponent,
+  },
   {
      path: 'signin',
      component: SignInComponent
+  },
+  {
+     path: 'signup',
+     component: SignUpComponent
   }
-/*   {
-     path: "signup",
-     component: SignupComponent
-  } */
 /*   {
     path: "addmovie",
     component: AddMovieComponent,

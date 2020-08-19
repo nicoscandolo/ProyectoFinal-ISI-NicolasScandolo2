@@ -95,9 +95,12 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         // POST: api/Usuario
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
+        [HttpPost("signup")]
+        public async Task<ActionResult<Usuario>> signup(Usuario usuario)
         {
+            usuario.FechaCreacion = DateTime.Now;
+            usuario.IsAdmin = false;
+
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
