@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using WebFinalProjectNicolasScandolo3.Models;
 
@@ -26,6 +27,8 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Documento>>> GetDocumentos()
         {
+
+            var h = await  _context.Documentos.ToListAsync();
             return await _context.Documentos.ToListAsync();
         }
 
@@ -39,9 +42,11 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             {
                 return NotFound();
             }
-
+            
             return documento;
         }
+
+
 
         // PUT: api/Documento/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
@@ -87,45 +92,103 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             return CreatedAtAction("GetDocumento", new { id = documento.IdDocumento }, documento);
         }
 
+
+
+
+        [HttpGet("Download/{id}")]
+        public async Task<ActionResult> Download(int id)
+        {
+            var file = await _context.Documentos.FindAsync(id);
+
+            if (file == null)
+            {
+                return NotFound();
+            }
+
+            //copio el archivo a memoria
+            Stream stream = new MemoryStream(file.File);
+            stream.Position = 0;
+
+            return File(stream, GetContentType(file.NombreDocumento), file.NombreDocumento);
+        }
+
+        private string GetContentType(string path)
+        {
+            var provider = new FileExtensionContentTypeProvider();
+            string contentType;
+            if (!provider.TryGetContentType(path, out contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+            return contentType;
+        }
+
+
         // POST: api/Documento/upload
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost("upload"), DisableRequestSizeLimit]
-        public ActionResult<Documento> PostDocupload()
+        public async Task<ActionResult<Documento>> PostDocupload()
         {
 
             ////////////////////////////////////////////////////////////////
+            
+            Documento doc = new Documento();
+
+            var file = Request.Form.Files[0];
+            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+            using (var ms = new MemoryStream())
             {
-                try
-                {
-                    var file = Request.Form.Files[0];
-                    var folderName = Path.Combine("Resources", "Images");
-                    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-                    if (file.Length > 0)
-                    {
-                        
-                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                        var fullPath = Path.Combine(pathToSave, fileName);
-                        var dbPath = Path.Combine(folderName, fileName);
-
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            file.CopyTo(stream);
-                        }
-
-                        return Ok(new { dbPath });
-                    }
-                    else
-                    {
-                        return BadRequest();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, $"Internal server error: {ex}");
-                }
+                file.CopyTo(ms);
+                var fileBytes = ms.ToArray();
+                doc.File = fileBytes;
+                // act on the Base64 data
             }
+
+
+            doc.NombreDocumento = fileName;
+            doc.Descripcion = fileName;
+
+
+            _context.Documentos.Add(doc);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetDocumento", new { id = doc.IdDocumento }, doc);
+
+            ////////////////////////////////////////////////////
+
+            //{
+            //    try
+            //    {
+            //        var file = Request.Form.Files[0];
+            //        var folderName = Path.Combine("Resources", "Images");
+            //        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+            //        if (file.Length > 0)
+            //        {
+                        
+            //            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            //            var fullPath = Path.Combine(pathToSave, fileName);
+            //            var dbPath = Path.Combine(folderName, fileName);
+
+            //            using (var stream = new FileStream(fullPath, FileMode.Create))
+            //            {
+            //                file.CopyTo(stream);
+            //            }
+
+            //            return Ok(new { dbPath });
+            //        }
+            //        else
+            //        {
+            //            return BadRequest();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        return StatusCode(500, $"Internal server error: {ex}");
+            //    }
+            //}
 
 
 

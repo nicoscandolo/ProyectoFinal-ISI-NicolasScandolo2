@@ -2,7 +2,7 @@ export class Documento {
   IdDocumento: number;
   NombreDocumento: string;
   Descripcion: string;
-  File: string;
+  File: File;
 }
 
 

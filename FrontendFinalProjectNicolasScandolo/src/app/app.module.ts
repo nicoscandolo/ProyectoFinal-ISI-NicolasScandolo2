@@ -13,6 +13,8 @@ import { ProjectComponent } from './Components/project/project.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { UploadComponent } from './Components/upload/upload.component';
+import { DownloadComponent } from './Components/download/download.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -24,7 +26,9 @@ import { SignUpComponent } from './Components/sign-up/sign-up.component';
     ProjectAddComponent,
     ProjectComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    UploadComponent,
+    DownloadComponent
   ],
   imports: [
     BrowserModule,

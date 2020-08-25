@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../Models/project.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Documento } from '../Models/documento.model';
 @Injectable({
@@ -21,35 +21,28 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'Proyecto');
   }
 
+  searchFilesList() {
+    return this.http.get(this.rootURL + 'Documento');
+  }
+
   postFile(fileToUpload: File) {
 
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-
     return this.http.post(this.rootURL + 'Documento/upload', formData, {reportProgress: true, observe: 'events'});
 }
 
-postFile2(fileToUpload) {
-  const documento: Documento = new Documento();
-  documento.Descripcion =  fileToUpload;
-  return this.http.post(this.rootURL + 'Documento', documento);
-}
 
-/* postFile2(fileToUpload: File): Observable<boolean> {
+public downloadFile(id: number): Observable<HttpEvent<Blob>> {
 
-  const formData: FormData = new FormData();
-  formData.append('fileKey', fileToUpload, fileToUpload.name);
-  const headerss: Headers = new Headers();
-  headerss.append('Content-Type', 'multipart/form-data');
-  return this.httpClient
-    .post(this.rootURL + 'Documento', formData, { headers: headerss })
-    .map(() => true)
-    .catch((e) => this.handleError(e));
-}
-  handleError(e: any) {
-    throw new Error("Method not implemented.");
-  } */
-
-
+  return this.http.request(new HttpRequest(
+    'GET',
+    this.rootURL + 'Documento/Download/' + {id},
+    null,
+    {
+      reportProgress: true,
+      responseType: 'blob'
+    }));
+  }
 }
