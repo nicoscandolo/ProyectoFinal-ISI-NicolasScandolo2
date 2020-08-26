@@ -1,3 +1,20 @@
+<app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
+<h2>File List</h2>
+<p *ngIf="showProgress"> progress <strong>{{percentage}}%</strong></p>
+<hr>
+<div class="container">
+    <ul>
+        <li *ngFor="let file of files">
+            <a>
+                {{file.nombreDocumento}}
+                <app-download [disabled]="showProgress" [fileName]="file.nombreDocumento" [id]="file.idDocumento" (downloadStatus)="downloadStatus($event)"></app-download>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
 <!-- <div class="form-group">
   <label for="file">Choose File</label>
   <input type="file"
@@ -6,7 +23,7 @@
 </div> -->
 
 
-<div>
+<!-- <div>
 
 <div class="row" style="margin-bottom:15px;">
   <div class="col-md-3">
@@ -21,6 +38,6 @@
       {{message}}
     </span>
   </div>
-</div>
+</div> -->
 
 

@@ -38,7 +38,7 @@ public downloadFile(id: number): Observable<HttpEvent<Blob>> {
 
   return this.http.request(new HttpRequest(
     'GET',
-    this.rootURL + 'Documento/Download/' + {id},
+    this.rootURL + 'Documento/Download/' + id,
     null,
     {
       reportProgress: true,

@@ -105,11 +105,13 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
                 return NotFound();
             }
 
-            //copio el archivo a memoria
-            Stream stream = new MemoryStream(file.File);
-            stream.Position = 0;
+                //copio el archivo a memoria
+                //Stream stream = new MemoryStream(file.File);
+                //stream.Position = 0;
 
-            return File(stream, GetContentType(file.NombreDocumento), file.NombreDocumento);
+                return File(new MemoryStream(file.File), GetContentType(file.NombreDocumento), file.NombreDocumento);
+            
+
         }
 
         private string GetContentType(string path)
