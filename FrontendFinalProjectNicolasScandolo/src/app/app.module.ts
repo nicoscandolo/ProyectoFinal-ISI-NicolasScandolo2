@@ -6,6 +6,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { ProjectsListComponent } from './Components/projects-list/projects-list.component';
 import { ProjectDetailsComponent } from './Components/project-details/project-details.component';
 import { ProjectService } from './Services/project.service';
+import { AuthService } from './Services/auth.service';
 import { ProjectAddComponent } from './Components/project-add/project-add.component';
 import { Form, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +16,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { UploadComponent } from './Components/upload/upload.component';
 import { DownloadComponent } from './Components/download/download.component';
+import { ConsultasListComponent } from './Components/consultas-list/consultas-list.component';
+import { ConsultaComponent } from './Components/consulta/consulta.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -28,7 +31,9 @@ import { DownloadComponent } from './Components/download/download.component';
     SignInComponent,
     SignUpComponent,
     UploadComponent,
-    DownloadComponent
+    DownloadComponent,
+    ConsultasListComponent,
+    ConsultaComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,7 @@ import { DownloadComponent } from './Components/download/download.component';
     AppRoutingModule
    /*  NgxSpinnerService */
   ],
-  providers: [ProjectService],
+  providers: [ProjectService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

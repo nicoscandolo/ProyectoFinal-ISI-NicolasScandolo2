@@ -50,7 +50,7 @@ export class SignUpComponent implements OnInit {
         // Setear token en el localStorage
         // localStorage.setItem('token', res.data.token);
         // Redireccionar
-        this.router.navigate(['/landingpage']);
+        this.router.navigate(['/consultas']);
         this.resetform(form);
       },
       err => {

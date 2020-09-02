@@ -3,6 +3,7 @@ import { Project } from '../Models/project.model';
 import { HttpClient, HttpRequest, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Documento } from '../Models/documento.model';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,7 @@ export class ProjectService {
 
   formData: Project;
   readonly rootURL = 'http://localhost:5000/api/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
   postProject(formData: Project) {
@@ -23,6 +24,10 @@ export class ProjectService {
 
   searchFilesList() {
     return this.http.get(this.rootURL + 'Documento');
+  }
+
+  searchConsultasList() {
+    return this.http.get(this.rootURL + 'Consulta');
   }
 
   postFile(fileToUpload: File) {

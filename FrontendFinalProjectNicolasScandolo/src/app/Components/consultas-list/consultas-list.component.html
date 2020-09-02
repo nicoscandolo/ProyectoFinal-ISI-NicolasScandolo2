@@ -1,0 +1,24 @@
+<div *ngIf="consultasList.length" class="container mt-2">
+  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">Tus Consultas</h1>
+
+  <div class="card-deck">
+    <app-consulta
+      *ngFor="let consulta of consultasList"
+      [consulta]="consulta"
+
+
+    ></app-consulta>
+  </div>
+  <hr> <hr> <hr>
+</div>
+<!-- Alert messages -->
+<div *ngIf="!consultasList.length" class="container text-center">
+  <div *ngIf="!consultasList.length" class="alert alert-primary" role="alert">
+    No Consultas Found!
+  </div>
+</div>
+<div *ngIf="errorMessage" class="container text-center">
+  <div class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+</div>

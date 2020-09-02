@@ -14,6 +14,7 @@ import { SignUpComponent } from '../Components/sign-up/sign-up.component';
 
 // Guard
 import { AuthGuard } from '../auth.guard';
+import { ConsultasListComponent } from '../Components/consultas-list/consultas-list.component';
 
 
 const routes: Routes = [
@@ -33,11 +34,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-/*   {
-    path: "consultas",
-    component: ConsultasComponent,
-    canActivate: [AuthGuard]
-  }, */
+   {
+    path: 'consultas',
+    component: ConsultasListComponent,
+  },
   {
     path: 'project-details/:query',
     component: ProjectDetailsComponent,
