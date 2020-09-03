@@ -18,6 +18,7 @@ import { UploadComponent } from './Components/upload/upload.component';
 import { DownloadComponent } from './Components/download/download.component';
 import { ConsultasListComponent } from './Components/consultas-list/consultas-list.component';
 import { ConsultaComponent } from './Components/consulta/consulta.component';
+import { ComentarioConsultaComponent } from './Components/comentario-consulta/comentario-consulta.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ConsultaComponent } from './Components/consulta/consulta.component';
     UploadComponent,
     DownloadComponent,
     ConsultasListComponent,
-    ConsultaComponent
+    ConsultaComponent,
+    ComentarioConsultaComponent
   ],
   imports: [
     BrowserModule,

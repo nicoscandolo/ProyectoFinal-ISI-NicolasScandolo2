@@ -10,6 +10,8 @@ import { ProjectService } from 'src/app/Services/project.service';
 })
 export class ConsultaComponent implements OnInit {
   @Input() consulta: any;
+  private comentariosList: any = [];
+  private errorMessage: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +22,24 @@ export class ConsultaComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.consulta);
+    this.ShowComents();
   }
 
+  ShowComents(): void {
+    console.log('putamadre');
+    this.service.searchComentariossList().subscribe(
+      (response: any) => {
+        const testt = response;
+        this.comentariosList = testt;
+        console.log('putamadre');
+        console.log(this.comentariosList);
+      },
+      err => {
+        console.log(err);
+        if (err.Status !== 0) { this.errorMessage = err.error.message; } else {
+          this.errorMessage = 'Unable to connect with server';
+        }
+      }
+    );
+  }
 }

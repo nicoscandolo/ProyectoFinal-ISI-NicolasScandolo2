@@ -30,6 +30,10 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'Consulta');
   }
 
+  searchComentariossList() {
+    return this.http.get(this.rootURL + 'ComentarioConsulta');
+  }
+
   postFile(fileToUpload: File) {
 
     const formData = new FormData();
