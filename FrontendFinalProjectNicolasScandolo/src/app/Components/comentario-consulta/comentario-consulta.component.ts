@@ -13,4 +13,5 @@ export class ComentarioConsultaComponent implements OnInit {
   ngOnInit() {
   }
 
+
 }

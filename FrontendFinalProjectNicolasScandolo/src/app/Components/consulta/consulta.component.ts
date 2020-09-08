@@ -12,6 +12,7 @@ export class ConsultaComponent implements OnInit {
   @Input() consulta: any;
   private comentariosList: any = [];
   private errorMessage: string;
+  private show: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,17 +22,15 @@ export class ConsultaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.show = false;
     console.log(this.consulta);
-    this.ShowComents();
   }
 
-  ShowComents(): void {
-    console.log('putamadre');
-    this.service.searchComentariossList().subscribe(
+  ShowComents(id: number): void {
+    this.service.searchComentariossList(id).subscribe(
       (response: any) => {
         const testt = response;
         this.comentariosList = testt;
-        console.log('putamadre');
         console.log(this.comentariosList);
       },
       err => {

@@ -26,12 +26,12 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'Documento');
   }
 
-  searchConsultasList() {
-    return this.http.get(this.rootURL + 'Consulta');
+  searchConsultasList(id) {
+    return this.http.get(this.rootURL + 'Consulta/' + id);
   }
 
-  searchComentariossList() {
-    return this.http.get(this.rootURL + 'ComentarioConsulta');
+  searchComentariossList(id) {
+    return this.http.get(this.rootURL + 'ComentarioConsulta/' + id);
   }
 
   postFile(fileToUpload: File) {

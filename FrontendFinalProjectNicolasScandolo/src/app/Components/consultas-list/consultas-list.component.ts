@@ -13,17 +13,18 @@ export class ConsultasListComponent implements OnInit {
   private errorMessage: string;
 
     constructor(
-      private route: ActivatedRoute,
+      private activatedRoute: ActivatedRoute,
       private service: ProjectService,
       private router: Router,
       private http: HttpClient) { }
 
   ngOnInit() {
-    this.searchConsultasList();
+    const id = this.activatedRoute.snapshot.params.query;
+    this.searchConsultasList(id);
   }
 
-  searchConsultasList(): void {
-    this.service.searchConsultasList().subscribe(
+  searchConsultasList(id: number): void {
+    this.service.searchConsultasList(id).subscribe(
       (response: any) => {
         const testt = response;
         this.consultasList = testt;

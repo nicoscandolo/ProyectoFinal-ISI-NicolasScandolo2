@@ -29,16 +29,16 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/ComentarioConsulta/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ComentarioConsulta>> GetComentarioConsulta(int id)
+        public async Task<ActionResult<IEnumerable<ComentarioConsulta>>> GetComentarioConsulta(int id)
         {
-            var comentarioConsulta = await _context.ComentariosConsulta.FindAsync(id);
+            var comentariosConsulta = await _context.ComentariosConsulta.Where(b => b.IdConsulta == id).ToListAsync();
 
-            if (comentarioConsulta == null)
+            if (comentariosConsulta == null)
             {
                 return NotFound();
             }
 
-            return comentarioConsulta;
+            return comentariosConsulta;
         }
 
         // PUT: api/ComentarioConsulta/5

@@ -35,7 +35,7 @@ const routes: Routes = [
   },
 
    {
-    path: 'consultas',
+    path: 'project-details/:query/consultas',
     component: ConsultasListComponent,
   },
   {

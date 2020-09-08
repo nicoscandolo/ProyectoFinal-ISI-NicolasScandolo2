@@ -4,6 +4,7 @@ import { Route } from '@angular/compiler/src/core';
 import { HttpEventType, HttpClient  } from '@angular/common/http';
 import { ProgressStatusEnum, ProgressStatus } from 'src/app/models/progress-status.model';
 import { Documento } from 'src/app/models/documento.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-details',
@@ -20,7 +21,9 @@ export class ProjectDetailsComponent implements OnInit {
 
 
   constructor(private service: ProjectService,
-              private http: HttpClient
+              private http: HttpClient,
+              private activatedRoute: ActivatedRoute,
+              private route: Router
               ) { }
 
   ngOnInit() {
@@ -36,7 +39,10 @@ export class ProjectDetailsComponent implements OnInit {
     );
   }
 
-
+  goToConsultas() {
+    const id = this.activatedRoute.snapshot.params.query;
+    this.route.navigate(['project-details', id, 'consultas']);
+  }
 
   public downloadStatus(event: ProgressStatus) {
     switch (event.status) {
@@ -77,46 +83,4 @@ export class ProjectDetailsComponent implements OnInit {
     }
   }
 
-  /* /////////////////////////////////////////// */
-/*   public uploadFile = (files) => {
-    if (files.length === 0) {
-      return;
-    }
-
-    const fileToUpload = files[0] as File;
-
-
-    this.service.postFile(fileToUpload)
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress = Math.round(100 * event.loaded / event.total);
-        } else if (event.type === HttpEventType.Response) {
-          this.message = 'Upload success.';
-          this.onUploadFinished.emit(event.body);
-        }
-      });
-  } */
-
-/* ////////////////////////////////////////////// */
-
-/*   handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-    this.uploadFileToActivity();
-} */
-
-/* uploadFileToActivity() {
-
-
-    const reader = new FileReader();
-    reader.onload = () => {
-        console.log(reader.result);
-    };
-    const filee = reader.readAsText(this.fileToUpload);
-
-    this.service.postFile2(filee).subscribe(data => {
-      console.log('todo ok');
-      }, error => {
-        console.log(error);
-      });
-} */
 }

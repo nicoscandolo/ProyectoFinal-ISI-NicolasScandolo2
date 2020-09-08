@@ -1,4 +1,5 @@
 <div *ngIf="consulta">
+
  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
  <div class="container bootstrap snippets bootdey">
      <div class="col-sm-8">
@@ -37,7 +38,10 @@
                  <ul class="comments-list">
 
                   <!-- ////////////////////////////////////////////////////// -->
-                  <div *ngIf="comentariosList.length" class="container mt-2">
+                  <button class="button upload" (click)="ShowComents(consulta.idConsulta)">
+                    Ver Comentarios Consulta
+                  </button>
+                  <div *ngIf="comentariosList.length"  class="container mt-2" >
                     <div class="card-deck">
                       <app-comentario-consulta
                       *ngFor="let comentario of comentariosList"
@@ -45,6 +49,7 @@
                       ></app-comentario-consulta>
                     </div>
                   </div>
+
                   <!-- Alert messages -->
                   <div *ngIf="!comentariosList.length" class="container text-center">
                     <div *ngIf="!comentariosList.length" class="alert alert-primary" role="alert">
