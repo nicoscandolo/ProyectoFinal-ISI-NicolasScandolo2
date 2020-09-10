@@ -20,7 +20,7 @@ import { ConsultasListComponent } from '../Components/consultas-list/consultas-l
 const routes: Routes = [
   { path: '', redirectTo: 'landingpage', pathMatch: 'full' },
   {
-    path: 'landingpage',
+    path: 'landingpage/:idUsuario',
     component: ProjectsListComponent,
   },
   {

@@ -323,4 +323,6 @@ C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalPro
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.csproj.CopyComplete
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.pdb
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.MvcApplicationPartsAssemblyInfo.cache

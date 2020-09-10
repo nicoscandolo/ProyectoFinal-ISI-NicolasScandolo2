@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFinalProjectNicolasScandolo3.DTOs;
 using WebFinalProjectNicolasScandolo3.Models;
 
 namespace WebFinalProjectNicolasScandolo3.Controllers
@@ -14,7 +16,6 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
     public class UsuariosProjectoController : ControllerBase
     {
         private readonly TodoContext _context;
-
         public UsuariosProjectoController(TodoContext context)
         {
             _context = context;
@@ -29,23 +30,42 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/UsuariosProjecto/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UsuariosProjecto>> GetUsuariosProjecto(string id)
+        public async Task<ActionResult<IEnumerable<object>>> GetUsuariosProjecto(int id)
         {
-            var usuariosProjecto = await _context.UsuariosProyectos.FindAsync(id);
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Proyecto, ProjectDTO>();
+            });
+            IMapper iMapper = config.CreateMapper();
+
+            var usuariosProjecto = await _context.UsuariosProyectos.Where(b => b.IdUsuario == id).ToListAsync();
 
             if (usuariosProjecto == null)
             {
                 return NotFound();
             }
 
-            return usuariosProjecto;
+            List<ProjectDTO> Proyectos= new List<ProjectDTO>();
+            
+
+            foreach (UsuariosProjecto usProyecto in usuariosProjecto)
+            {
+                ProjectDTO projectDTO = new ProjectDTO();
+                Proyecto proyecto =  await _context.Proyectos.Where(b => b.IdProyecto == usProyecto.IdProjecto).FirstOrDefaultAsync();
+                projectDTO = iMapper.Map<Proyecto, ProjectDTO>(proyecto);
+                
+                Proyectos.Add(projectDTO);
+                
+            }
+
+
+            return Proyectos;
         }
 
         // PUT: api/UsuariosProjecto/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuariosProjecto(string id, UsuariosProjecto usuariosProjecto)
+        public async Task<IActionResult> PutUsuariosProjecto(int id, UsuariosProjecto usuariosProjecto)
         {
             if (id != usuariosProjecto.IdUsuario)
             {
@@ -101,7 +121,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // DELETE: api/UsuariosProjecto/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<UsuariosProjecto>> DeleteUsuariosProjecto(string id)
+        public async Task<ActionResult<UsuariosProjecto>> DeleteUsuariosProjecto(int id)
         {
             var usuariosProjecto = await _context.UsuariosProyectos.FindAsync(id);
             if (usuariosProjecto == null)
@@ -115,7 +135,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             return usuariosProjecto;
         }
 
-        private bool UsuariosProjectoExists(string id)
+        private bool UsuariosProjectoExists(int id)
         {
             return _context.UsuariosProyectos.Any(e => e.IdUsuario == id);
         }

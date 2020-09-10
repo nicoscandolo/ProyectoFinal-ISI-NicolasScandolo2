@@ -9,9 +9,9 @@ namespace WebFinalProjectNicolasScandolo3.Models
     public class UsuariosProjecto
     {
         [Key]
-        public string IdUsuario { get; set; }
+        public int IdUsuario { get; set; }
         public Usuario Usuario { get; set; }
-        public string IdProjecto { get; set; }
+        public int IdProjecto { get; set; }
         public Proyecto Proyecto { get; set; }
 
 

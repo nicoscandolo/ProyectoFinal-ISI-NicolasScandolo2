@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/Services/project.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-projects-list',
@@ -10,14 +11,18 @@ export class ProjectsListComponent implements OnInit {
   private ProjectsList: any = [];
   private errorMessage: string;
 
-  constructor(private service: ProjectService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private service: ProjectService) { }
 
   ngOnInit() {
-    this.searchProjectsList();
+    const id = this.activatedRoute.snapshot.params.idUsuario;
+    this.searchProjectsList(id);
   }
 
-  searchProjectsList(): void {
-    this.service.searchProjectsList().subscribe(
+  searchProjectsList(id): void {
+    this.service.searchProjectsList(id).subscribe(
       (response: any) => {
        /*  console.log(response);
         console.log(response.data); */

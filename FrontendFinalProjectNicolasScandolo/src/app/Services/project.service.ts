@@ -18,8 +18,8 @@ export class ProjectService {
    return this.http.post(this.rootURL + 'Proyecto', formData);
   }
 
-  searchProjectsList() {
-    return this.http.get(this.rootURL + 'Proyecto');
+  searchProjectsList(id) {
+    return this.http.get(this.rootURL + 'UsuariosProjecto/' + id);
   }
 
   searchFilesList() {
