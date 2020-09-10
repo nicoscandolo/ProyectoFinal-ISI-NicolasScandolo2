@@ -22,8 +22,8 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'UsuariosProjecto/' + id);
   }
 
-  searchFilesList() {
-    return this.http.get(this.rootURL + 'Documento');
+  searchFilesList(id) {
+    return this.http.get(this.rootURL + 'Documento/' + id);
   }
 
   searchConsultasList(id) {
@@ -34,12 +34,12 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'ComentarioConsulta/' + id);
   }
 
-  postFile(fileToUpload: File) {
+  postFile(fileToUpload: File, id) {
 
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    return this.http.post(this.rootURL + 'Documento/upload', formData, {reportProgress: true, observe: 'events'});
+    return this.http.post(this.rootURL + 'Documento/upload/' + id, formData, {reportProgress: true, observe: 'events'});
 }
 
 

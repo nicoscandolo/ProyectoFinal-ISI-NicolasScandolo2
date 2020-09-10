@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
     }
 
     this.authService.formData = {
-      IdUsuario: 0,
+      idUsuario: 0,
       Nombre: '',
       FechaCreacion: new Date(),
       Password: '',
@@ -45,12 +45,12 @@ export class SignInComponent implements OnInit {
 
     // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
     this.authService.signIn(form.value).subscribe(
-      res => {
-        console.log(res);
+      ( res: Usuario ) => {
+        console.log(res.idUsuario);
         // Setear token en el localStorage
         // localStorage.setItem('token', res.data.token);
         // Redireccionar
-        this.router.navigate(['/landingpage']);
+        this.router.navigate(['/landingpage/' + res.idUsuario]);
         this.resetform(form);
       },
       err => {

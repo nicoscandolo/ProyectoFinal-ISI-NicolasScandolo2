@@ -34,9 +34,10 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/Documento/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Documento>> GetDocumento(int id)
+        public async Task<ActionResult<IEnumerable<Documento>>> GetDocumento(int id)
         {
-            var documento = await _context.Documentos.FindAsync(id);
+
+            var documento = await _context.Documentos.Where(b => b.IdProyecto == id).ToListAsync();
 
             if (documento == null)
             {
@@ -129,8 +130,8 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         // POST: api/Documento/upload
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost("upload"), DisableRequestSizeLimit]
-        public async Task<ActionResult<Documento>> PostDocupload()
+        [HttpPost("upload/{id}"), DisableRequestSizeLimit]
+        public async Task<ActionResult<Documento>> PostDocupload(int id)
         {
 
             ////////////////////////////////////////////////////////////////
@@ -151,7 +152,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
             doc.NombreDocumento = fileName;
             doc.Descripcion = fileName;
-
+            doc.IdProyecto = id;
 
             _context.Documentos.Add(doc);
             await _context.SaveChangesAsync();

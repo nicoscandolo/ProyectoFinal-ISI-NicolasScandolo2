@@ -31,7 +31,8 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   private getFiles() {
-    this.service.searchFilesList().subscribe(
+    const id = this.activatedRoute.snapshot.params.query;
+    this.service.searchFilesList(id).subscribe(
       (data: Documento) => {
         this.files = data;
         console.log(this.files);

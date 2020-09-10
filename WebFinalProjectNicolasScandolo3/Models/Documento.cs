@@ -28,6 +28,8 @@ namespace WebFinalProjectNicolasScandolo3.Models
         public string PathDocumento { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public byte[] File { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public int IdProyecto { get; set; }
 
 
 

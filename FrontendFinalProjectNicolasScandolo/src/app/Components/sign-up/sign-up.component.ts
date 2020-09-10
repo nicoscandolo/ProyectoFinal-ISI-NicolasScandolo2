@@ -32,7 +32,7 @@ export class SignUpComponent implements OnInit {
     }
 
     this.authService.formData = {
-      IdUsuario: 0,
+      idUsuario: 0,
       Nombre: '',
       FechaCreacion: new Date(),
       Password: '',

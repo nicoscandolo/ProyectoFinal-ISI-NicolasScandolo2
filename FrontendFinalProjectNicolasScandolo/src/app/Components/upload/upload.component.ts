@@ -3,6 +3,7 @@ import { ProjectService } from 'src/app/Services/project.service';
 import { Route } from '@angular/compiler/src/core';
 import { HttpEventType, HttpClient  } from '@angular/common/http';
 import { ProgressStatus, ProgressStatusEnum } from 'src/app/models/progress-status.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -17,39 +18,24 @@ export class UploadComponent implements OnInit {
  @Input() public disabled: boolean;
  @ViewChild('inputFile') inputFile: ElementRef;
 
- constructor(private service: ProjectService, private http: HttpClient) {
+ constructor(private service: ProjectService,
+             private http: HttpClient,
+             private router: Router,
+             private activatedRoute: ActivatedRoute
+  ) {
               this.uploadStatus = new EventEmitter<ProgressStatus>();
              }
 
  ngOnInit() {
  }
 
- /* /////////////////////////////////////////// */
-/*  public uploadFile = (files) => {
-   if (files.length === 0) {
-     return;
-   }
-
-   const fileToUpload = files[0] as File;
-
-
-   this.service.postFile(fileToUpload)
-     .subscribe(event => {
-       if (event.type === HttpEventType.UploadProgress) {
-         this.progress = Math.round(100 * event.loaded / event.total);
-       } else if (event.type === HttpEventType.Response) {
-         this.message = 'Upload success.';
-         this.onUploadFinished.emit(event.body);
-       }
-     });
-} */
-////////////////////////////////////////////////////////
 
 public upload(event) {
+  const id = this.activatedRoute.snapshot.params.query;
   if (event.target.files && event.target.files.length > 0) {
     const file = event.target.files[0];
     this.uploadStatus.emit({status: ProgressStatusEnum.START});
-    this.service.postFile(file).subscribe(
+    this.service.postFile(file, id).subscribe(
       data => {
         if (data) {
           switch (data.type) {
