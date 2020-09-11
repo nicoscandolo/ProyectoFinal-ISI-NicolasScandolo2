@@ -19,6 +19,8 @@ import { DownloadComponent } from './Components/download/download.component';
 import { ConsultasListComponent } from './Components/consultas-list/consultas-list.component';
 import { ConsultaComponent } from './Components/consulta/consulta.component';
 import { ComentarioConsultaComponent } from './Components/comentario-consulta/comentario-consulta.component';
+import { LandingPageComponent } from './Components/landing-page/landing-page.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 @NgModule({
@@ -35,7 +37,9 @@ import { ComentarioConsultaComponent } from './Components/comentario-consulta/co
     DownloadComponent,
     ConsultasListComponent,
     ConsultaComponent,
-    ComentarioConsultaComponent
+    ComentarioConsultaComponent,
+    LandingPageComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

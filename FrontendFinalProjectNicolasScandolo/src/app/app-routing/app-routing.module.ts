@@ -18,7 +18,7 @@ import { ConsultasListComponent } from '../Components/consultas-list/consultas-l
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'landingpage', pathMatch: 'full' },
+  { path: '', redirectTo: 'signin', pathMatch: 'full' },
   {
     path: 'landingpage/:idUsuario',
     component: ProjectsListComponent,
@@ -35,11 +35,11 @@ const routes: Routes = [
   },
 
    {
-    path: 'project-details/:query/consultas',
+    path: 'landingpage/:idUsuario/project-details/:query/consultas',
     component: ConsultasListComponent,
   },
   {
-    path: 'project-details/:query',
+    path: 'landingpage/:idUsuario/project-details/:query',
     component: ProjectDetailsComponent,
   },
   {

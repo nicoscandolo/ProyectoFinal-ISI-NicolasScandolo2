@@ -54,6 +54,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
                 projectDTO = iMapper.Map<Proyecto, ProjectDTO>(proyecto);
                 
                 Proyectos.Add(projectDTO);
+                projectDTO = null;
                 
             }
 

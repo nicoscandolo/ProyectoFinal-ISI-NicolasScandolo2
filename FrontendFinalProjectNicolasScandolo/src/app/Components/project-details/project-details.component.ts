@@ -41,8 +41,9 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   goToConsultas() {
-    const id = this.activatedRoute.snapshot.params.query;
-    this.route.navigate(['project-details', id, 'consultas']);
+    const idProyecto = this.activatedRoute.snapshot.params.query;
+    const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+    this.route.navigate(['landingpage', idUsuario, 'project-details', idProyecto, 'consultas']);
   }
 
   public downloadStatus(event: ProgressStatus) {

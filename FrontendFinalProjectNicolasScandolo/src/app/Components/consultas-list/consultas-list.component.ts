@@ -19,8 +19,8 @@ export class ConsultasListComponent implements OnInit {
       private http: HttpClient) { }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.params.query;
-    this.searchConsultasList(id);
+    const idProyecto = this.activatedRoute.snapshot.params.query;
+    this.searchConsultasList(idProyecto);
   }
 
   searchConsultasList(id: number): void {

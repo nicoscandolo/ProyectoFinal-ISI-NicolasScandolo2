@@ -9,13 +9,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProjectComponent implements OnInit {
   @Input() project: any;
 
-  constructor(private route: Router) { }
+  constructor(private route: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   goToDetails(project: any) {
     console.log(project.id);
-    this.route.navigate(['project-details', project.idProyecto]);
+    const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+    this.route.navigate(['landingpage', idUsuario, 'project-details', project.idProyecto]);
   }
 }
+
+
