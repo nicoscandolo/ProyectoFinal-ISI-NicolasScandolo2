@@ -1,23 +1,17 @@
 <div *ngIf="project">
 
   <div class="card shadow p-3 mb-3 rounded" (click)="goToDetails(project)">
-<!--     <img
+  <img
       class="card-img-top image"
       href="image"
-      src="{{ movie.img_path }}"
-      alt="Poster de la película {{ movie.name }}"
-    /> -->
+      src=".\assets\ProjectsCategories\{{project.tipo}}.png"
+    />
     <div class="card-body">
-      <!-- <h5 class="card-title text-center">{{ movie.name }}</h5> -->
-
-      <p class="card-text">{{project.nombre}} </p>
+      <h4 class="card-title text-center">{{project.nombre}} </h4>
       <p style="width:268px;white-space:nowrap;text-overflow:ellipsis; overflow:hidden" class="card-text">{{ project.descripcion }}</p>
      <!--  <p class="card-text"><strong>Release date: </strong> {{ movie.parsedDate }}</p> -->
-    </div>
-    <div class="card-footer text-center">
-      <small class="text-muted">
-        Click on card to watch more details!
-      </small>
+     <a style="color:white;" class="btn btn-primary stretched-link">See Project</a>
     </div>
   </div>
 </div>
+

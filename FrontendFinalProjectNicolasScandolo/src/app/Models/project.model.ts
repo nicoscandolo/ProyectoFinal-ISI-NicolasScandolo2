@@ -3,4 +3,5 @@ export class Project {
     Nombre: string;
     Descripcion: string;
     FechaCreacion: Date;
+    Tipo: string;
   }

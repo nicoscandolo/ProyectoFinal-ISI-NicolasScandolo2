@@ -14,6 +14,8 @@ namespace WebFinalProjectNicolasScandolo3.Models
         public string Descripcion { get; set; }
         public DateTime FechaCreacion { get; set; }
 
+        public string Tipo { get; set; }
+
         private ICollection<UsuariosProjecto> usuariosProjectos;
 
         public ICollection<UsuariosProjecto> GetUsuariosProjectos()

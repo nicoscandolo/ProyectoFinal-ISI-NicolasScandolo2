@@ -38,7 +38,8 @@ this.resetform();
       IdProyecto: 0,
       Descripcion: '',
       FechaCreacion: new Date(),
-      Nombre: ''
+      Nombre: '',
+      Tipo: 'Otros'
     };
   }
 
