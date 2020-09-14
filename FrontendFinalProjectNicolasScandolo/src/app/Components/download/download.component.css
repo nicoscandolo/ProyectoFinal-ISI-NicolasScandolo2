@@ -4,24 +4,32 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 22px;
   cursor: pointer;
   margin: 30px;
+  left: 75%;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: 0.4s;
 }
 
-.upload {
-  background-color: #4CAF50;
-  float: right;
-  height: 40px;
-  width: 200px;
-  margin: 10px;
-}
+
 
 .download {
-  background-color: rgb(184, 12, 12);
-  width: 100px;
-  height: 30px;
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2), 0 20px 20px 0 rgba(0,0,0,0.19);
+
+
 }
+
+.download:hover {
+  background-color: #008CBA;
+  color: white;
+  box-shadow: 0 16px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
 
 .button.disabled {
   opacity: 0.4;

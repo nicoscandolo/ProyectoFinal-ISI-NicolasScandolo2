@@ -39,6 +39,25 @@
               <small class="badge badge-danger">Nombre del proyecto es requerido.</small>
             </div>
           </div>
+          <!-- ///////////////////////////////////////////////////// -->
+          <div class="form-group">
+            <div class="input-group">
+              <select name="Tipo" #Tipo="ngModel" [(ngModel)]="service.formData.Tipo"
+               class="browser-default custom-select form-control"  required>
+                <option selected >Elige una categoria</option>
+                <option *ngFor="let t of Tipos">{{t}}</option>
+              </select>
+            </div>
+            <!-- Valid message -->
+            <div *ngIf="Tipo.valid && (Tipo.dirty || Tipo.touched)">
+              <span class="badge badge-success">Se ve bien!</span>
+            </div>
+            <!-- Error message -->
+            <div *ngIf="Tipo.invalid && (Tipo.dirty || Tipo.touched)">
+              <small class="badge badge-danger">Tipo del proyecto es requerido.</small>
+            </div>
+          </div>
+          <!-- ///////////////////////////////////////////////////// -->
           <div class="container col-md-6">
             <div class="form-group">
               <button type="submit" class="btn btn-outline-success btn-lg btn-block" [disabled]="form.invalid">Crear</button>

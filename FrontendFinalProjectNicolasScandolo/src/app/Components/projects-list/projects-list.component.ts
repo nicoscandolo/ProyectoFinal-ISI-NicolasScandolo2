@@ -40,5 +40,10 @@ export class ProjectsListComponent implements OnInit {
       }
     );
   }
+
+  goToCreateProject() {
+    const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+    this.router.navigate(['landingpage', idUsuario, 'create-project']);
+  }
 }
 

@@ -43,6 +43,10 @@ const routes: Routes = [
     component: ProjectDetailsComponent,
   },
   {
+    path: 'landingpage/:idUsuario/create-project',
+    component: ProjectAddComponent,
+  },
+  {
      path: 'signin',
      component: SignInComponent
   },

@@ -14,8 +14,12 @@ export class ProjectService {
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  postProject(formData: Project) {
-   return this.http.post(this.rootURL + 'Proyecto', formData);
+  postProject(formData: Project, idUsuario: number) {
+   return this.http.post(this.rootURL + 'Proyecto/' + idUsuario , formData);
+  }
+
+  searchProject(idProject: number) {
+    return this.http.get(this.rootURL + 'Proyecto/' + idProject);
   }
 
   searchProjectsList(id) {

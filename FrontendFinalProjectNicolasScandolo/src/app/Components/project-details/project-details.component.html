@@ -1,8 +1,26 @@
-<button class="button upload" (click)="goToConsultas(project)">
-  CONSULTAS
-</button>
-<app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
-<h2>File List</h2>
+
+<div class="bottom-three">
+  <div class="container p-5 my-3 border" >
+    <h1 class="text-center" >{{proyecto.nombre}}</h1>
+    <p class="text-center" style="font-size:25px;">Aquí puedes subir archivos, organizarlos en carpetas y realizar consultas con todo tu equipo</p>
+    <hr>
+    <div  class="bottom-two">
+      <div>
+        <button class="buttonn button2" (click)="goToCreateProject()">Crear Carpetas</button>
+      </div>
+      <div>
+        <button class="buttonnn button2"  (click)="goToConsultas(project)">Consultas</button>
+      </div>
+      <div>
+        <app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- /////////////////////////////////////////////////////////////// -->
+<h1 class="display-5 font-weight-normal" style="text-align: center;">Tu Workspace</h1>
 <p *ngIf="showProgress"> progress <strong>{{percentage}}%</strong></p>
 <hr>
 <div class="container">
@@ -17,30 +35,5 @@
 </div>
 
 
-
-<!-- <div class="form-group">
-  <label for="file">Choose File</label>
-  <input type="file"
-         id="file"
-         (change)="handleFileInput($event.target.files)">
-</div> -->
-
-
-<!-- <div>
-
-<div class="row" style="margin-bottom:15px;">
-  <div class="col-md-3">
-    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-    <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-  </div>
-  <div class="col-md-4">
-    <span class="upload" *ngIf="progress > 0">
-      {{progress}}%
-    </span>
-    <span class="upload" *ngIf="message">
-      {{message}}
-    </span>
-  </div>
-</div> -->
 
 

@@ -76,12 +76,31 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         // POST: api/Proyecto
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<Proyecto>> PostProyecto(Proyecto proyecto)
+        [HttpPost("{idUs}")]
+        public async Task<ActionResult<Proyecto>> PostProyecto(int idUs,Proyecto proyecto)
         {
+            //save project
             proyecto.FechaCreacion = DateTime.Now;
             _context.Proyectos.Add(proyecto);
             await _context.SaveChangesAsync();
+
+            //get project saved to save in usuarioPorjects tables
+            var Projecto = await _context.Proyectos.Where(b => b.FechaCreacion == proyecto.FechaCreacion).FirstAsync();
+
+            if (Projecto == null)
+            {
+                return NotFound();
+            }
+
+            UsuariosProjecto usuarioProjecto = new UsuariosProjecto()
+            {
+                IdProjecto = Projecto.IdProyecto,
+                IdUsuario = idUs
+
+            };
+            _context.UsuariosProyectos.Add(usuarioProjecto);
+            await _context.SaveChangesAsync();
+
 
             return CreatedAtAction("GetProyecto", new { id = proyecto.IdProyecto }, proyecto);
         }

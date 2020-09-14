@@ -5,6 +5,7 @@ import { HttpEventType, HttpClient  } from '@angular/common/http';
 import { ProgressStatusEnum, ProgressStatus } from 'src/app/models/progress-status.model';
 import { Documento } from 'src/app/models/documento.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Project } from 'src/app/Models/project.model';
 
 @Component({
   selector: 'app-project-details',
@@ -13,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectDetailsComponent implements OnInit {
   public files: Documento;
+  public proyecto: Project;
   public fileInDownload: string;
   public percentage: number;
   public showProgress: boolean;
@@ -27,7 +29,18 @@ export class ProjectDetailsComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+    this.getProyectoId();
     this.getFiles();
+  }
+
+  getProyectoId() {
+    const id = this.activatedRoute.snapshot.params.query;
+    this.service.searchProject(id).subscribe(
+      (data: Project) => {
+        this.proyecto = data;
+        console.log(this.proyecto);
+      }
+    );
   }
 
   private getFiles() {
@@ -39,6 +52,8 @@ export class ProjectDetailsComponent implements OnInit {
       }
     );
   }
+
+
 
   goToConsultas() {
     const idProyecto = this.activatedRoute.snapshot.params.query;
