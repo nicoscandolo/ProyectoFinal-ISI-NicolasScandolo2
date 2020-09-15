@@ -12,7 +12,8 @@ export class ConsultaComponent implements OnInit {
   @Input() consulta: any;
   private comentariosList: any = [];
   private errorMessage: string;
-  private show: boolean;
+  private showButton: boolean;
+  private showcoments: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,13 +23,23 @@ export class ConsultaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.show = false;
+    this.showButton = true;
+/*     this.showcoments = false; */
     console.log(this.consulta);
   }
+
+  HideComents(id: number): void {
+        this.showButton = true;
+/*         this.showcoments = false; */
+        this.comentariosList = null;
+      }
+
 
   ShowComents(id: number): void {
     this.service.searchComentariossList(id).subscribe(
       (response: any) => {
+        this.showButton = false;
+/*         this.showcoments = true; */
         const testt = response;
         this.comentariosList = testt;
         console.log(this.comentariosList);

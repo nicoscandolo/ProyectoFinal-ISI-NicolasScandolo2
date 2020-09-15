@@ -1,7 +1,7 @@
 <div *ngIf="consulta">
 
  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
- <div class="container bootstrap snippets bootdey">
+ <div class="container d-flex justify-content-center">
      <div class="col-sm-8">
          <div class="panel panel-white post panel-shadow">
              <div class="post-heading">
@@ -13,7 +13,7 @@
                          <a href="#"><b>{{consulta.idConsulta}}</b></a>
                          made a post.
                      </div>
-                     <h6 class="text-muted time">1 minute ago</h6>
+                     <h6 class="text-muted time">{{consulta.fechaCreacion | date:'short'}}</h6>
                  </div>
              </div>
              <div class="post-description">
@@ -38,11 +38,15 @@
                  <ul class="comments-list">
 
                   <!-- ////////////////////////////////////////////////////// -->
-                  <button class="button upload" (click)="ShowComents(consulta.idConsulta)">
+
+                  <button *ngIf="showButton" class="button button2" (click)="ShowComents(consulta.idConsulta)">
                     Ver Comentarios Consulta
                   </button>
+<!--                   <button *ngIf="!showButton" class="button button2" (click)="HideComents(consulta.idConsulta)">
+                    Ocultar Comentarios Consulta
+                  </button> -->
                   <div *ngIf="comentariosList.length"  class="container mt-2" >
-                    <div class="card-deck">
+                    <div  class="card-deck">
                       <app-comentario-consulta
                       *ngFor="let comentario of comentariosList"
                       [comentario]="comentario"
@@ -51,11 +55,11 @@
                   </div>
 
                   <!-- Alert messages -->
-                  <div *ngIf="!comentariosList.length" class="container text-center">
+<!--                   <div *ngIf="!comentariosList.length" class="container text-center">
                     <div *ngIf="!comentariosList.length" class="alert alert-primary" role="alert">
                       No Consultas Found!
                     </div>
-                  </div>
+                  </div> -->
                   <div *ngIf="errorMessage" class="container text-center">
                     <div class="alert alert-danger" role="alert">
                       {{ errorMessage }}
