@@ -2,7 +2,7 @@
 
  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
  <div class="container d-flex justify-content-center">
-     <div class="col-sm-8">
+     <div class="col-sm-8 justify-content-center">
          <div class="panel panel-white post panel-shadow">
              <div class="post-heading">
                  <div class="pull-left image">
@@ -10,14 +10,14 @@
                  </div>
                  <div class="pull-left meta">
                      <div class="title h5">
-                         <a href="#"><b>{{consulta.idConsulta}}</b></a>
-                         made a post.
+                         <a href="#"><b>{{consulta.asunto}}</b></a>
+
                      </div>
                      <h6 class="text-muted time">{{consulta.fechaCreacion | date:'short'}}</h6>
                  </div>
              </div>
              <div class="post-description">
-                 <p>{{consulta.asunto}} Agrego mas texto para que se vea mejor Agrego mas texto para que se vea mejo Agrego mas texto para que se vea mejor Agrego mas texto para que se vea mejor</p>
+                 <p>{{consulta.descripcion}}</p>
                  <div class="stats">
                      <a href="#" class="btn btn-default stat-item">
                          <i class="fa fa-thumbs-up icon"></i>2
@@ -45,7 +45,7 @@
 <!--                   <button *ngIf="!showButton" class="button button2" (click)="HideComents(consulta.idConsulta)">
                     Ocultar Comentarios Consulta
                   </button> -->
-                  <div *ngIf="comentariosList.length"  class="container mt-2" >
+                  <div *ngIf="comentariosList.length"  class="container mt-2">
                     <div  class="card-deck">
                       <app-comentario-consulta
                       *ngFor="let comentario of comentariosList"

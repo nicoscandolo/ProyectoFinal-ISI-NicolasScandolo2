@@ -11,7 +11,7 @@
   transition-duration: 0.4s;
   cursor: pointer;
 
-  position: absolute;
+  position: relative;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -34,6 +34,34 @@
 
 
 /* ///////////////////////////////////////////////////////////// */
+/* (iphoneX) */
+/* @media (max-width: 768px) { .panel-shadow {
+  width: 500px;
+  margin-left: -15%;
+
+} } */
+
+
+@media (min-width: 768px) and (max-width: 991px) { .panel-shadow {
+  width: 400px;
+
+} }
+
+
+@media (min-width: 992px) and (max-width: 1199px) {.panel-shadow {
+  width: 600px;
+  margin-left: 25%;
+
+} }
+
+
+@media (min-width: 1200px) { .panel-shadow {
+  width: 800px;
+} }
+
+/* ////////////////////////////////////////////////////////////// */
+
+
 .panel-shadow {
   box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
   background-color : #fff ;

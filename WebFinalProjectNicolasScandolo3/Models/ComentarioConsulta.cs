@@ -11,6 +11,7 @@ namespace WebFinalProjectNicolasScandolo3.Models
         [Key]
         public int IdComentarioConsulta { get; set; }
         public string Descripcion { get; set; }
+        public string NombreUsuario { get; set; }
         public int Puntuacion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }

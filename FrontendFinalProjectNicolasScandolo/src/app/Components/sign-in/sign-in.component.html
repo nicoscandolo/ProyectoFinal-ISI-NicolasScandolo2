@@ -28,7 +28,7 @@
           <div class="form-group">
             <div class="input-group">
               <input name="Password" #Password="ngModel" [(ngModel)]="authService.formData.Password"
-                class="form-control" placeholder="Password" required>
+                class="form-control" type="password" placeholder="Password" required>
             </div>
             <!-- Valid message -->
             <div *ngIf="Password.valid && (Password.dirty || Password.touched)">

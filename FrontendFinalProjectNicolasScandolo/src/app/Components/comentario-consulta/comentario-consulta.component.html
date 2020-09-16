@@ -1,18 +1,21 @@
-<div *ngIf="comentario">
-  <div class="container">
-<li class="comment">
+<div *ngIf="comentario" class="container">
+  <div class="container bg-light" style="margin-bottom: 0.4cm;">
+<li class="comment .col-xs-1">
   <a class="pull-left" href="#">
-      <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+      <img class="avatar pull-left" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
   </a>
   <div class="comment-body">
       <div class="comment-heading">
-          <h4 class="user pull-left">{{comentario.idComentarioConsulta}}</h4>
+        <b> {{comentario.nombreUsuario}}</b>
+            <h6 > {{comentario.fechaCreacion | date:'short'}}</h6>
+            <h6 > {{comentario.descripcion}}</h6>
+
           <br>
-          <h6 class="time pull-left"> {{comentario.fechaCreacion | date:'short'}}</h6>
+
       </div>
-      <div class="text-left">
-        <br>
-        <p>{{comentario.descripcion}}</p>
+      <div>
+
+        <p></p>
       </div>
   </div>
 </li>

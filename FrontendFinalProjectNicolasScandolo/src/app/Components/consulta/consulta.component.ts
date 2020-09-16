@@ -39,7 +39,6 @@ export class ConsultaComponent implements OnInit {
     this.service.searchComentariossList(id).subscribe(
       (response: any) => {
         this.showButton = false;
-/*         this.showcoments = true; */
         const testt = response;
         this.comentariosList = testt;
         console.log(this.comentariosList);

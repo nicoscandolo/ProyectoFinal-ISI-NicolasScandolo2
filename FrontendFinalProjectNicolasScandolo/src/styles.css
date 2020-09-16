@@ -4,6 +4,7 @@
 
   background-image: url("src\Images\def-blog-4.jpg");
   background-size: cover;
+  height:100%
 }
 
 input .ng-touched .ng-invalid {
