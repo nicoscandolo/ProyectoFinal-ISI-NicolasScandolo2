@@ -79,6 +79,11 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         [HttpPost]
         public async Task<ActionResult<ComentarioConsulta>> PostComentarioConsulta(ComentarioConsulta comentarioConsulta)
         {
+            //buscar usuario
+            var usuario = await _context.Usuarios.FindAsync(comentarioConsulta.IdUsuario);
+            //asunto vendria a ser el nombre
+            comentarioConsulta.NombreUsuario = usuario.Nombre;
+
             _context.ComentariosConsulta.Add(comentarioConsulta);
             await _context.SaveChangesAsync();
 

@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
+import { Consulta } from 'src/app/Models/consulta.model';
+import { NgForm } from '@angular/forms';
+import { ComentarioConsulta } from 'src/app/Models/comentario-consulta.model';
 
 @Component({
   selector: 'app-consulta',
@@ -9,11 +12,14 @@ import { ProjectService } from 'src/app/Services/project.service';
   styleUrls: ['./consulta.component.css']
 })
 export class ConsultaComponent implements OnInit {
-  @Input() consulta: any;
+  @Input() consulta: Consulta = null;
+
   private comentariosList: any = [];
   private errorMessage: string;
   private showButton: boolean;
   private showcoments: boolean;
+  private ComentarioConsultaNew: ComentarioConsulta;
+  private descripcion: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,9 +28,33 @@ export class ConsultaComponent implements OnInit {
     private http: HttpClient
   ) { }
 
+
+
+
+  resetform(form?: NgForm) {
+    if (form != null) {
+      form.resetForm();
+    }
+
+    this.ComentarioConsultaNew = {
+      idComentarioConsulta: 0,
+      idConsulta: this.consulta.idConsulta,
+      nombreUsuario: '',
+      descripcion: '',
+      puntuacion: 0,
+      IdUsuario: this.route.snapshot.params.idUsuario,
+      fechaCreacion: new Date(),
+      fechaModificacion: new Date(),
+    };
+
+    console.log(this.ComentarioConsultaNew);
+  }
+
+
   ngOnInit() {
     this.showButton = true;
 /*     this.showcoments = false; */
+    this.resetform();
     console.log(this.consulta);
   }
 
@@ -51,4 +81,20 @@ export class ConsultaComponent implements OnInit {
       }
     );
   }
+
+CrearComentarioConsulta(descripcionHtml: string) {
+  this.ComentarioConsultaNew.descripcion = descripcionHtml;
+  console.log('holaaaaaa', this.consulta, descripcionHtml);
+  // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
+  this.service.postConsulta(this.ComentarioConsultaNew).subscribe(
+    res => {
+      console.log(res);
+    },
+    err => {
+      console.log(err);
+      /* this.spinner.show(); */
+    }
+  );
+}
+
 }

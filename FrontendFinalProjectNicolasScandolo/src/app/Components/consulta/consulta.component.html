@@ -29,12 +29,20 @@
                  </div>
              </div>
              <div class="post-footer">
+
+<!-- con las lineas de abajo pude agarrar La descripcion sin poner el #descripcion ni nada raro, solo necesite definirlo en el archivo ts -->
+
                  <div class="input-group">
-                     <input class="form-control" placeholder="Add a comment" type="text">
+                  <input class="form-control"  placeholder="Add a comment" type="text" name="descripcion"
+                   [(ngModel)]="descripcion">
+
+
                      <span class="input-group-addon">
-                         <a href="#"><i class="fa fa-edit"></i></a>
+                         <a (click)="CrearComentarioConsulta(descripcion)"><i class="fa fa-edit"></i></a>
                      </span>
                  </div>
+
+
                  <ul class="comments-list">
 
                   <!-- ////////////////////////////////////////////////////// -->

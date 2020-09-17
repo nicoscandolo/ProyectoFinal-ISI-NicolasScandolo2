@@ -3,8 +3,8 @@ export class Consulta {
 asunto: string;
 descripcion: string;
 puntuacion: number;
-/* proyecto: null
-usuario: null */
+IdProyecto: number;
+IdUsuario: number;
 fechaCreacion: Date;
 fechaModificacion: Date;
 }

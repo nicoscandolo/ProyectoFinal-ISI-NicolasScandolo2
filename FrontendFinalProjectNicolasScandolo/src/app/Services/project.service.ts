@@ -4,6 +4,8 @@ import { HttpClient, HttpRequest, HttpEvent, HttpResponse } from '@angular/commo
 import { Observable } from 'rxjs';
 import { Documento } from '../Models/documento.model';
 import { Router } from '@angular/router';
+import { Consulta } from '../Models/consulta.model';
+import { ComentarioConsulta } from '../Models/comentario-consulta.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +18,10 @@ export class ProjectService {
 
   postProject(formData: Project, idUsuario: number) {
    return this.http.post(this.rootURL + 'Proyecto/' + idUsuario , formData);
+  }
+
+  postConsulta(comentarioConsulta: ComentarioConsulta) {
+    return this.http.post(this.rootURL + 'ComentarioConsulta/', comentarioConsulta);
   }
 
   searchProject(idProject: number) {

@@ -31,7 +31,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Consulta>>> GetConsultasByProject(int id)
         {
-            var consultas = await _context.Consultas.Where(b => b.proyecto.IdProyecto == id).ToListAsync();
+            var consultas = await _context.Consultas.Where(b => b.IdProyecto == id).ToListAsync();
 
             if (consultas == null)
             {
@@ -79,8 +79,13 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         [HttpPost]
         public async Task<ActionResult<Consulta>> PostConsulta(Consulta consulta)
         {
+            //buscar usuario
+            var usuario = await _context.Usuarios.FindAsync(consulta.IdUsuario);
+            //asunto vendria a ser el nombre
+            consulta.Asunto = usuario.Nombre;
+
             _context.Consultas.Add(consulta);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();  
 
             return CreatedAtAction("GetConsulta", new { id = consulta.IdConsulta }, consulta);
         }
