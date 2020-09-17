@@ -15,6 +15,7 @@ import { SignUpComponent } from '../Components/sign-up/sign-up.component';
 // Guard
 import { AuthGuard } from '../auth.guard';
 import { ConsultasListComponent } from '../Components/consultas-list/consultas-list.component';
+import { ConsultaAddComponent } from '../Components/consulta-add/consulta-add.component';
 
 
 const routes: Routes = [
@@ -53,7 +54,12 @@ const routes: Routes = [
   {
      path: 'signup',
      component: SignUpComponent
-  }
+  },
+  {
+    path: 'modal',
+    component: ConsultaAddComponent
+ }
+
 /*   {
     path: "addmovie",
     component: AddMovieComponent,

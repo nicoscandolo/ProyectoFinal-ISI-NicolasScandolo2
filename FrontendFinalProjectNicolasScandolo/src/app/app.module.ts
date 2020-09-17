@@ -21,6 +21,8 @@ import { ConsultaComponent } from './Components/consulta/consulta.component';
 import { ComentarioConsultaComponent } from './Components/comentario-consulta/comentario-consulta.component';
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { ConsultaAddComponent } from './Components/consulta-add/consulta-add.component';
+import { ModalComponent } from './Components/modal/modal.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 
@@ -41,7 +43,9 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
     ConsultaComponent,
     ComentarioConsultaComponent,
     LandingPageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ConsultaAddComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
