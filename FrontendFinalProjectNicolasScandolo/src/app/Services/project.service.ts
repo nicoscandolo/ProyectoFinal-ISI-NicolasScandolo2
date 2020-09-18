@@ -20,8 +20,12 @@ export class ProjectService {
    return this.http.post(this.rootURL + 'Proyecto/' + idUsuario , formData);
   }
 
-  postConsulta(comentarioConsulta: ComentarioConsulta) {
+  postComentarioConsulta(comentarioConsulta: ComentarioConsulta) {
     return this.http.post(this.rootURL + 'ComentarioConsulta/', comentarioConsulta);
+  }
+
+  postConsulta( consulta: Consulta) {
+    return this.http.post(this.rootURL + 'Consulta/', consulta);
   }
 
   searchProject(idProject: number) {

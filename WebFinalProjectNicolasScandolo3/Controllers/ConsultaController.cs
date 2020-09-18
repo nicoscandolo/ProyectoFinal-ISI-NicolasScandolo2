@@ -77,17 +77,27 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Consulta>> PostConsulta(Consulta consulta)
+        public bool PostConsulta(Consulta consulta)
         {
-            //buscar usuario
-            var usuario = await _context.Usuarios.FindAsync(consulta.IdUsuario);
-            //asunto vendria a ser el nombre
-            consulta.Asunto = usuario.Nombre;
+            try
+            {
+                //buscar usuario
+                var usuario = _context.Usuarios.Find(consulta.IdUsuario);
+                //asunto vendria a ser el nombre
+                consulta.Asunto = usuario.Nombre;
 
-            _context.Consultas.Add(consulta);
-            await _context.SaveChangesAsync();  
+                _context.Consultas.Add(consulta);
+                _context.SaveChanges();
 
-            return CreatedAtAction("GetConsulta", new { id = consulta.IdConsulta }, consulta);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
 
         // DELETE: api/Consulta/5

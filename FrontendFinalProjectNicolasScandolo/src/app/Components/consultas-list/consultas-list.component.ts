@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ConsultasListComponent implements OnInit {
   private consultasList: any = [];
   private errorMessage: string;
+  private messageFromAddConsulta: boolean;
 
     constructor(
       private activatedRoute: ActivatedRoute,
@@ -23,7 +24,20 @@ export class ConsultasListComponent implements OnInit {
     this.searchConsultasList(idProyecto);
   }
 
-  searchConsultasList(id: number): void {
+  receiveMessage($event) {
+    console.log('entro en el otro componente', $event);
+    this.messageFromAddConsulta = $event;
+    const idProyecto = this.activatedRoute.snapshot.params.query;
+
+    if (this.messageFromAddConsulta) {
+      setTimeout(() => {
+      console.log('waiting');
+      this.searchConsultasList(idProyecto);
+    }, 2000);
+      console.log('se ejecuto'); }
+  }
+
+  public searchConsultasList(id: number): void {
     this.service.searchConsultasList(id).subscribe(
       (response: any) => {
         const testt = response;

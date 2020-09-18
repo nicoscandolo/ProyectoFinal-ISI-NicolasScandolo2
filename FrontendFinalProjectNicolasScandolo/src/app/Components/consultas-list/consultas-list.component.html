@@ -5,7 +5,7 @@
     <p class="text-center" style="font-size:25px;">Haz una consulta a tu equipo y nosotros les notificaremos</p>
     <hr>
     <div  class="bottom-two">
-      <app-consulta-add></app-consulta-add>
+      <app-consulta-add (messageEvent)="receiveMessage($event)"></app-consulta-add>
     </div>
   </div>
 </div>

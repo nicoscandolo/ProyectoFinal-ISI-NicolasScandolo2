@@ -84,14 +84,18 @@ export class ConsultaComponent implements OnInit {
 
 CrearComentarioConsulta(descripcionHtml: string) {
   this.ComentarioConsultaNew.descripcion = descripcionHtml;
-  console.log('holaaaaaa', this.consulta, descripcionHtml);
+
+  console.log('TestingComentarioConsulta', this.consulta, descripcionHtml);
   // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
-  this.service.postConsulta(this.ComentarioConsultaNew).subscribe(
+  this.service.postComentarioConsulta(this.ComentarioConsultaNew).subscribe(
     res => {
       console.log(res);
+      this.descripcion = '';
+      this.ShowComents(this.consulta.idConsulta);
     },
     err => {
       console.log(err);
+      this.descripcion = 'Error. Intente cargar mas tarde';
       /* this.spinner.show(); */
     }
   );
