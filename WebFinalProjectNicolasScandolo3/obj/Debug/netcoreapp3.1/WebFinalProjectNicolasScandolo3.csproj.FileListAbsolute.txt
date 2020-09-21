@@ -314,7 +314,6 @@ C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalPro
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.csprojAssemblyReference.cache
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\staticwebassets\WebFinalProjectNicolasScandolo3.StaticWebAssets.Manifest.cache
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\staticwebassets\WebFinalProjectNicolasScandolo3.StaticWebAssets.xml
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.AssemblyInfoInputs.cache
@@ -325,4 +324,10 @@ C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalPro
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.pdb
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.csprojAssemblyReference.cache
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.MvcApplicationPartsAssemblyInfo.cache

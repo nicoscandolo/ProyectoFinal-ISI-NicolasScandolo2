@@ -17,6 +17,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using WebFinalProjectNicolasScandolo3.Models;
+using WebFinalProjectNicolasScandolo3.Services;
+using WebFinalProjectNicolasScandolo3.Settings;
 
 namespace WebFinalProjectNicolasScandolo3
 {
@@ -40,7 +42,8 @@ namespace WebFinalProjectNicolasScandolo3
            options.SerializerSettings.ContractResolver =
               new CamelCasePropertyNamesContractResolver());
             services.AddCors();
-
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, Services.MailService>();
 
             services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;

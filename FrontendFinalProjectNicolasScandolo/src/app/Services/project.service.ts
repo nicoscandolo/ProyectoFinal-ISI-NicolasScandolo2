@@ -56,6 +56,9 @@ export class ProjectService {
     return this.http.post(this.rootURL + 'Documento/upload/' + id, formData, {reportProgress: true, observe: 'events'});
 }
 
+sendWelcomeEmail(Email) {
+  return this.http.post(this.rootURL + 'email/welcome', Email);
+}
 
 public downloadFile(id: number): Observable<HttpEvent<Blob>> {
 

@@ -28,7 +28,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         public async Task<ActionResult<IEnumerable<Documento>>> GetDocumentos()
         {
 
-            var h = await  _context.Documentos.ToListAsync();
+           // var h = await  _context.Documentos.ToListAsync();
             return await _context.Documentos.ToListAsync();
         }
 

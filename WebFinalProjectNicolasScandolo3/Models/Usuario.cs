@@ -29,6 +29,8 @@ namespace WebFinalProjectNicolasScandolo3.Models
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string ImagenUsuarioPath { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string Email { get; set; }
 
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
