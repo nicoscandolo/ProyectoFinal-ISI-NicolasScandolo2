@@ -14,16 +14,46 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
     [ApiController]
     public class MailController : ControllerBase
     {
+        private readonly TodoContext _context;
         private readonly IMailService mailService;
-        public MailController(IMailService mailService)
+        public MailController(IMailService mailService, TodoContext context)
         {
             this.mailService = mailService;
+            _context = context;
         }
+
         [HttpPost("send")]
-        public async Task<IActionResult> SendMail([FromForm]MailRequest request)
+        public async Task<IActionResult> SendMail(MailRequest request)
         {
             try
             {
+                request.ToEmails = new List<string>
+                {
+                };
+
+                if (request.tipo != "welcome")
+                {
+
+                    var usuariosProjecto = await _context.UsuariosProyectos.Where(b => b.IdProjecto == request.projectId).ToListAsync();
+
+
+
+                    foreach (UsuariosProjecto usProyecto in usuariosProjecto)
+                    {
+                        Usuario usuario = await _context.Usuarios.Where(b => b.IdUsuario == usProyecto.IdUsuario).FirstOrDefaultAsync();
+
+                        request.ToEmails.Add(usuario.Email);
+
+                    }
+
+                }
+                else 
+                {
+                    Usuario usuario = await _context.Usuarios.Where(b => b.IdUsuario == request.userId).FirstOrDefaultAsync();
+                    request.ToEmails.Add(usuario.Email);
+
+                }
+
                 await mailService.SendEmailAsync(request);
                 return Ok();
             }
@@ -33,22 +63,5 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             }
 
         }
-
-        [HttpPost("welcome")]
-        public async Task<IActionResult> SendWelcomeMail([FromForm]WelcomeRequest request)
-        {
-            try
-            {
-                await mailService.SendWelcomeEmailAsync(request);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-        }
-
     }
 }

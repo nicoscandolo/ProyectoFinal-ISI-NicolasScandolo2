@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
 import { HttpClient } from '@angular/common/http';
 import { Consulta } from 'src/app/Models/consulta.model';
+import { Email } from 'src/app/Models/email.model';
 /* import { ConsultasListComponent } from '../consultas-list/consultas-list.component'; */
 
 @Component({
@@ -19,6 +20,8 @@ export class ConsultaAddComponent {
   backdrop: any;
   descripcion = '';
   private ConsultaNew: Consulta;
+  sendEmail: boolean;
+  email: Email;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -58,6 +61,7 @@ export class ConsultaAddComponent {
   }
 
   publicarConsulta() {
+    this.sendEmail = true;
     console.log(this.descripcion);
     this.ConsultaNew.descripcion = this.descripcion;
     this.ConsultaNew.IdUsuario = this.activatedRoute.snapshot.params.idUsuario;
@@ -70,10 +74,14 @@ export class ConsultaAddComponent {
     res => {
       console.log(res);
       console.log('la consulta se agrego correctamente');
+      this.email = {
+        projectId: this.ConsultaNew.IdProyecto,
+        tipo: 'consulta'
+      };
     },
     err => {
-      console.log(err);
-      console.log('la consulta NO se agrego correctamente');
+      this.sendEmail = false;
+      console.log(err, 'la consulta NO se agrego correctamente');
       /* this.spinner.show(); */
     }
   );
@@ -83,5 +91,22 @@ export class ConsultaAddComponent {
     this.vc.clear();
     document.body.removeChild(this.backdrop);
     this.messageEvent.emit(true);
+
+    if (this.sendEmail) {
+
+      setTimeout(() => {
+        console.log('waiting');
+        this.service.sendEmail(this.email).subscribe(
+          ( res: any ) => {
+            console.log(res, 'esperando a que se mande bien el mail');
+          },
+          err => {
+            console.log(err, 'No pude enviar el mail');
+
+          }
+        );
+      }, 5000);
+
+   }
   }
 }

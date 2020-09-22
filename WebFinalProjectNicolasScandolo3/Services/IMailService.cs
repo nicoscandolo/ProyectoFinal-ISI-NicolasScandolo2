@@ -9,6 +9,5 @@ namespace WebFinalProjectNicolasScandolo3.Services
     public interface IMailService
     {
         Task SendEmailAsync(MailRequest mailRequest);
-        Task SendWelcomeEmailAsync(WelcomeRequest request);
     }
 }

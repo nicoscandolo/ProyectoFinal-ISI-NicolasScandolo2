@@ -6,6 +6,7 @@ import { Documento } from '../Models/documento.model';
 import { Router } from '@angular/router';
 import { Consulta } from '../Models/consulta.model';
 import { ComentarioConsulta } from '../Models/comentario-consulta.model';
+import { Email } from '../Models/email.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -56,8 +57,8 @@ export class ProjectService {
     return this.http.post(this.rootURL + 'Documento/upload/' + id, formData, {reportProgress: true, observe: 'events'});
 }
 
-sendWelcomeEmail(Email) {
-  return this.http.post(this.rootURL + 'email/welcome', Email);
+sendEmail(email: Email) {
+  return this.http.post(this.rootURL + 'mail/send', email);
 }
 
 public downloadFile(id: number): Observable<HttpEvent<Blob>> {

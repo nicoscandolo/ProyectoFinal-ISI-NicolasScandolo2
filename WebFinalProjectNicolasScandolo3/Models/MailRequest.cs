@@ -8,9 +8,18 @@ namespace WebFinalProjectNicolasScandolo3.Models
 {
     public class MailRequest
     {
-        public string ToEmail { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
-        public List<IFormFile> Attachments { get; set; }
+        public int? projectId { get; set; }
+        public int? userId { get; set; }
+        public List<string>? ToEmails { get; set; }
+        public string? Subject { get; set; }
+        public string? Body { get; set; }
+        public List<IFormFile>? Attachments { get; set; }
+        public string tipo { get; set; }
+
+        public string UserName { get; set; }
+
+
+
+
     }
 }
