@@ -6,7 +6,7 @@
     <hr>
     <div  class="bottom-two">
       <div>
-        <button class="buttonn button2" (click)="goToCreateProject()">Crear Carpetas</button>
+        <app-carpetas-add  (messageEvent)="receiveMessage($event)"></app-carpetas-add>
       </div>
       <div>
         <button class="buttonnn button2"  (click)="goToConsultas(project)">Consultas</button>
@@ -25,12 +25,19 @@
 <hr>
 <div class="container">
     <ul>
+      <li *ngFor="let carpeta of carpetas">
+        <a>
+            {{carpeta.nombre}}
+        </a>
+    </li>
+
         <li *ngFor="let file of files">
             <a>
                 {{file.nombreDocumento}}
                 <app-download [disabled]="showProgress" [fileName]="file.nombreDocumento" [id]="file.idDocumento" (downloadStatus)="downloadStatus($event)"></app-download>
             </a>
         </li>
+
     </ul>
 </div>
 

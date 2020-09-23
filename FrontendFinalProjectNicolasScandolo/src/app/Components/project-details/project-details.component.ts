@@ -6,6 +6,7 @@ import { ProgressStatusEnum, ProgressStatus } from 'src/app/models/progress-stat
 import { Documento } from 'src/app/models/documento.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/Models/project.model';
+import { Carpeta } from 'src/app/Models/carpeta.model';
 
 @Component({
   selector: 'app-project-details',
@@ -14,12 +15,14 @@ import { Project } from 'src/app/Models/project.model';
 })
 export class ProjectDetailsComponent implements OnInit {
   public files: Documento;
+  public carpetas: Carpeta;
   public proyecto: Project;
   public fileInDownload: string;
   public percentage: number;
   public showProgress: boolean;
   public showDownloadError: boolean;
   public showUploadError: boolean;
+  messageFromAddCarpeta: boolean;
 
 
   constructor(private service: ProjectService,
@@ -49,6 +52,12 @@ export class ProjectDetailsComponent implements OnInit {
       (data: Documento) => {
         this.files = data;
         console.log(this.files);
+      }
+    );
+    this.service.searchCarpetasList(id).subscribe(
+      (data: Carpeta) => {
+        this.carpetas = data;
+        console.log(this.carpetas);
       }
     );
   }
@@ -98,6 +107,21 @@ export class ProjectDetailsComponent implements OnInit {
         this.showUploadError = true;
         break;
     }
+  }
+
+
+
+  receiveMessage($event) {
+    console.log('entro en el otro componente(from AddCarpetas to ProjectDetails', $event);
+    this.messageFromAddCarpeta = $event;
+    const idProyecto = this.activatedRoute.snapshot.params.query;
+
+    if (this.messageFromAddCarpeta) {
+      setTimeout(() => {
+      console.log('waiting');
+      this.getFiles();
+    }, 2500);
+      console.log('se ejecuto'); }
   }
 
 }

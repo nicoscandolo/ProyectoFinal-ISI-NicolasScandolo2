@@ -29,16 +29,16 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/Carpeta/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Carpeta>> GetCarpeta(int id)
+        public async Task<ActionResult<IEnumerable<Carpeta>>> GetCarpeta(int id)
         {
-            var carpeta = await _context.Carpetas.FindAsync(id);
+            var carpetas = await _context.Carpetas.Where(b => b.IdProjecto == id).ToListAsync();
 
-            if (carpeta == null)
+            if (carpetas == null)
             {
                 return NotFound();
             }
 
-            return carpeta;
+            return carpetas;
         }
 
         // PUT: api/Carpeta/5

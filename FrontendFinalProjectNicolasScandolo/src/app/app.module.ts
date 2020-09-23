@@ -23,6 +23,7 @@ import { LandingPageComponent } from './Components/landing-page/landing-page.com
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { ConsultaAddComponent } from './Components/consulta-add/consulta-add.component';
 import { ModalComponent } from './Components/modal/modal.component';
+import { CarpetasAddComponent } from './Components/carpetas-add/carpetas-add.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 
@@ -45,7 +46,8 @@ import { ModalComponent } from './Components/modal/modal.component';
     LandingPageComponent,
     UserProfileComponent,
     ConsultaAddComponent,
-    ModalComponent
+    ModalComponent,
+    CarpetasAddComponent
   ],
   imports: [
     BrowserModule,

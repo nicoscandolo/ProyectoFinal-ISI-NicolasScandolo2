@@ -50,6 +50,7 @@ export class ConsultaAddComponent {
       this.modal_1.elementRef.nativeElement.previousElementSibling.classList.add('modal-open');
       this.modal_1.elementRef.nativeElement.previousElementSibling.style.display = 'block';
       this.backdrop = document.createElement('DIV');
+      this.backdrop.style = 'opacity:0.6 !important';
       this.backdrop.className = 'modal-backdrop';
       document.body.appendChild(this.backdrop);
   }

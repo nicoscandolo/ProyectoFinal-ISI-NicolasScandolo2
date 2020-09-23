@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Consulta } from '../Models/consulta.model';
 import { ComentarioConsulta } from '../Models/comentario-consulta.model';
 import { Email } from '../Models/email.model';
+import { Carpeta } from '../Models/carpeta.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +30,10 @@ export class ProjectService {
     return this.http.post(this.rootURL + 'Consulta/', consulta);
   }
 
+  postCarpeta( carpeta: Carpeta) {
+    return this.http.post(this.rootURL + 'Carpeta/', carpeta);
+  }
+
   searchProject(idProject: number) {
     return this.http.get(this.rootURL + 'Proyecto/' + idProject);
   }
@@ -39,6 +44,10 @@ export class ProjectService {
 
   searchFilesList(id) {
     return this.http.get(this.rootURL + 'Documento/' + id);
+  }
+
+  searchCarpetasList(id) {
+    return this.http.get(this.rootURL + 'Carpeta/' + id);
   }
 
   searchConsultasList(id) {
