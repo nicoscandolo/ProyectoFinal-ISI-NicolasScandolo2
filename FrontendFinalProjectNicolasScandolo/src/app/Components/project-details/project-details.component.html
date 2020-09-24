@@ -16,30 +16,57 @@
       </div>
     </div>
   </div>
+  <p *ngIf="showProgress" style="align-content: center;"> progress <strong>{{percentage}}%</strong></p>
 </div>
 
 
 <!-- /////////////////////////////////////////////////////////////// -->
+<div class="container mt-2">
 <h1 class="display-5 font-weight-normal" style="text-align: center;">Tu Workspace</h1>
-<p *ngIf="showProgress"> progress <strong>{{percentage}}%</strong></p>
+
 <hr>
-<div class="container">
-    <ul>
-      <li *ngFor="let carpeta of carpetas">
-        <a>
-            {{carpeta.nombre}}
-        </a>
-    </li>
 
-        <li *ngFor="let file of files">
-            <a>
-                {{file.nombreDocumento}}
-                <app-download [disabled]="showProgress" [fileName]="file.nombreDocumento" [id]="file.idDocumento" (downloadStatus)="downloadStatus($event)"></app-download>
-            </a>
-        </li>
+<div class="card-deck">
+  <div *ngFor="let carpeta of carpetas"  class="col-3" >
 
-    </ul>
+
+  <div class="card shadow p-1 mb-3 rounded" (click)="goToDetailsCarpeta(carpeta)">
+    <img
+        class="card-img-top image"
+        href="image"
+        src=".\assets\ProjectsCategories\folder.PNG"
+      />
+
+        <h6 style="white-space:nowrap;text-overflow:ellipsis; overflow:hidden" class="card-text text-center crop">{{carpeta.nombre}}</h6>
+
+    </div>
+  </div>
 </div>
+
+
+
+<div class="card-deck">
+<div *ngFor="let file of files" class="col-3">
+
+
+  <div class="card shadow p-1 mb-3 rounded" (click)="goToDetailsFile(file)">
+    <img
+        class="card-img-top image"
+        href="image"
+        src=".\assets\ProjectsCategories\Ciencia.png"
+      />
+      <div class="card-img-overlay">
+        <app-download [disabled]="showProgress" [fileName]="file.nombreDocumento" [id]="file.idDocumento" (downloadStatus)="downloadStatus($event)"></app-download>
+      </div>
+
+        <h6 style="white-space:nowrap;text-overflow:ellipsis; overflow:hidden" class="card-text text-center crop">{{file.nombreDocumento}}</h6>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
 
 
 
