@@ -1,7 +1,7 @@
 export class Carpeta {
 idCarpeta: number;
 nombre: string;
-descripcion: string;
+carpetaPadre: number;
 idProjecto: number;
 fechaCreacion: Date;
 fechaModificacion: Date;

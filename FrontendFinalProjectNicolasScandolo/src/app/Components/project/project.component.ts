@@ -17,7 +17,7 @@ export class ProjectComponent implements OnInit {
   goToDetails(project: any) {
     console.log(project.id);
     const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
-    this.route.navigate(['landingpage', idUsuario, 'project-details', project.idProyecto]);
+    this.route.navigate(['landingpage', idUsuario, 'project-details', project.idProyecto, 0]);
   }
 }
 

@@ -16,6 +16,7 @@ import { Carpeta } from 'src/app/Models/carpeta.model';
 export class ProjectDetailsComponent implements OnInit {
   public files: Documento;
   public carpetas: Carpeta;
+  public carpeta: Carpeta;
   public proyecto: Project;
   public fileInDownload: string;
   public percentage: number;
@@ -48,18 +49,29 @@ export class ProjectDetailsComponent implements OnInit {
 
   private getFiles() {
     const id = this.activatedRoute.snapshot.params.query;
-    this.service.searchFilesList(id).subscribe(
+    const carpId = this.activatedRoute.snapshot.params.carpeta;
+    this.service.searchFilesList(id, carpId).subscribe(
       (data: Documento) => {
         this.files = data;
         console.log(this.files);
       }
     );
-    this.service.searchCarpetasList(id).subscribe(
+    this.service.searchCarpetasList(id, carpId).subscribe(
       (data: Carpeta) => {
         this.carpetas = data;
         console.log(this.carpetas);
       }
     );
+  }
+
+  goToDetailsCarpeta(carpeta: Carpeta) {
+    const idProyecto = this.activatedRoute.snapshot.params.query;
+    const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+    this.route.navigate(['landingpage', idUsuario, 'project-details', idProyecto, carpeta.idCarpeta]);
+    setTimeout(() => {
+      console.log('waiting to enter to folder');
+      this.getFiles();
+    }, 500);
   }
 
 

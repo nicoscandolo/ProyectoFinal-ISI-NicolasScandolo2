@@ -36,11 +36,11 @@ export class UploadComponent implements OnInit {
 public upload(event) {
   this.sendEmail = true;
   const id = this.activatedRoute.snapshot.params.query;
-
+  const idCarp = this.activatedRoute.snapshot.params.carpeta;
   if (event.target.files && event.target.files.length > 0) {
     const file = event.target.files[0];
     this.uploadStatus.emit({status: ProgressStatusEnum.START});
-    this.service.postFile(file, id).subscribe(
+    this.service.postFile(file, id, idCarp).subscribe(
       data => {
         if (data) {
           switch (data.type) {

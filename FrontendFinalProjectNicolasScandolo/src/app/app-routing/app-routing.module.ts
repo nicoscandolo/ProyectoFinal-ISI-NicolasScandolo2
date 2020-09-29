@@ -40,7 +40,7 @@ const routes: Routes = [
     component: ConsultasListComponent,
   },
   {
-    path: 'landingpage/:idUsuario/project-details/:query',
+    path: 'landingpage/:idUsuario/project-details/:query/:carpeta',
     component: ProjectDetailsComponent,
   },
   {

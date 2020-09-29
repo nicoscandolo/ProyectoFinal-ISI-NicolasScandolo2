@@ -50,11 +50,26 @@
 
 
   <div class="card shadow p-1 mb-3 rounded" (click)="goToDetailsFile(file)">
-    <img
+    <img *ngIf="file.pathDocumento === 'jpg' || file.pathDocumento === 'JPG'  || file.pathDocumento === 'png'  || file.pathDocumento === 'PNG'"
         class="card-img-top image"
         href="image"
-        src=".\assets\ProjectsCategories\Ciencia.png"
+        src=".\assets\ProjectsCategories\jpg.PNG"
       />
+      <img *ngIf="file.pathDocumento === 'pdf' || file.pathDocumento === 'PDF'"
+      class="card-img-top image"
+      href="image"
+      src=".\assets\ProjectsCategories\pdf.PNG"
+    />
+    <img *ngIf="file.pathDocumento === 'doc' || file.pathDocumento === 'docx' || file.pathDocumento === 'txt'"
+    class="card-img-top image"
+    href="image"
+    src=".\assets\ProjectsCategories\doc.PNG"
+  />
+  <img *ngIf="file.pathDocumento === 'xls' || file.pathDocumento === 'xlsx' || file.pathDocumento === 'lsx'"
+  class="card-img-top image"
+  href="image"
+  src=".\assets\ProjectsCategories\excel.PNG"
+/>
       <div class="card-img-overlay">
         <app-download [disabled]="showProgress" [fileName]="file.nombreDocumento" [id]="file.idDocumento" (downloadStatus)="downloadStatus($event)"></app-download>
       </div>

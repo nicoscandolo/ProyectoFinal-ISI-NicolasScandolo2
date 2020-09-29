@@ -28,10 +28,10 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         }
 
         // GET: api/Carpeta/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Carpeta>>> GetCarpeta(int id)
+        [HttpGet("{id}/{idCarp}")]
+        public async Task<ActionResult<IEnumerable<Carpeta>>> GetCarpeta(int id, int idCarp)
         {
-            var carpetas = await _context.Carpetas.Where(b => b.IdProjecto == id).ToListAsync();
+            var carpetas = await _context.Carpetas.Where(b => b.IdProjecto == id && b.CarpetaPadre  == idCarp).ToListAsync();
 
             if (carpetas == null)
             {

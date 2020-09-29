@@ -32,7 +32,7 @@ export class CarpetasAddComponent {
         this.CarpetaNew = {
           idCarpeta: 0,
           nombre: '',
-          descripcion: '',
+          carpetaPadre: this.activatedRoute.snapshot.params.carpeta,
           idProjecto: this.activatedRoute.snapshot.params.query,
           fechaCreacion: new Date(),
           fechaModificacion: new Date(),
@@ -63,6 +63,7 @@ export class CarpetasAddComponent {
       console.log(this.nombre);
       this.CarpetaNew.nombre = this.nombre;
       this.CarpetaNew.idProjecto = this.activatedRoute.snapshot.params.query;
+      this.CarpetaNew.carpetaPadre = this.activatedRoute.snapshot.params.carpeta;
       console.log(this.CarpetaNew, 'carpeta antes de enviar');
         // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
       this.service.postCarpeta(this.CarpetaNew).subscribe(

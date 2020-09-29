@@ -3,6 +3,7 @@ export class Documento {
   NombreDocumento: string;
   Descripcion: string;
   File: File;
+  pathDocumento?: string;
 }
 
 

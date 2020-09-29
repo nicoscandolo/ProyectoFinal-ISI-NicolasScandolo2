@@ -15,7 +15,7 @@ namespace WebFinalProjectNicolasScandolo3.Models
   
         public string Nombre { get; set; }
 
-        public string Descripcion { get; set; }
+        public int CarpetaPadre { get; set; }
 
         public DateTime FechaCreacion { get; set; }
 

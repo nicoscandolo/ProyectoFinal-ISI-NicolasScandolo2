@@ -42,12 +42,12 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'UsuariosProjecto/' + id);
   }
 
-  searchFilesList(id) {
-    return this.http.get(this.rootURL + 'Documento/' + id);
+  searchFilesList(idProj, idCarp) {
+    return this.http.get(this.rootURL + 'Documento/' + idProj + '/' + idCarp);
   }
 
-  searchCarpetasList(id) {
-    return this.http.get(this.rootURL + 'Carpeta/' + id);
+  searchCarpetasList(idProj, idCarp) {
+    return this.http.get(this.rootURL + 'Carpeta/' + idProj + '/' + idCarp);
   }
 
   searchConsultasList(id) {
@@ -58,12 +58,12 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'ComentarioConsulta/' + id);
   }
 
-  postFile(fileToUpload: File, id) {
+  postFile(fileToUpload: File, id, idCarp) {
 
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    return this.http.post(this.rootURL + 'Documento/upload/' + id, formData, {reportProgress: true, observe: 'events'});
+    return this.http.post(this.rootURL + 'Documento/upload/' + id + '/' + idCarp, formData, {reportProgress: true, observe: 'events'});
 }
 
 sendEmail(email: Email) {
