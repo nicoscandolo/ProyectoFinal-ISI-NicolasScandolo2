@@ -24,18 +24,25 @@ export class ProjectDetailsComponent implements OnInit {
   public showDownloadError: boolean;
   public showUploadError: boolean;
   messageFromAddCarpeta: boolean;
-
+  public view: any;
+  public userTypeProject: any;
+  public userView: any;
 
   constructor(private service: ProjectService,
               private http: HttpClient,
               private activatedRoute: ActivatedRoute,
               private route: Router
-              ) { }
+              ) {
+                this.view = this.activatedRoute.snapshot.params.tipoUsuario;
+                this.userView = this.activatedRoute.snapshot.params.viewUser;
+              }
 
   ngOnInit() {
     this.getProyectoId();
     this.getFiles();
   }
+
+
 
   getProyectoId() {
     const id = this.activatedRoute.snapshot.params.query;
@@ -67,7 +74,9 @@ export class ProjectDetailsComponent implements OnInit {
   goToDetailsCarpeta(carpeta: Carpeta) {
     const idProyecto = this.activatedRoute.snapshot.params.query;
     const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
-    this.route.navigate(['landingpage', idUsuario, 'project-details', idProyecto, carpeta.idCarpeta]);
+    const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
+    const viewUser = this.activatedRoute.snapshot.params.viewUser;
+    this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', idProyecto, viewUser, carpeta.idCarpeta]);
     setTimeout(() => {
       console.log('waiting to enter to folder');
       this.getFiles();
@@ -79,7 +88,9 @@ export class ProjectDetailsComponent implements OnInit {
   goToConsultas() {
     const idProyecto = this.activatedRoute.snapshot.params.query;
     const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
-    this.route.navigate(['landingpage', idUsuario, 'project-details', idProyecto, 'consultas']);
+    const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
+    const viewUser = this.activatedRoute.snapshot.params.viewUser;
+    this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', idProyecto, viewUser, 'consultas']);
   }
 
   public downloadStatus(event: ProgressStatus) {

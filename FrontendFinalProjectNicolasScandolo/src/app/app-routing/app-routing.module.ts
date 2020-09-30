@@ -21,7 +21,7 @@ import { ConsultaAddComponent } from '../Components/consulta-add/consulta-add.co
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
   {
-    path: 'landingpage/:idUsuario',
+    path: 'landingpage/:idUsuario/:tipoUsuario',
     component: ProjectsListComponent,
   },
   {
@@ -36,15 +36,15 @@ const routes: Routes = [
   },
 
    {
-    path: 'landingpage/:idUsuario/project-details/:query/consultas',
+    path: 'landingpage/:idUsuario/:tipoUsuario/project-details/:query/:viewUser/consultas',
     component: ConsultasListComponent,
   },
   {
-    path: 'landingpage/:idUsuario/project-details/:query/:carpeta',
+    path: 'landingpage/:idUsuario/:tipoUsuario/project-details/:query/:viewUser/:carpeta',
     component: ProjectDetailsComponent,
   },
   {
-    path: 'landingpage/:idUsuario/create-project',
+    path: 'landingpage/:idUsuario/:tipoUsuario/create-project',
     component: ProjectAddComponent,
   },
   {

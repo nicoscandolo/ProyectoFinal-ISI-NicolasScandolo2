@@ -53,12 +53,13 @@ this.Tipos = ['Ciencia', 'Ingenieria', 'Arte', 'Matematica', 'Literatura', 'Sist
 
     /* this.spinner.show(); */
     const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+    const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
     // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
     this.service.postProject(form.value, idUsuario).subscribe(
       res => {
         console.log(res);
         this.resetform(form);
-        this.router.navigate(['landingpage', idUsuario]);
+        this.router.navigate(['landingpage', idUsuario, tipoU]);
         /* this.spinner.hide(); */
       },
       err => {

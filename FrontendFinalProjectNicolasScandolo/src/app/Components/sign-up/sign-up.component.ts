@@ -41,7 +41,7 @@ export class SignUpComponent implements OnInit {
       Nombre: '',
       FechaCreacion: new Date(),
       Password: '',
-      IsAdmin: false,
+      isAdmin: false,
       ImagenUsuarioPath: '',
     };
   }

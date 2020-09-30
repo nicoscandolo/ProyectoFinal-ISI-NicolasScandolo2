@@ -2,7 +2,7 @@ export class Usuario {
   idUsuario: number;
   Nombre: string;
   Password: string;
-  IsAdmin: boolean;
+  isAdmin: boolean;
   FechaCreacion: Date;
   ImagenUsuarioPath: string;
 }

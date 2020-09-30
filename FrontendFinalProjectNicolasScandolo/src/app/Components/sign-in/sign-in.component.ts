@@ -36,7 +36,7 @@ export class SignInComponent implements OnInit {
       Nombre: '',
       FechaCreacion: new Date(),
       Password: '',
-      IsAdmin: false,
+      isAdmin: false,
       ImagenUsuarioPath: '',
     };
   }
@@ -47,10 +47,12 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(form.value).subscribe(
       ( res: Usuario ) => {
         console.log(res.idUsuario);
+        console.log(res);
+
         // Setear token en el localStorage
         // localStorage.setItem('token', res.data.token);
         // Redireccionar
-        this.router.navigate(['/landingpage/' + res.idUsuario]);
+        this.router.navigate(['/landingpage/' + res.idUsuario + '/' + res.isAdmin]);
         this.resetform(form);
       },
       err => {

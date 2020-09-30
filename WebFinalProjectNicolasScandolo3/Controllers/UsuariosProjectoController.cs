@@ -62,6 +62,26 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             return Proyectos;
         }
 
+
+
+        // GET: api/UsuariosProjecto/5/2
+        [HttpGet("{idProyecto}/{idUsuario}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetUsuarioProjecto(int idProyecto, int idUsuario)
+        {
+
+            var usuarioProjecto = await _context.UsuariosProyectos.Where(b => b.IdUsuario == idUsuario && b.IdProjecto == idProyecto).ToListAsync();
+
+            if (usuarioProjecto == null)
+            {
+                return NotFound();
+            };
+
+            return usuarioProjecto;
+        }
+
+
+
+
         // PUT: api/UsuariosProjecto/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

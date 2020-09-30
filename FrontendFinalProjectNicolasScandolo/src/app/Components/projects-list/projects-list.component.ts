@@ -43,7 +43,8 @@ export class ProjectsListComponent implements OnInit {
 
   goToCreateProject() {
     const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
-    this.router.navigate(['landingpage', idUsuario, 'create-project']);
+    const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
+    this.router.navigate(['landingpage', idUsuario, tipoU, 'create-project']);
   }
 }
 

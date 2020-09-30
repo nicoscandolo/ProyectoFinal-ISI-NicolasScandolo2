@@ -21,12 +21,16 @@ export class CarpetasAddComponent {
     private CarpetaNew: Carpeta;
     sendEmail: boolean;
     email: Email;
+    view: boolean;
 
     constructor(
       private activatedRoute: ActivatedRoute,
       private service: ProjectService,
       private router: Router,
       private http: HttpClient) {
+
+        this.view = this.activatedRoute.snapshot.params.tipoUsuario;
+
         this.nombre = '';
 
         this.CarpetaNew = {

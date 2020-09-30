@@ -5,13 +5,13 @@
     <p class="text-center" style="font-size:25px;">Aquí puedes subir archivos, organizarlos en carpetas y realizar consultas con todo tu equipo</p>
     <hr>
     <div  class="bottom-two">
-      <div>
-        <app-carpetas-add  (messageEvent)="receiveMessage($event)"></app-carpetas-add>
+      <div *ngIf="this.view === 'true' ||  this.userView === 'true'" >
+        <app-carpetas-add (messageEvent)="receiveMessage($event)"></app-carpetas-add>
       </div>
       <div>
         <button class="buttonnn button2"  (click)="goToConsultas(project)">Consultas</button>
       </div>
-      <div>
+      <div *ngIf="this.view === 'true' || this.userView === 'true'">
         <app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
       </div>
     </div>
