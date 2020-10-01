@@ -10,12 +10,67 @@
       </div>
     </div>
   </div>
+  <br>
+  <br>
 </div>
 
 
 <!-- ////////////////////////////////////////////////////////////////////// -->
-<div *ngIf="ProjectsList.length" class="container mt-2">
-  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">Tus Proyectos</h1>
+<div class="container mt-2" >
+
+<div class="container mt-2">
+  <div class="col-md-4 mx-auto"  >
+    <div class="form-group">
+      <input
+        (input)="searchFilm(nameToSearch)"
+        [(ngModel)]="nameToSearch"
+        class="form-control"
+        type="search"
+        placeholder="Buscar un proyecto"
+        aria-label="Search"
+        autofocus
+      />
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-2">
+  <div class="dropdown col-md-4 mx-auto"  >
+<!--     <h6 >Filtrar por</h6> -->
+  <button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Filtrado por: {{ActualDropDown}}
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item"  (click)="UpdateProyectosList('Mis proyectos')">Mis proyectos</a>
+      <a class="dropdown-item"  (click)="UpdateProyectosList('Todos los proyectos')">Todos los proyectos</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <br>
+  <br>
+  <br>
+
+
+
+
+
+  <div *ngIf="!ProjectsList.length" class="sk-chase">
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+    <div class="sk-chase-dot"></div>
+  </div>
+<!-- ////////////////////////////////////////////////////////////////////// -->
+
+<div *ngIf="ProjectsList.length && ActualDropDown === 'Mis proyectos'" class="container mt-2">
+ <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
 
   <div class="card-deck">
     <app-project
@@ -26,13 +81,41 @@
   </div>
 </div>
 <!-- Alert messages -->
-<div *ngIf="!ProjectsList.length" class="container text-center">
-  <div *ngIf="!ProjectsList.length" class="alert alert-primary" role="alert">
-    No Projects Found!
+<div *ngIf="!ProjectsList.length  && ActualDropDown === 'Mis proyectos'" class="container text-center">
+  <div *ngIf="!ProjectsList.length   && ActualDropDown === 'Mis proyectos'" class="alert alert-primary" role="alert">
+    No tienes proyectos creados!
   </div>
 </div>
 <div *ngIf="errorMessage" class="container text-center">
   <div class="alert alert-danger" role="alert">
     {{ errorMessage }}
   </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////// -->
+<div *ngIf="AllProjectsList.length && ActualDropDown === 'Todos los proyectos'" class="container mt-2">
+  <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
+
+   <div class="card-deck">
+     <app-project
+       *ngFor="let project of AllProjectsList"
+       [project]="project"
+       class="col-4"
+     ></app-project>
+   </div>
+ </div>
+ <!-- Alert messages -->
+ <div *ngIf="!AllProjectsList.length  && ActualDropDown === 'Todos los proyectos'" class="container text-center">
+   <div *ngIf="!AllProjectsList.length   && ActualDropDown === 'Todos los proyectos'" class="alert alert-primary" role="alert">
+     No hay proyectos creados!
+   </div>
+ </div>
+ <div *ngIf="errorMessage" class="container text-center">
+   <div class="alert alert-danger" role="alert">
+     {{ errorMessage }}
+   </div>
+ </div>
+
+
+
+
 </div>

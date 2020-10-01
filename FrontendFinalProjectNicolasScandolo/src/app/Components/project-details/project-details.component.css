@@ -1,5 +1,5 @@
 .button {
-  border: none;
+  border-radius: 8px;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -87,7 +87,7 @@ label.error {
 
 .buttonn {
   background-color: #4CAF50; /* Green */
-  border: none;
+  border-radius: 8px;
   color: white;
   padding: 16px 32px;
   text-align: center;
@@ -107,7 +107,7 @@ label.error {
 
 .buttonnn {
   background-color: #4CAF50; /* Green */
-  border: none;
+  border-radius: 8px;
   color: white;
   padding: 16px 32px;
   text-align: center;

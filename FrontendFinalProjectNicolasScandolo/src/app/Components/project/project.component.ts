@@ -27,7 +27,10 @@ userViewProject: any;
     const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
 
     console.log('waiting go to project', this.userViewProject );
-    this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', project.idProyecto, this.userViewProject, 0]);
+    setTimeout(() => {
+      this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', project.idProyecto, this.userViewProject, 0]);
+    }, 500);
+
 
 
 

@@ -13,7 +13,7 @@
 }
 
 .buttonn {
-  border: none;
+  border-radius: 8px;
   color: white;
   padding: 14px 20px;
   text-align: center;
@@ -34,7 +34,7 @@
 
 .button {
   background-color: #4CAF50; /* Green */
-  border: none;
+  border-radius: 8px;
   color: white;
   padding: 16px 32px;
   text-align: center;
