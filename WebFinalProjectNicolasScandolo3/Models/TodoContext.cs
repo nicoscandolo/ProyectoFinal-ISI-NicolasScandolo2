@@ -24,6 +24,7 @@ namespace WebFinalProjectNicolasScandolo3.Models
         public DbSet<Documento> Documentos { get; set; }
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<UsuariosProjecto> UsuariosProyectos { get; set; }
+        public DbSet<RequestToProyecto> RequestToProyecto { get; set; }
 
 
 

@@ -10,14 +10,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProjectsListComponent implements OnInit {
   private ProjectsList: any = [];
+  private ProjectsListSearch: any = [];
   private AllProjectsList: any = [];
+  private AllProjectsListSearch: any = [];
+  private ProjectsFiltered: any = [];
+
   private errorMessage: string;
   private ActualDropDown: string;
+  private MisProyectos: string;
+  private TodosLosProyectos: string;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private service: ProjectService) {
       this.ActualDropDown = 'Mis proyectos';
+      this.MisProyectos = 'Mis proyectos';
+      this.TodosLosProyectos = 'Todos los proyectos';
      }
 
   ngOnInit() {
@@ -33,6 +42,7 @@ export class ProjectsListComponent implements OnInit {
         const testt = response;
        /*  console.log(testt); */
         this.ProjectsList = testt;
+        this.ProjectsListSearch = testt;
         console.log(this.ProjectsList);
       },
       err => {
@@ -49,6 +59,7 @@ export class ProjectsListComponent implements OnInit {
        /*  console.log(response);
         console.log(response.data); */
         this.AllProjectsList = response;
+        this.AllProjectsListSearch = response;
        /*  console.log(testt); */
         console.log(this.AllProjectsList);
       },
@@ -72,6 +83,55 @@ export class ProjectsListComponent implements OnInit {
   UpdateProyectosList(Option) {
     if (Option === 'Mis proyectos') {  this.ActualDropDown = 'Mis proyectos'; } else { this.ActualDropDown = 'Todos los proyectos'; }
     console.log(Option, 'cambio');
+
+  }
+
+  searchProject(nameToSearch) {
+
+    if (nameToSearch === '') {
+      this.ProjectsListSearch = this.ProjectsList;
+      this.AllProjectsListSearch = this.AllProjectsList;
+    } else {
+            if (this.ActualDropDown === 'Mis Proyectos') {
+            // tslint:disable-next-line:only-arrow-functions
+            this.ProjectsFiltered = this.ProjectsListSearch.filter(function(Project) {
+              // tslint:disable-next-line:no-unused-expression
+              Project.name;
+              return (
+                Project.nombre.toLowerCase().indexOf(nameToSearch.toLowerCase()) !== -1
+              );
+            });
+            this.ProjectsListSearch = this.ProjectsFiltered;
+    } else {
+            // tslint:disable-next-line:only-arrow-functions
+            this.ProjectsFiltered = this.AllProjectsListSearch.filter(function(Project) {
+              // tslint:disable-next-line:no-unused-expression
+              Project.name;
+              return (
+                Project.nombre.toLowerCase().indexOf(nameToSearch.toLowerCase()) !== -1
+              );
+            });
+            this.AllProjectsListSearch = this.ProjectsFiltered;
+
+    }
+
+    }
+
+
+    if (nameToSearch === '') {
+      this.AllProjectsListSearch = this.AllProjectsList;
+    } else {
+      // tslint:disable-next-line:only-arrow-functions
+      this.ProjectsFiltered = this.AllProjectsListSearch.filter(function(Project) {
+        // tslint:disable-next-line:no-unused-expression
+        Project.name;
+        return (
+          Project.nombre.toLowerCase().indexOf(nameToSearch.toLowerCase()) !== -1
+        );
+      });
+      this.ProjectsListSearch = this.ProjectsFiltered;
+    }
+
 
   }
 }

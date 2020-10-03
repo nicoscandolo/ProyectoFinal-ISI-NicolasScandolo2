@@ -10,7 +10,8 @@
       <h4 class="card-title text-center">{{project.nombre}} </h4>
       <p style="white-space:nowrap;text-overflow:ellipsis; overflow:hidden" class="card-text crop">{{ project.descripcion }}</p>
      <!--  <p class="card-text"><strong>Release date: </strong> {{ movie.parsedDate }}</p> -->
-     <a style="color:white;" class="btn btn-primary stretched-link">Ver Proyecto</a>
+     <a style="color:white;" class="btn btn-primary stretched-link" *ngIf="tipo === 'Mis proyectos'" >Ver Proyecto</a>
+     <a style="color:white;" class="btn btn-primary stretched-link" *ngIf="tipo === 'Todos los proyectos'" >Enviar solicitud</a>
     </div>
   </div>
 </div>
