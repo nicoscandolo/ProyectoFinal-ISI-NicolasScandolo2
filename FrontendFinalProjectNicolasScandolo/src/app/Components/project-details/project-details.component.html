@@ -8,12 +8,18 @@
       <div *ngIf="this.view === 'true' ||  this.userView === 'true'" >
         <app-carpetas-add (messageEvent)="receiveMessage($event)"></app-carpetas-add>
       </div>
-      <div>
+      <div  *ngIf="(this.view === 'false' && this.userView !== 'true') && (this.view !== 'true')">
+        <button class="buttonUserComun button2"  (click)="goToConsultas(project)">Consultas</button>
+      </div>
+      <div  *ngIf="this.view === 'true' || this.userView === 'true'">
         <button class="buttonnn button2"  (click)="goToConsultas(project)">Consultas</button>
       </div>
       <div *ngIf="this.view === 'true' || this.userView === 'true'">
         <app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
       </div>
+      <div *ngIf="this.view === 'true' || this.userView === 'true'">
+        <button class="buttonSolicitudes button2"  (click)="goToConsultas(project)">Solicitudes pendientes</button>
+    </div>
     </div>
   </div>
   <p *ngIf="showProgress" style="align-content: center;"> progress <strong>{{percentage}}%</strong></p>

@@ -12,7 +12,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class RequestToProyectoController: ControllerBase
+    public class RequestToProyectoController : ControllerBase
     {
         private readonly TodoContext _context;
 
@@ -23,12 +23,24 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
 
         // GET: api/Carpeta
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<RequestToProyecto>>> GetCarpetas()
+        [HttpGet("{IdProyecto}")]
+        public async Task<ActionResult<IEnumerable<RequestToProyecto>>> GetRequestToProyecto(int IdPRoyecto)
         {
-            return await _context.RequestToProyecto.ToListAsync();
+            var requestToProyecto = await _context.RequestToProyecto.Where(b => b.IdProyecto == IdPRoyecto).ToListAsync();
+
+            if (requestToProyecto == null)
+            {
+                return NotFound();
+            }
+
+            return requestToProyecto;
+
         }
 
+        // POST: api/Carpeta
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // more details see https://aka.ms/RazorPagesCRUD.
+        [HttpPost]
         public async Task<ActionResult<RequestToProyecto>> PostRequestToProyecto(RequestToProyecto requestToProyecto)
         {
 

@@ -21,7 +21,7 @@ userViewProject: any;
   }
 
   goToDetails(project: any) {
-    if (this.tipo === "Mis proyectos") {
+    if (this.tipo === 'Mis proyectos') {
     this.getUserType( project.idProyecto);
     console.log( project.idProyecto);
     console.log(this.userViewProject, 'a ver que onda el userrr');
@@ -33,7 +33,9 @@ userViewProject: any;
       this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', project.idProyecto, this.userViewProject, 0]);
     }, 500);
   }
-  else {}
+  else {
+
+  }
 
 
 

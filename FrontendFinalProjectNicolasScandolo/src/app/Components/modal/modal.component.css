@@ -1,3 +1,4 @@
+
 /* // this makes the .modal visible */
 .sshow {
   display: block;
@@ -9,8 +10,8 @@
 /* // this holds the CSS display of the modal*/
 .mmodal {
 /*     // makes it hover above all elements*/
-  z-index: 1000;
-  position: fixed;
+  z-index: 1000 !important;
+  position: relative;
   top: 30px;
   bottom: 0;
   left: 300px;

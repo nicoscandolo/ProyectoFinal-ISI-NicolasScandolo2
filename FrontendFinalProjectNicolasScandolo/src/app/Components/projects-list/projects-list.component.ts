@@ -92,7 +92,7 @@ export class ProjectsListComponent implements OnInit {
       this.ProjectsListSearch = this.ProjectsList;
       this.AllProjectsListSearch = this.AllProjectsList;
     } else {
-            if (this.ActualDropDown === 'Mis Proyectos') {
+            if (this.ActualDropDown === 'Mis proyectos') {
             // tslint:disable-next-line:only-arrow-functions
             this.ProjectsFiltered = this.ProjectsListSearch.filter(function(Project) {
               // tslint:disable-next-line:no-unused-expression
@@ -116,23 +116,6 @@ export class ProjectsListComponent implements OnInit {
     }
 
     }
-
-
-    if (nameToSearch === '') {
-      this.AllProjectsListSearch = this.AllProjectsList;
-    } else {
-      // tslint:disable-next-line:only-arrow-functions
-      this.ProjectsFiltered = this.AllProjectsListSearch.filter(function(Project) {
-        // tslint:disable-next-line:no-unused-expression
-        Project.name;
-        return (
-          Project.nombre.toLowerCase().indexOf(nameToSearch.toLowerCase()) !== -1
-        );
-      });
-      this.ProjectsListSearch = this.ProjectsFiltered;
-    }
-
-
   }
 }
 

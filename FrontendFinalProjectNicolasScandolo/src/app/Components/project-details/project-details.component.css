@@ -109,11 +109,51 @@ label.error {
   background-color: #4CAF50; /* Green */
   border-radius: 8px;
   color: white;
-  padding: 16px 32px;
+  padding: 13px 28px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 22px;
+  font-size: 18px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+
+  position: absolute;
+  left: 56%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.buttonSolicitudes {
+  background-color: #4CAF50; /* Green */
+  border-radius: 8px;
+  color: white;
+  padding: 13px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+
+  position: absolute;
+  left: 75%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.buttonUserComun {
+  background-color: #4CAF50; /* Green */
+  border-radius: 8px;
+  color: white;
+  padding: 13px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -124,7 +164,6 @@ label.error {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
 
 .button2 {
   background-color: white;
