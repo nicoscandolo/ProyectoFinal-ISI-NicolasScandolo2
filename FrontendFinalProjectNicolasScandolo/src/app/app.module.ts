@@ -24,6 +24,9 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
 import { ConsultaAddComponent } from './Components/consulta-add/consulta-add.component';
 import { ModalComponent } from './Components/modal/modal.component';
 import { CarpetasAddComponent } from './Components/carpetas-add/carpetas-add.component';
+import { SolicitudesPendientesComponent } from './Components/solicitudes-pendientes/solicitudes-pendientes.component';
+import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.component';
+import { SolicitudPendienteComponent } from './Components/solicitud-pendiente/solicitud-pendiente.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 
@@ -47,7 +50,10 @@ import { CarpetasAddComponent } from './Components/carpetas-add/carpetas-add.com
     UserProfileComponent,
     ConsultaAddComponent,
     ModalComponent,
-    CarpetasAddComponent
+    CarpetasAddComponent,
+    SolicitudesPendientesComponent,
+    UsuarioAddComponent,
+    SolicitudPendienteComponent
   ],
   imports: [
     BrowserModule,

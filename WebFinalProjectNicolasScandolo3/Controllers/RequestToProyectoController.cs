@@ -24,9 +24,9 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/Carpeta
         [HttpGet("{IdProyecto}")]
-        public async Task<ActionResult<IEnumerable<RequestToProyecto>>> GetRequestToProyecto(int IdPRoyecto)
+        public async Task<ActionResult<IEnumerable<RequestToProyecto>>> GetRequestToProyecto(int IdProyecto)
         {
-            var requestToProyecto = await _context.RequestToProyecto.Where(b => b.IdProyecto == IdPRoyecto).ToListAsync();
+            var requestToProyecto = await _context.RequestToProyecto.Where(b => b.IdProyecto == IdProyecto).ToListAsync();
 
             if (requestToProyecto == null)
             {

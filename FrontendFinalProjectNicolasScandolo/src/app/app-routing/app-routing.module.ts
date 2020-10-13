@@ -16,6 +16,7 @@ import { SignUpComponent } from '../Components/sign-up/sign-up.component';
 import { AuthGuard } from '../auth.guard';
 import { ConsultasListComponent } from '../Components/consultas-list/consultas-list.component';
 import { ConsultaAddComponent } from '../Components/consulta-add/consulta-add.component';
+import { SolicitudesPendientesComponent } from '../Components/solicitudes-pendientes/solicitudes-pendientes.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,10 @@ const routes: Routes = [
     component: ProjectsListComponent,
     canActivate: [AuthGuard]
   },
-
+  {
+    path: 'landingpage/:idUsuario/:tipoUsuario/project-details/:query/:viewUser/:carpeta/solicitudes',
+    component: SolicitudesPendientesComponent,
+  },
    {
     path: 'landingpage/:idUsuario/:tipoUsuario/project-details/:query/:viewUser/consultas',
     component: ConsultasListComponent,

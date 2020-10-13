@@ -1,0 +1,16 @@
+<h1 class="display-5 font-weight-normal" style="text-align: center;">Solicitudes pendientes</h1>
+
+
+
+<div *ngIf="solicitudesList.length" class="container mt-2">
+  <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
+  <div class="row my-3">
+
+     <app-solicitud-pendiente
+       *ngFor="let solicitudes of solicitudesList"  (messageEvent)="receiveMessage($event)"
+       [solicitudes]="solicitudes"
+       class="col-4"
+     ></app-solicitud-pendiente>
+
+  </div>
+ </div>

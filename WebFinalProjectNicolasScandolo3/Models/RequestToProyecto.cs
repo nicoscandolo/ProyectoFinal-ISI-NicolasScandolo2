@@ -17,7 +17,7 @@ namespace WebFinalProjectNicolasScandolo3.Models
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int IdProyecto { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public int IdUsuario { get; set; }
+        public long IdUsuario { get; set; }
 
     }
 }
