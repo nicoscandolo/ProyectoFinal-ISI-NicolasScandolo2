@@ -8,6 +8,7 @@ import { Consulta } from '../Models/consulta.model';
 import { ComentarioConsulta } from '../Models/comentario-consulta.model';
 import { Email } from '../Models/email.model';
 import { Carpeta } from '../Models/carpeta.model';
+import { UsuarioProyecto } from '../Models/usuario-proyecto.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +33,14 @@ export class ProjectService {
 
   postCarpeta( carpeta: Carpeta) {
     return this.http.post(this.rootURL + 'Carpeta/', carpeta);
+  }
+
+  postUsuariosProjecto( usuarioProyecto: UsuarioProyecto) {
+    return this.http.post(this.rootURL + 'UsuariosProjecto/', usuarioProyecto);
+  }
+
+  deleteRequestUsuario(idProyecto, idUsuario) {
+    return this.http.delete(this.rootURL + 'requesttoproyecto/' + idProyecto + '/' + idUsuario);
   }
 
   searchProject(idProject: number) {

@@ -50,5 +50,21 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             return CreatedAtAction("GetCarpeta", new { id = requestToProyecto.IdRequestToProyecto }, requestToProyecto);
         }
 
+        // DELETE: api/UsuariosProjecto/5
+        [HttpDelete("{IdProyecto}/{IdUsuario}")]
+        public async Task<ActionResult<RequestToProyecto>> DeleteRequestToProyecto(int IdProyecto, int IdUsuario)
+        {
+            RequestToProyecto requestToProyecto = await _context.RequestToProyecto.Where(b => b.IdProyecto == IdProyecto && b.IdUsuario == IdUsuario).FirstOrDefaultAsync();
+            if (requestToProyecto == null)
+            {
+                return NotFound();
+            }
+
+            _context.RequestToProyecto.Remove(requestToProyecto);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetCarpeta", new { id = requestToProyecto.IdRequestToProyecto }, requestToProyecto);
+        }
+
     }
 }

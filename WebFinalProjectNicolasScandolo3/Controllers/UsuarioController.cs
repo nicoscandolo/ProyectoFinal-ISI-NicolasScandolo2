@@ -31,7 +31,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(long id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+             var usuario = await _context.Usuarios.FindAsync(id);
 
             if (usuario == null)
             {

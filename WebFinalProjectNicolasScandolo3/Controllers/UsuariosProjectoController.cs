@@ -79,9 +79,6 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             return usuarioProjecto;
         }
 
-
-
-
         // PUT: api/UsuariosProjecto/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -124,17 +121,22 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             try
             {
                 await _context.SaveChangesAsync();
+
+                RequestToProyecto requestToProyecto = await _context.RequestToProyecto.Where(b => b.IdProyecto == usuariosProjecto.IdProjecto && b.IdUsuario == usuariosProjecto.IdUsuario).FirstOrDefaultAsync();
+
+                if (usuariosProjecto == null)
+                {
+                    return CreatedAtAction("GetUsuariosProjecto", new { id = usuariosProjecto.IdUsuario }, usuariosProjecto);
+                }
+
+                _context.RequestToProyecto.Remove(requestToProyecto);
+
+                await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException)
+            catch
             {
-                if (UsuariosProjectoExists(usuariosProjecto.IdUsuario))
-                {
                     return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+                            
             }
 
             return CreatedAtAction("GetUsuariosProjecto", new { id = usuariosProjecto.IdUsuario }, usuariosProjecto);
