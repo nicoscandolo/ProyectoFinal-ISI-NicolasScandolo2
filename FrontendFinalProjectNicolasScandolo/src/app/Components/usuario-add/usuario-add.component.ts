@@ -11,7 +11,7 @@ import { ProjectService } from 'src/app/Services/project.service';
   templateUrl: './usuario-add.component.html',
   styleUrls: ['./usuario-add.component.css']
 })
-export class UsuarioAddComponent {
+export class UsuarioAddComponent implements OnInit {
 
 
 
@@ -25,6 +25,14 @@ export class UsuarioAddComponent {
   sendEmail: boolean;
   email: Email;
   view: boolean;
+  viewUsuarios: boolean;
+
+  private UsuariosList: any = [];
+  private UsuariosListSearch: any = [];
+  private UsuariosFiltered: any = [];
+  errorMessage: any;
+  nameToSearch: string;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,14 +41,20 @@ export class UsuarioAddComponent {
     private http: HttpClient) {
 
       this.view = this.activatedRoute.snapshot.params.tipoUsuario;
+      this.viewUsuarios = false;
 
       this.nombre = '';
+      this.nameToSearch = '';
 
       this.usuarioNewInProject = {
         idUsuario: 1000,
         idProjecto: this.activatedRoute.snapshot.params.query,
         isAdmin: false,
       };
+     }
+
+     ngOnInit() {
+      this.searchUsuariosList();
      }
 
   showDialog() {
@@ -64,8 +78,15 @@ export class UsuarioAddComponent {
 
   agregarUsuario() {
     this.sendEmail = true;
-    console.log(this.nombre);
     console.log(this.usuarioNewInProject, 'usuario antes de enviar');
+    console.log(this.nameToSearch);
+    const usuarioFound = this.UsuariosListSearch.filter(x => x.nombre === this.nameToSearch);
+    console.log('este es el usuario que encontre', usuarioFound);
+    this.usuarioNewInProject.idUsuario = usuarioFound[0].idUsuario;
+
+    console.log(this.usuarioNewInProject, 'usuario antes de enviar');
+    // el nombre que se seleccione en el box(NametoSearch) despues lo tengo que hacer macehar
+    // con la list de usuario y obtener el id, ese es el que le asigno al id de usuario
       // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
     this.service.postUsuariosProjecto(this.usuarioNewInProject).subscribe(
     res => {
@@ -78,12 +99,10 @@ export class UsuarioAddComponent {
     },
     err => {
       this.sendEmail = false;
-      console.log(err, 'la carpeta NO se agrego correctamente');
+      console.log(err, 'el usuario NO se agrego correctamente');
       /* this.spinner.show(); */
     }
   );
-
-
 
     this.vc.clear();
     document.body.removeChild(this.backdrop);
@@ -107,6 +126,48 @@ export class UsuarioAddComponent {
    }
   }
 
+
+  // Get usuarios para buscarlos y agregarlos
+  searchUsuariosList(): void {
+    this.service.searchUsuarios().subscribe(
+      (response: any) => {
+        console.log(response, 'me trajo los usuarios');
+        this.UsuariosList = response;
+        this.UsuariosListSearch = response;
+        console.log(this.UsuariosList);
+      },
+      err => {
+        console.log(err, 'no me trajo los usuarios');
+        if (err.status !== 0) { this.errorMessage = err.error.message; }
+        if (err.status === 0) {
+          this.errorMessage = 'Unable to connect with server';
+        }
+      }
+    );
+    }
+
+
+  searchUsuario(nameToSearch) {
+      this.viewUsuarios = false;
+      if (nameToSearch === '') {
+        this.viewUsuarios = false;
+        this.UsuariosListSearch = this.UsuariosList;
+        // this.AllProjectsListSearch = this.AllProjectsList;
+      } else {
+              this.viewUsuarios = true;
+              // tslint:disable-next-line:only-arrow-functions
+              this.UsuariosFiltered = this.UsuariosListSearch.filter(function(Usuario) {
+                // tslint:disable-next-line:no-unused-expression
+                Usuario.name;
+                return (
+                  Usuario.nombre.toLowerCase().indexOf(nameToSearch.toLowerCase()) !== -1
+                );
+              });
+              this.UsuariosListSearch = this.UsuariosFiltered;
+
+
+      }
+    }
 
 
 }

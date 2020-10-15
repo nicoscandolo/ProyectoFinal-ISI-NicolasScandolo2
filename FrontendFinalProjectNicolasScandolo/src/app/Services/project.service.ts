@@ -55,6 +55,10 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'usuario/' + idUsuario);
   }
 
+  searchUsuarios() {
+    return this.http.get(this.rootURL + 'Usuario');
+  }
+
   searchUserType(idProyecto, idUsuario) {
     return this.http.get(this.rootURL + 'UsuariosProjecto/' + idProyecto + '/' + idUsuario);
   }

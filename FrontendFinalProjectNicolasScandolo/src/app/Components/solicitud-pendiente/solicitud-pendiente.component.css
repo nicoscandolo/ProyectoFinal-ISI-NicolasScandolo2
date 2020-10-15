@@ -10,3 +10,7 @@ img {
 .marginbottom {
   margin-bottom: 0.8cm;
 }
+
+h6:hover {
+  cursor: pointer;
+}
