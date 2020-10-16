@@ -18,9 +18,9 @@
                         </div> -->
 
 
-                        <div class='dropdown'>
+<!--                         <div class='dropdown'> -->
 
-                          <input
+<!--                           <input
                             (input)="searchUsuario(nameToSearch)"
                             [(ngModel)]="nameToSearch"
                             class="form-control"
@@ -28,11 +28,25 @@
                             placeholder="Buscar un usuario"
                             aria-label="Search"
                             autofocus
-                          />
-                          <div *ngIf="UsuariosList.length && viewUsuarios" class='dropdown-content'>
-                          <a *ngFor="let usuario of UsuariosListSearch" >{{usuario.nombre}}</a>
-                        </div>
-                        </div>
+                          /> -->
+<!--                           <div *ngIf="UsuariosList.length && viewUsuarios" class="form-control">
+                            <select  class="form-control" name="Tipo" #Tipo="ngModel" [(ngModel)]="nameToSearch"
+                              required>
+                              <option [ngValue]="null">Select Category</option>
+                             <option *ngFor="let usuario of UsuariosListSearch" >{{usuario.nombre}}</option>
+                           </select>
+                        </div> -->
+                       <!--  </div> -->
+
+
+
+                           <select name="Tipo" #Tipo="ngModel" [(ngModel)]="nameToSearch"
+                             class="browser-default custom-select form-control"  required>
+
+                             <option value="" disabled selected hidden>Selecciona un usuario</option>
+
+                              <option *ngFor="let usuario of UsuariosListSearch">{{usuario.nombre}}</option>
+                            </select>
 
 
 

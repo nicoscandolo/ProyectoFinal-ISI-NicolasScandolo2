@@ -44,8 +44,9 @@
             <div class="input-group">
               <select name="Tipo" #Tipo="ngModel" [(ngModel)]="service.formData.Tipo"
                class="browser-default custom-select form-control"  required>
-                <option selected >Elige una categoria</option>
+               <option value="" disabled selected hidden>Select your option</option>
                 <option *ngFor="let t of Tipos">{{t}}</option>
+                
               </select>
             </div>
             <!-- Valid message -->

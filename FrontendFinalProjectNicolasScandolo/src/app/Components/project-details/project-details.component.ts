@@ -93,6 +93,16 @@ export class ProjectDetailsComponent implements OnInit {
     this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', idProyecto, viewUser, 'consultas']);
   }
 
+  goToSolicitudes() {
+    const idProyecto = this.activatedRoute.snapshot.params.query;
+    const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+    const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
+    const viewUser = this.activatedRoute.snapshot.params.viewUser;
+    const carpet = this.activatedRoute.snapshot.params.carpeta;
+    this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', idProyecto, viewUser, carpet, 'solicitudes']);
+  }
+
+
   public downloadStatus(event: ProgressStatus) {
     switch (event.status) {
       case ProgressStatusEnum.START:

@@ -1,3 +1,11 @@
+.card-img-top:hover {
+  cursor: pointer;
+}
+
+.card-img-overlay {
+  margin-left: 20%;
+}
+
 .button {
   border-radius: 8px;
   color: white;

@@ -18,7 +18,7 @@
         <app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
       </div>
       <div *ngIf="this.view === 'true' || this.userView === 'true'">
-        <button class="buttonSolicitudes button2"  (click)="goToConsultas(project)">Solicitudes pendientes</button>
+        <button class="buttonSolicitudes button2"  (click)="goToSolicitudes(project)">Solicitudes pendientes</button>
     </div>
     </div>
   </div>
