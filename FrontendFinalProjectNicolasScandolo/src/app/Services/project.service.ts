@@ -9,6 +9,7 @@ import { ComentarioConsulta } from '../Models/comentario-consulta.model';
 import { Email } from '../Models/email.model';
 import { Carpeta } from '../Models/carpeta.model';
 import { UsuarioProyecto } from '../Models/usuario-proyecto.model';
+import { RequestToProyecto } from '../Models/request-to-proyecto.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +44,10 @@ export class ProjectService {
     return this.http.delete(this.rootURL + 'requesttoproyecto/' + idProyecto + '/' + idUsuario);
   }
 
+  postRequestToProyecto(requestToProyecto: RequestToProyecto) {
+    return this.http.post(this.rootURL + 'requesttoproyecto/', requestToProyecto);
+  }
+
   searchProject(idProject: number) {
     return this.http.get(this.rootURL + 'Proyecto/' + idProject);
   }
@@ -67,8 +72,14 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'UsuariosProjecto/' + id);
   }
 
-  searchAllProjectsList() {
-    return this.http.get(this.rootURL + 'Proyecto');
+  searchRequestsUsuario(idUsuario) {
+    return this.http.get(this.rootURL + 'requesttoproyecto/missolicitudes/' + idUsuario);
+
+  }
+
+
+  searchAllProjectsList(idUsuario) {
+    return this.http.get(this.rootURL + 'Proyecto/todos/' + idUsuario );
   }
 
   searchFilesList(idProj, idCarp) {

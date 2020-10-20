@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RequestToProyecto } from 'src/app/Models/request-to-proyecto.model';
 import { ProjectService } from 'src/app/Services/project.service';
 
 @Component({
@@ -10,32 +11,93 @@ import { ProjectService } from 'src/app/Services/project.service';
 export class ProjectComponent implements OnInit {
   @Input() project: any;
   @Input() tipo: any;
-userViewProject: any;
+  @Output() messageEvent = new EventEmitter<boolean>();
+  userViewProject: any;
+  solicitudEnviada: boolean;
+  requestToProyecto: RequestToProyecto;
 
   constructor(private route: Router,
               private activatedRoute: ActivatedRoute,
               private service: ProjectService) {
+                this.requestToProyecto = {
+                  idProyecto : 0,
+                  idUsuario : this.activatedRoute.snapshot.params.idUsuario,
+
+                };
                }
 
   ngOnInit() {
+    console.log(this.tipo);
   }
 
   goToDetails(project: any) {
-    if (this.tipo === 'Mis proyectos') {
-    this.getUserType( project.idProyecto);
-    console.log( project.idProyecto);
-    console.log(this.userViewProject, 'a ver que onda el userrr');
-    const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
-    const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
+    switch (this.tipo) {
+      case 'Mis proyectos': {
 
-    console.log('waiting go to project', this.userViewProject );
-    setTimeout(() => {
-      this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', project.idProyecto, this.userViewProject, 0]);
-    }, 500);
-  }
-  else {
+        this.getUserType( project.idProyecto);
+        console.log( project.idProyecto);
+        console.log(this.userViewProject, 'a ver que onda el userrr');
+        const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+        const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
 
-  }
+        console.log('waiting go to project', this.userViewProject );
+        setTimeout(() => {
+          this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', project.idProyecto, this.userViewProject, 0]);
+        }, 500);
+
+        break;
+      }
+      case 'Todos los proyectos': {
+
+        this.requestToProyecto.idProyecto = project.idProyecto;
+        this.service.postRequestToProyecto(this.requestToProyecto).subscribe(
+          res => {
+            // tslint:disable-next-line:max-line-length
+            console.log(res, 'Se mando bien la solicitud al grupo del usuario', this.requestToProyecto.idUsuario, 'en el poyecto', this.project.idProyecto);
+            this.solicitudEnviada = true;
+            this.tipo = 'Solicitud cancelada';
+            /* this.spinner.hide(); */
+          },
+          err => {
+            console.log(err);
+            /* this.spinner.show(); */
+          });
+
+        break;
+      }
+      case 'Solicitudes enviadas': {
+
+        this.service.deleteRequestUsuario(project.idProyecto, this.requestToProyecto.idUsuario).subscribe(
+          (data: any) => {
+            console.log( 'eliminando solicitud del usuario', this.requestToProyecto.idUsuario, 'en el proyecto:', project.idProyecto);
+            this.tipo = 'Eliminar cancelada';
+          }
+        );
+        setTimeout(() => {
+          this.messageEvent.emit(true);
+        }, 1000);
+
+        break;
+      }
+      case 'Solicitud cancelada': {
+
+        this.service.deleteRequestUsuario(project.idProyecto, this.requestToProyecto.idUsuario).subscribe(
+          (data: any) => {
+            console.log( 'eliminando solicitud del usuario', this.requestToProyecto.idUsuario, 'en el proyecto:', project.idProyecto);
+            this.tipo = 'Todos los proyectos';
+          }
+        );
+        setTimeout(() => {
+          this.messageEvent.emit(true);
+        }, 2000);
+
+        break;
+      }
+
+      default: {
+        break;
+      }
+   }
 
 
 

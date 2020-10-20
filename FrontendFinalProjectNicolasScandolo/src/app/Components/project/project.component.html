@@ -1,4 +1,4 @@
-<div *ngIf="project">
+<div *ngIf="project && tipo !== 'Eliminar cancelada'">
 
   <div class="card shadow p-3 mb-3 rounded" (click)="goToDetails(project)">
   <img style=" width: 285px;"
@@ -10,9 +10,12 @@
       <h4 class="card-title text-center">{{project.nombre}} </h4>
       <p style="white-space:nowrap;text-overflow:ellipsis; overflow:hidden" class="card-text crop">{{ project.descripcion }}</p>
      <!--  <p class="card-text"><strong>Release date: </strong> {{ movie.parsedDate }}</p> -->
-     <a style="color:white;" class="btn btn-primary stretched-link" *ngIf="tipo === 'Mis proyectos'" >Ver Proyecto</a>
-     <a style="color:white;" class="btn btn-primary stretched-link" *ngIf="tipo === 'Todos los proyectos'" >Enviar solicitud</a>
+     <a style="color:white; margin-left: 25%;" class="btn btn-primary stretched-link" *ngIf="tipo === 'Mis proyectos'" >Ver Proyecto</a>
+     <a style="color:white; margin-left: 22%;" class="btn btn-primary stretched-link" *ngIf="tipo === 'Todos los proyectos'" >Enviar solicitud</a>
+     <a style="background-color:rgb(167, 167, 167); margin-left: 19%; " class="btn btn-primary stretched-link" *ngIf="tipo === 'Solicitudes enviadas'" >Cancelar solicitud</a>
+     <a style="background-color:rgb(167, 167, 167); margin-left: 19%;" class="btn btn-primary stretched-link" *ngIf="tipo === 'Solicitud cancelada'" >Cancelar solicitud</a>
     </div>
   </div>
 </div>
+
 

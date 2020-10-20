@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFinalProjectNicolasScandolo3.DTOs;
 using WebFinalProjectNicolasScandolo3.Models;
 
 namespace WebFinalProjectNicolasScandolo3.Controllers
@@ -37,6 +39,40 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         }
 
+        // GET: api/missolicitudes/IdUsuario
+        [HttpGet("missolicitudes/{IdUsuario}")]
+        public async Task<ActionResult<IEnumerable<Object>>> GetRequestsUsuario(int idUsuario)
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Proyecto, ProjectDTO>();
+            });
+            IMapper iMapper = config.CreateMapper();
+
+            var requestToProyecto = await _context.RequestToProyecto.Where(b => b.IdUsuario == idUsuario).ToListAsync();
+
+            if (requestToProyecto == null)
+            {
+                return NotFound();
+            }
+
+            List<ProjectDTO> Proyectos = new List<ProjectDTO>();
+
+
+            foreach (RequestToProyecto usProyecto in requestToProyecto)
+            {
+                ProjectDTO projectDTO = new ProjectDTO();
+                Proyecto proyecto = await _context.Proyectos.Where(b => b.IdProyecto == usProyecto.IdProyecto).FirstOrDefaultAsync();
+                projectDTO = iMapper.Map<Proyecto, ProjectDTO>(proyecto);
+
+                Proyectos.Add(projectDTO);
+                projectDTO = null;
+
+            }
+
+
+            return Proyectos;
+        }
+
         // POST: api/Carpeta
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -47,7 +83,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             _context.RequestToProyecto.Add(requestToProyecto);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCarpeta", new { id = requestToProyecto.IdRequestToProyecto }, requestToProyecto);
+            return Ok();
         }
 
         // DELETE: api/UsuariosProjecto/5
@@ -63,7 +99,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             _context.RequestToProyecto.Remove(requestToProyecto);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCarpeta", new { id = requestToProyecto.IdRequestToProyecto }, requestToProyecto);
+            return Ok();
         }
 
     }

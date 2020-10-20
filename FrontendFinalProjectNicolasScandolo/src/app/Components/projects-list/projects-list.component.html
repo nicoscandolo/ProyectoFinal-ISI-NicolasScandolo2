@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 
 
@@ -43,6 +43,7 @@
     <div class="dropdown-menu">
       <a class="dropdown-item"  (click)="UpdateProyectosList('Mis proyectos')">Mis proyectos</a>
       <a class="dropdown-item"  (click)="UpdateProyectosList('Todos los proyectos')">Todos los proyectos</a>
+      <a class="dropdown-item cancelada"  (click)="UpdateProyectosList('Solicitudes enviadas')">Solicitudes enviadas</a>
     </div>
   </div>
 </div>
@@ -51,7 +52,7 @@
 
 
   <br>
-
+  <br>
 
 
 
@@ -72,7 +73,7 @@
 
   <div class="card-deck">
     <app-project
-      *ngFor="let project of ProjectsListSearch"
+      *ngFor="let project of ProjectsListSearch" (messageEvent)="receiveMessage($event)"
       [project]="project"
       [tipo]="MisProyectos"
       class="col-4"
@@ -80,7 +81,7 @@
   </div>
 </div>
 <!-- Alert messages -->
-<div *ngIf="!ProjectsListSearch.length  && ActualDropDown === 'Mis proyectos'" class="container text-center">
+<!-- <div *ngIf="!ProjectsListSearch.length  && ActualDropDown === 'Mis proyectos'" class="container text-center">
   <div *ngIf="!ProjectsListSearch.length   && ActualDropDown === 'Mis proyectos'" class="alert alert-primary" role="alert">
     No tienes proyectos creados!
   </div>
@@ -89,22 +90,34 @@
   <div class="alert alert-danger" role="alert">
     {{ errorMessage }}
   </div>
-</div>
+</div> -->
 <!-- ////////////////////////////////////////////////////////////////////// -->
 <div *ngIf="AllProjectsListSearch.length && ActualDropDown === 'Todos los proyectos'" class="container mt-2">
   <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
 
    <div class="card-deck">
      <app-project
-       *ngFor="let project of AllProjectsListSearch"
+       *ngFor="let project of AllProjectsListSearch" (messageEvent)="receiveMessage($event)"
        [project]="project"
        [tipo]="TodosLosProyectos"
        class="col-4"
      ></app-project>
    </div>
  </div>
- <!-- Alert messages -->
-<!--   -->
+
+
+ <div *ngIf="SolicitudesProyectosSearch.length && ActualDropDown === 'Solicitudes enviadas'" class="container mt-2">
+  <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
+
+   <div class="card-deck">
+     <app-project
+       *ngFor="let project of SolicitudesProyectosSearch"  (messageEvent)="receiveMessage($event)"
+       [project]="project"
+       [tipo]="SolicitudesEnviadas"
+       class="col-4"
+     ></app-project>
+   </div>
+ </div>
 
 
 

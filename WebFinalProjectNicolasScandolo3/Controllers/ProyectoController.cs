@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFinalProjectNicolasScandolo3.DTOs;
 using WebFinalProjectNicolasScandolo3.Models;
 
 namespace WebFinalProjectNicolasScandolo3.Controllers
@@ -21,10 +23,38 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         }
 
         // GET: api/Proyecto
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectos()
+        // metodo para buscar todos los proyectos pero sin los proyectos que el usuario ya esta adherido
+        [HttpGet("todos/{idUsuario}")]
+        public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectos(int idUsuario)
         {
-            return await _context.Proyectos.ToListAsync();
+            var TodoslosProyectos = await _context.Proyectos.ToListAsync();
+            var requestToProyectos = await _context.RequestToProyecto.Where(b => b.IdUsuario == idUsuario).ToListAsync();
+            var usuarioProjectos = await _context.UsuariosProyectos.Where(b => b.IdUsuario == idUsuario).ToListAsync();
+
+            if (TodoslosProyectos == null)
+            {
+                return NotFound();
+            }
+
+            
+
+
+
+            foreach (RequestToProyecto requestToSearch in requestToProyectos)
+            {
+                var request  = TodoslosProyectos.Where(b => b.IdProyecto == requestToSearch.IdProyecto).FirstOrDefault();
+                if ( request != null) { TodoslosProyectos.Remove(TodoslosProyectos.Where(b => b.IdProyecto == requestToSearch.IdProyecto).FirstOrDefault()); }
+
+            }
+
+            foreach (UsuariosProjecto usuarioProjectoToSearch in usuarioProjectos)
+            {
+                var usuarioProjecto = TodoslosProyectos.Where(b => b.IdProyecto == usuarioProjectoToSearch.IdProjecto).FirstOrDefault();
+                if (usuarioProjecto != null) { TodoslosProyectos.Remove(TodoslosProyectos.Where(b => b.IdProyecto == usuarioProjectoToSearch.IdProjecto).FirstOrDefault()); }
+
+            }
+
+            return TodoslosProyectos;
         }
 
         // GET: api/Proyecto/5

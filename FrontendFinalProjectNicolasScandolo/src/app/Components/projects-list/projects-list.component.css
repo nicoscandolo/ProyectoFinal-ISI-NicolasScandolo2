@@ -1,6 +1,22 @@
-.dropdown {
+.dropdown-menu {
+  width: 92%;
+
+
+}
+
+.btn {
+width: 100%;
+}
+
+.dropdown-item {
   text-align: center;
 }
+
+.dropdown-item:hover {
+  cursor: pointer;
+  background-color: rgb(197, 197, 197);
+}
+
 
 .bottom-three {
 /*   background-image: url("src\Images\def-blog-4.jpg");
