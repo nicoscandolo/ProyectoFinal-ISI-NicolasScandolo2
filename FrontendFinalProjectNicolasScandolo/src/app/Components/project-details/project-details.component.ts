@@ -140,6 +140,10 @@ export class ProjectDetailsComponent implements OnInit {
         this.showUploadError = true;
         break;
     }
+    setTimeout(() => {
+      console.log('waiting');
+      this.getFiles();
+    }, 2000);
   }
 
 

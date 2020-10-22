@@ -27,6 +27,9 @@ export class ProjectService {
   postComentarioConsulta(comentarioConsulta: ComentarioConsulta) {
     return this.http.post(this.rootURL + 'ComentarioConsulta/', comentarioConsulta);
   }
+  Incremento(consulta: Consulta, increment: number) {
+    return this.http.put(this.rootURL + 'Consulta/' + consulta.idConsulta + '/' + increment, consulta);
+  }
 
   postConsulta( consulta: Consulta) {
     return this.http.post(this.rootURL + 'Consulta/', consulta);

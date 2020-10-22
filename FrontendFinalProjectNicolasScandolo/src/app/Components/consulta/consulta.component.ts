@@ -12,7 +12,7 @@ import { ComentarioConsulta } from 'src/app/Models/comentario-consulta.model';
   styleUrls: ['./consulta.component.css']
 })
 export class ConsultaComponent implements OnInit {
-  @Input() consulta: Consulta = null;
+  @Input() consulta: Consulta;
 
   private comentariosList: any = [];
   private errorMessage: string;
@@ -89,6 +89,7 @@ CrearComentarioConsulta(descripcionHtml: string) {
   // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
   this.service.postComentarioConsulta(this.ComentarioConsultaNew).subscribe(
     res => {
+      this.IncrementoComentariosConsulta();
       console.log(res);
       this.descripcion = '';
       this.ShowComents(this.consulta.idConsulta);
@@ -100,5 +101,39 @@ CrearComentarioConsulta(descripcionHtml: string) {
     }
   );
 }
+
+IncrementoPuntuacion() {
+
+
+  this.service.Incremento(this.consulta, 0).subscribe(
+    res => {
+      console.log(res, 'se incremento la puntuacion de la consulta');
+      this.consulta.puntuacion += 1;
+
+    },
+    err => {
+      console.log(err);
+      this.descripcion = 'Error. Intente cargar mas tarde';
+      /* this.spinner.show(); */
+    }
+  );
+}
+
+IncrementoComentariosConsulta() {
+
+  this.service.Incremento(this.consulta, 1 ).subscribe(
+    res => {
+      console.log(res);
+      this.consulta.cantidadComentarios += 1;
+
+    },
+    err => {
+      console.log(err);
+      this.descripcion = 'Error. Intente cargar mas tarde';
+      /* this.spinner.show(); */
+    }
+  );
+}
+
 
 }

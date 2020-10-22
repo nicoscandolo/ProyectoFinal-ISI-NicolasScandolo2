@@ -44,13 +44,17 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
         // PUT: api/Consulta/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutConsulta(int id, Consulta consulta)
+        [HttpPut("{id}/{suma}")]
+        public async Task<IActionResult> PutConsulta(int id,int suma, Consulta consulta)
         {
             if (id != consulta.IdConsulta)
             {
                 return BadRequest();
             }
+
+            if(suma == 1) { consulta.CantidadComentarios += 1;  }
+            else { consulta.Puntuacion += 1; };
+
 
             _context.Entry(consulta).State = EntityState.Modified;
 
@@ -85,6 +89,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
                 var usuario = _context.Usuarios.Find(consulta.IdUsuario);
                 //asunto vendria a ser el nombre
                 consulta.Asunto = usuario.Nombre;
+                consulta.CantidadComentarios = 0;
 
                 _context.Consultas.Add(consulta);
                 _context.SaveChanges();

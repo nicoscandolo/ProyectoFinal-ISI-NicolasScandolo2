@@ -63,6 +63,10 @@ export class ProjectComponent implements OnInit {
             /* this.spinner.show(); */
           });
 
+        setTimeout(() => {
+            this.messageEvent.emit(true);
+          }, 2000);
+
         break;
       }
       case 'Solicitudes enviadas': {
@@ -75,7 +79,7 @@ export class ProjectComponent implements OnInit {
         );
         setTimeout(() => {
           this.messageEvent.emit(true);
-        }, 1000);
+        }, 2000);
 
         break;
       }

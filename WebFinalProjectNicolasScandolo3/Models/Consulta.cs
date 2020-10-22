@@ -30,6 +30,8 @@ namespace WebFinalProjectNicolasScandolo3.Models
         public long IdUsuario { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int IdProyecto { get; set; }
+        public int CantidadComentarios { get; set; }
+        
 
 
         private ICollection<ComentarioConsulta> comentariosConsulta;

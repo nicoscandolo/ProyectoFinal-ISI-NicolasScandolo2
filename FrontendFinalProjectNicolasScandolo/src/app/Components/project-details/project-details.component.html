@@ -22,17 +22,35 @@
     </div>
     </div>
   </div>
-  <p *ngIf="showProgress" style="align-content: center;"> progress <strong>{{percentage}}%</strong></p>
+
 </div>
+
+
+
+
 
 
 <!-- /////////////////////////////////////////////////////////////// -->
 <div class="container mt-2">
 <h1 class="display-5 font-weight-normal" style="text-align: center;">Tu Workspace</h1>
-
 <hr>
 
+<div class="progress" *ngIf="showProgress">
+  <div
+    class="progress-bar progress-bar-striped" *ngIf="showProgress"
+    role="progressbar"
+    [style.width]=" percentage   + '%'"
+  >{{percentage}}%</div>
+</div>
+<hr *ngIf="showProgress">
+
+
+
+<br>
+<h6 *ngIf="carpetas">Carpetas</h6>
+<br>
 <div class="card-deck">
+
   <div *ngFor="let carpeta of carpetas"  class="col-3" >
 
 
@@ -50,8 +68,11 @@
 </div>
 
 
-
+<br>
+<h6 *ngIf="files">Archivos</h6>
+<br>
 <div class="card-deck">
+
 <div *ngFor="let file of files" class="col-3">
 
 

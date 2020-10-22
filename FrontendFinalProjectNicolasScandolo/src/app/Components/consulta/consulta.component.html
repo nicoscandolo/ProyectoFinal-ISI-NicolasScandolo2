@@ -19,12 +19,12 @@
              <div class="post-description">
                  <p>{{consulta.descripcion}}</p>
                  <div class="stats">
-                     <a href="#" class="btn btn-default stat-item">
-                         <i class="fa fa-thumbs-up icon"></i>2
+                     <a (click)="IncrementoPuntuacion()" class="btn btn-default stat-item">
+                         <i class="fa fa-thumbs-up icon"></i>{{consulta.puntuacion}}
                      </a>
                      <!-- aca estan los botones de me gusta y no me gusta, fijarme si los pongo o no despues -->
                      <a href="#" class="btn btn-default stat-item">
-                         <i class="fa fa-share icon"></i>12
+                         <i class="fa fa-share icon"></i>{{consulta.cantidadComentarios}}
                      </a>
                  </div>
              </div>
@@ -38,7 +38,7 @@
 
 
                      <span class="input-group-addon">
-                         <a (click)="CrearComentarioConsulta(descripcion)"><i class="fa fa-edit"></i></a>
+                         <h3 (click)="CrearComentarioConsulta(descripcion)"><i class="fa fa-edit"></i></h3>
                      </span>
                  </div>
 
