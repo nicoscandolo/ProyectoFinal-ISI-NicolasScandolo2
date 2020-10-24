@@ -22,3 +22,54 @@
   margin-bottom: 20px;
   margin-left: 10px;
 }
+
+.button {
+  border-radius: 8px;
+  color: white;
+  padding: 13px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.button2 {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2), 0 20px 20px 0 rgba(0,0,0,0.19);
+}
+
+.custom {
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
+}
+
+.modal-footer {
+  margin-bottom: 0.6cm;
+  margin-top: 0.5cm;
+
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+  box-shadow: 0 16px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.modal-dialog {
+  height: 10cm;
+  margin-bottom: 10cm;
+}
+
+.modal-content {
+  background-color: #e1eff3;
+}

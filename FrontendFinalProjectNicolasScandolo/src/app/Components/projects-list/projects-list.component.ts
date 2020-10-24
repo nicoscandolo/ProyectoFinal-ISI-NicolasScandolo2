@@ -24,6 +24,7 @@ export class ProjectsListComponent implements OnInit {
   SolicitudesProyectos: any = [];
   SolicitudesProyectosSearch: any = [];
   messageFromProject: any;
+  ActualUser: string;
 
 
   constructor(
@@ -38,8 +39,26 @@ export class ProjectsListComponent implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params.idUsuario;
+    this.getUsuario(id);
     this.searchProjectsList(id);
   }
+
+  getUsuario(id) {
+    this.service.searchUsuario(id).subscribe(
+      (response: any) => {
+        this.ActualUser = response.nombre;
+      },
+      err => {
+        console.log(err);
+        if (err.status !== 0) { this.errorMessage = err.error.message; }
+        if (err.status === 0) {
+          this.errorMessage = 'Unable to connect with server';
+        }
+      }
+    );
+  }
+
+
 
   searchProjectsList(id): void {
     this.service.searchProjectsList(id).subscribe(

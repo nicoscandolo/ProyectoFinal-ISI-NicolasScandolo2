@@ -11,20 +11,59 @@
 </div>
 
 <!-- ////////////////////////////////////////////////////////////// -->
+<div class="container mt-2">
+  <div class="col-md-4 mx-auto"  >
+    <div class="form-group">
+      <input
+        (input)="searchProject(nameToSearch)"
+        [(ngModel)]="nameToSearch"
+        class="form-control"
+        type="search"
+        placeholder="Buscar un proyecto"
+        aria-label="Search"
+        autofocus
+      />
+    </div>
+  </div>
+</div>
 
-  <div *ngIf="consultasList.length" class="container mt-2">
+
+<div class="margen">
+<div class="container mt-2">
+  <div class="dropdown col-md-4 mx-auto"  >
+<!--     <h6 >Filtrar por</h6> -->
+  <button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Ordenar por: {{ActualDropDown}}
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item"  (click)="Ordenar('Mas votadas')">Mas votadas</a>
+      <a class="dropdown-item"  (click)="Ordenar('Menos votadas')">Menos votadas</a>
+      <a class="dropdown-item"  (click)="Ordenar('Mas antiguas')">Mas antiguas</a>
+      <a class="dropdown-item"  (click)="Ordenar('Mas recientes')">Mas recientes</a>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+  <div *ngIf="consultasListSearch.length" class="container mt-2">
   <div class="card-deck">
     <app-consulta
-      *ngFor="let consulta of consultasList"
+      *ngFor="let consulta of consultasListSearch"
       [consulta]="consulta"
     ></app-consulta>
   </div>
   <hr> <hr> <hr>
 </div>
 <!-- Alert messages -->
-<div *ngIf="!consultasList.length" class="container text-center">
-  <div *ngIf="!consultasList.length" class="alert alert-primary" role="alert">
-    No Consultas Found!
+<div *ngIf="!consultasListSearch.length" class="container text-center">
+  <div *ngIf="!consultasListSearch.length" class="alert alert-primary" role="alert">
+    No hay consultas
   </div>
 </div>
 <div *ngIf="errorMessage" class="container text-center">

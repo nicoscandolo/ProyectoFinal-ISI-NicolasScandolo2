@@ -1,12 +1,13 @@
 
 <div class="bottom-three">
   <div class="container p-5 my-3 border" >
-    <h1 class="text-center" >¡Hola Nico!</h1>
+    <h1 class="text-center" >¡Hola {{ActualUser}}!</h1>
     <p class="text-center" style="font-size:25px;">Para comenzar, crea un proyecto y compartelo con un amigo</p>
     <hr>
     <div  class="bottom-two">
       <div class="center">
-        <button class="button button2" (click)="goToCreateProject()">Crear</button>
+        <app-project-add (messageEvent)="receiveMessage($event)"></app-project-add>
+
       </div>
     </div>
   </div>

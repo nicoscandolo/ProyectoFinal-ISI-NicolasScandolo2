@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Email } from 'src/app/Models/email.model';
 import { RequestToProyecto } from 'src/app/Models/request-to-proyecto.model';
 import { ProjectService } from 'src/app/Services/project.service';
 
@@ -15,6 +16,9 @@ export class ProjectComponent implements OnInit {
   userViewProject: any;
   solicitudEnviada: boolean;
   requestToProyecto: RequestToProyecto;
+  message: any;
+  sendEmail: boolean;
+  public email: Email;
 
   constructor(private route: Router,
               private activatedRoute: ActivatedRoute,
@@ -48,7 +52,7 @@ export class ProjectComponent implements OnInit {
         break;
       }
       case 'Todos los proyectos': {
-
+        this.sendEmail = true;
         this.requestToProyecto.idProyecto = project.idProyecto;
         this.service.postRequestToProyecto(this.requestToProyecto).subscribe(
           res => {
@@ -59,6 +63,7 @@ export class ProjectComponent implements OnInit {
             /* this.spinner.hide(); */
           },
           err => {
+            this.sendEmail = false;
             console.log(err);
             /* this.spinner.show(); */
           });
@@ -66,6 +71,29 @@ export class ProjectComponent implements OnInit {
         setTimeout(() => {
             this.messageEvent.emit(true);
           }, 2000);
+
+        this.email = {
+            projectId: project.idProyecto,
+            userId: this.activatedRoute.snapshot.params.idUsuario,
+            tipo: 'SolicitudNueva',
+          };
+
+        if (this.sendEmail) {
+            this.service.sendEmail(this.email).subscribe(
+            ( res: any ) => {
+              console.log(res, 'se mando bien el mail');
+            },
+            err => {
+              console.log(err, 'No pude enviar el mail');
+              if (err.status !== 0) { this.message = err.error.message; }
+
+              if (err.status === 0) {
+                this.message = 'No pude enviar el mail. Unable to connect with server';
+              }
+
+            }
+          );
+         }
 
         break;
       }
@@ -106,6 +134,7 @@ export class ProjectComponent implements OnInit {
 
 
   }
+
 
   getUserType(idProject: number) {
     const idUsuario = this.activatedRoute.snapshot.params.idUsuario;

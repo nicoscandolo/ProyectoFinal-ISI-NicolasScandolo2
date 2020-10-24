@@ -11,6 +11,9 @@ namespace WebFinalProjectNicolasScandolo3.Models
         public int? projectId { get; set; }
         public int? userId { get; set; }
         public List<string>? ToEmails { get; set; }
+        public string? Name { get; set; }
+        public string? Proyecto { get; set; }
+        public int? idConsulta { get; set; }
         public string? Subject { get; set; }
         public string? Body { get; set; }
         public List<IFormFile>? Attachments { get; set; }

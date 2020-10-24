@@ -91,3 +91,12 @@ margin-left: 25%;
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
+
+
+
+
+/* toggle switch para determinar si lo agrego com oadmin o no al usuario */
+.checkbox {
+  margin-top: 2%;
+  margin-left: 1%;
+}

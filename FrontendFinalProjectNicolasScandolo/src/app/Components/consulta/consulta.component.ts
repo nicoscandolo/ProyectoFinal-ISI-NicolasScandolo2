@@ -5,6 +5,7 @@ import { ProjectService } from 'src/app/Services/project.service';
 import { Consulta } from 'src/app/Models/consulta.model';
 import { NgForm } from '@angular/forms';
 import { ComentarioConsulta } from 'src/app/Models/comentario-consulta.model';
+import { Email } from 'src/app/Models/email.model';
 
 @Component({
   selector: 'app-consulta',
@@ -20,6 +21,9 @@ export class ConsultaComponent implements OnInit {
   private showcoments: boolean;
   private ComentarioConsultaNew: ComentarioConsulta;
   private descripcion: string;
+  email: Email;
+  sendEmail: boolean;
+  message: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -83,6 +87,7 @@ export class ConsultaComponent implements OnInit {
   }
 
 CrearComentarioConsulta(descripcionHtml: string) {
+  this.sendEmail = true;
   this.ComentarioConsultaNew.descripcion = descripcionHtml;
 
   console.log('TestingComentarioConsulta', this.consulta, descripcionHtml);
@@ -95,11 +100,40 @@ CrearComentarioConsulta(descripcionHtml: string) {
       this.ShowComents(this.consulta.idConsulta);
     },
     err => {
+      this.sendEmail = false;
       console.log(err);
       this.descripcion = 'Error. Intente cargar mas tarde';
       /* this.spinner.show(); */
     }
   );
+
+
+
+  this.email = {
+    idConsulta: this.consulta.idConsulta,
+    projectId: this.route.snapshot.params.query,
+    userId: this.route.snapshot.params.idUsuario,
+    tipo: 'ComentarioConsulta',
+  };
+
+  if (this.sendEmail) {
+    this.service.sendEmail(this.email).subscribe(
+    ( res: any ) => {
+      console.log(res, 'se mando bien el mail');
+    },
+    err => {
+      console.log(err, 'No pude enviar el mail');
+      if (err.status !== 0) { this.message = err.error.message; }
+
+      if (err.status === 0) {
+        this.message = 'No pude enviar el mail. Unable to connect with server';
+      }
+
+    }
+  );
+ }
+
+
 }
 
 IncrementoPuntuacion() {

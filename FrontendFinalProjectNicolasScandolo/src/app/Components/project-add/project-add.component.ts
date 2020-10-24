@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { ProjectService } from 'src/app/Services/project.service';
 import { Project } from 'src/app/Models/project.model';
@@ -18,6 +18,14 @@ export class ProjectAddComponent implements OnInit {
   projectoAdd: FormGroup;
   submitted = false;
   titulo = 'Add new project';
+    // tslint:disable-next-line:variable-name
+    @ViewChild('modal_1') modal_1: TemplateRef<any>;
+    @ViewChild('vc', {read: ViewContainerRef}) vc: ViewContainerRef;
+    @Output() messageEvent = new EventEmitter<boolean>();
+    backdrop: any;
+
+
+
   constructor(private service: ProjectService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -27,6 +35,7 @@ export class ProjectAddComponent implements OnInit {
   ngOnInit() {
 this.resetform();
 this.Tipos = ['Ciencia', 'Ingenieria', 'Arte', 'Matematica', 'Literatura', 'Sistemas', 'Otros'];
+
 
 /*     this.projectoAdd = new FormGroup({
       name: new FormControl(this.formData.Nombre, Validators.required),
@@ -67,5 +76,32 @@ this.Tipos = ['Ciencia', 'Ingenieria', 'Arte', 'Matematica', 'Literatura', 'Sist
         /* this.spinner.show(); */
       }
     );
+
+    this.vc.clear();
+    document.body.removeChild(this.backdrop);
+    this.messageEvent.emit(true);
   }
+
+
+  showDialog() {
+    // tslint:disable-next-line:prefer-const
+    let view = this.modal_1.createEmbeddedView(null);
+    this.vc.insert(view);
+    this.modal_1.elementRef.nativeElement.previousElementSibling.classList.remove('fade');
+    this.modal_1.elementRef.nativeElement.previousElementSibling.classList.add('modal-open');
+    this.modal_1.elementRef.nativeElement.previousElementSibling.style.display = 'block';
+    this.backdrop = document.createElement('DIV');
+    this.backdrop.style = 'opacity:0.6 !important';
+    this.backdrop.className = 'modal-backdrop';
+    document.body.appendChild(this.backdrop);
+}
+
+closeDialog() {
+  this.resetform();
+  this.vc.clear();
+  document.body.removeChild(this.backdrop);
+}
+
+
+
 }

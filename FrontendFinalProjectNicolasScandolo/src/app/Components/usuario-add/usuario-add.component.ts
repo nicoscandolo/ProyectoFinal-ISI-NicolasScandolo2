@@ -32,7 +32,7 @@ export class UsuarioAddComponent implements OnInit {
   private UsuariosFiltered: any = [];
   errorMessage: any;
   nameToSearch: string;
-
+  Admin: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -40,6 +40,7 @@ export class UsuarioAddComponent implements OnInit {
     private router: Router,
     private http: HttpClient) {
 
+      this.Admin = false;
       this.view = this.activatedRoute.snapshot.params.tipoUsuario;
       this.viewUsuarios = false;
 
@@ -83,7 +84,7 @@ export class UsuarioAddComponent implements OnInit {
     const usuarioFound = this.UsuariosListSearch.filter(x => x.nombre === this.nameToSearch);
     console.log('este es el usuario que encontre', usuarioFound);
     this.usuarioNewInProject.idUsuario = usuarioFound[0].idUsuario;
-
+    this.usuarioNewInProject.isAdmin = this.Admin;
     console.log(this.usuarioNewInProject, 'usuario antes de enviar');
     // el nombre que se seleccione en el box(NametoSearch) despues lo tengo que hacer macehar
     // con la list de usuario y obtener el id, ese es el que le asigno al id de usuario
@@ -92,21 +93,31 @@ export class UsuarioAddComponent implements OnInit {
     res => {
       console.log(res);
       console.log('el usuario se agrego correctamente');
-      this.email = {
-        projectId: this.usuarioNewInProject.idProjecto,
-        tipo: 'welcome a usuario en proyecto'
-      };
     },
     err => {
-      this.sendEmail = false;
       console.log(err, 'el usuario NO se agrego correctamente');
       /* this.spinner.show(); */
     }
   );
 
+
+    this.nameToSearch = '';
+    this.Admin = false;
     this.vc.clear();
     document.body.removeChild(this.backdrop);
-    this.messageEvent.emit(true);
+
+    setTimeout(() => {
+      console.log('waiting');
+      this.messageEvent.emit(true);
+    }, 1500);
+
+
+
+    this.email = {
+      projectId: this.usuarioNewInProject.idProjecto,
+      userId: this.usuarioNewInProject.idUsuario,
+      tipo: 'welcomeGroup'
+    };
 
     if (this.sendEmail) {
 

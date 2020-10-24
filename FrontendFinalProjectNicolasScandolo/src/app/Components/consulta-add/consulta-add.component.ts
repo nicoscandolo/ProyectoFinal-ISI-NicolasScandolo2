@@ -77,6 +77,7 @@ export class ConsultaAddComponent {
       console.log('la consulta se agrego correctamente');
       this.email = {
         projectId: this.ConsultaNew.IdProyecto,
+        userId: this.ConsultaNew.IdUsuario,
         tipo: 'consulta'
       };
     },

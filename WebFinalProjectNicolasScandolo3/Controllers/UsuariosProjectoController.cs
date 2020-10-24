@@ -135,11 +135,11 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             }
             catch
             {
-                    return Conflict();
+                    return Conflict("Se agrego bien pero no se elimino la request porque no habia");
                             
             }
 
-            return CreatedAtAction("GetUsuariosProjecto", new { id = usuariosProjecto.IdUsuario }, usuariosProjecto);
+            return Ok();
         }
 
         // DELETE: api/UsuariosProjecto/5

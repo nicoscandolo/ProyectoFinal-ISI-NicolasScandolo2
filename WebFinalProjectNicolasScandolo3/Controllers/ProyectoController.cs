@@ -125,7 +125,9 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             UsuariosProjecto usuarioProjecto = new UsuariosProjecto()
             {
                 IdProjecto = Projecto.IdProyecto,
-                IdUsuario = idUs
+                IdUsuario = idUs,
+                IsAdmin = true,
+
 
             };
             _context.UsuariosProyectos.Add(usuarioProjecto);

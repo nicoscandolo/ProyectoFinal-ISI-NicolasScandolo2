@@ -23,7 +23,7 @@
                          <i class="fa fa-thumbs-up icon"></i>{{consulta.puntuacion}}
                      </a>
                      <!-- aca estan los botones de me gusta y no me gusta, fijarme si los pongo o no despues -->
-                     <a href="#" class="btn btn-default stat-item">
+                     <a  (click)="ShowComents(consulta.idConsulta)" class="btn btn-default stat-item">
                          <i class="fa fa-share icon"></i>{{consulta.cantidadComentarios}}
                      </a>
                  </div>

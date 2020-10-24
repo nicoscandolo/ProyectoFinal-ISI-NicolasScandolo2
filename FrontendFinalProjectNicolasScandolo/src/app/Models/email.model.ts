@@ -3,4 +3,7 @@ export class Email {
   userId?: number;
   file?: File;
   tipo: string;
+  name?: string;
+  proyecto?: string;
+  idConsulta?: number;
 }

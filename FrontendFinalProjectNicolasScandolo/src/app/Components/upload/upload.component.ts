@@ -54,6 +54,7 @@ public upload(event) {
           }
           this.email = {
             projectId: id,
+            userId: this.activatedRoute.snapshot.params.idUsuario,
             tipo: 'upload',
           };
         }

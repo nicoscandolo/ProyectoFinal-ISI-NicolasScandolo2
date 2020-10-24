@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Email } from 'src/app/Models/email.model';
 import { RequestToProyecto } from 'src/app/Models/request-to-proyecto.model';
 import { UsuarioProyecto } from 'src/app/Models/usuario-proyecto.model';
 import { Usuario } from 'src/app/Models/usuario.model';
@@ -16,13 +17,14 @@ export class SolicitudPendienteComponent implements OnInit {
   private usuario: Usuario;
   errorMessage: any;
   private usuarioProyecto: UsuarioProyecto;
-
+  Admin: boolean;
+  email: Email;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private service: ProjectService) {
-
+      this.Admin = false;
      }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class SolicitudPendienteComponent implements OnInit {
     this.usuarioProyecto = {
       idProjecto : this.solicitudes.idProyecto,
       idUsuario : this.solicitudes.idUsuario,
-      isAdmin : false,
+      isAdmin : this.Admin,
     };
 
     this.service.postUsuariosProjecto(this.usuarioProyecto).subscribe(
@@ -68,6 +70,29 @@ export class SolicitudPendienteComponent implements OnInit {
     setTimeout(() => {
       this.messageEvent.emit(true);
     }, 2000);
+
+
+    this.email = {
+      projectId:  this.solicitudes.idProyecto,
+      userId: this.solicitudes.idUsuario,
+      tipo: 'welcomeGroup'
+    };
+
+
+
+    setTimeout(() => {
+        console.log('waiting');
+        this.service.sendEmail(this.email).subscribe(
+          ( res: any ) => {
+            console.log(res, 'esperando a que se mande bien el mail');
+          },
+          err => {
+            console.log(err, 'No pude enviar el mail');
+
+          }
+        );
+      }, 3000);
+
 
   }
 
