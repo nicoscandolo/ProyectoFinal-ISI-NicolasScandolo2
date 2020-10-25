@@ -11,4 +11,24 @@
   }
 
 
+  .dropdown-menu {
+    width: 92%;
+  }
+
+  .margen {
+    margin-bottom: 2cm;
+  }
+
+  .btn {
+  width: 100%;
+  }
+
+  .dropdown-item {
+    text-align: center;
+  }
+
+  .dropdown-item:hover {
+    cursor: pointer;
+    background-color: rgb(197, 197, 197);
+  }
 

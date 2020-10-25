@@ -5,4 +5,5 @@ export class Usuario {
   isAdmin: boolean;
   FechaCreacion: Date;
   ImagenUsuarioPath: string;
+  Email?: string;
 }

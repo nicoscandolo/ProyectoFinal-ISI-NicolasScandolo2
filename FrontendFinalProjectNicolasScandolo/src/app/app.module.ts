@@ -27,6 +27,7 @@ import { CarpetasAddComponent } from './Components/carpetas-add/carpetas-add.com
 import { SolicitudesPendientesComponent } from './Components/solicitudes-pendientes/solicitudes-pendientes.component';
 import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.component';
 import { SolicitudPendienteComponent } from './Components/solicitud-pendiente/solicitud-pendiente.component';
+import { UsuariosComponent } from './Components/usuarios/usuarios.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 
@@ -53,7 +54,8 @@ import { SolicitudPendienteComponent } from './Components/solicitud-pendiente/so
     CarpetasAddComponent,
     SolicitudesPendientesComponent,
     UsuarioAddComponent,
-    SolicitudPendienteComponent
+    SolicitudPendienteComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,7 @@
+.display-5:hover {
+ cursor: pointer;
+}
+
 .card-img-top:hover {
   cursor: pointer;
 }
@@ -128,7 +132,7 @@ label.error {
 
 
   position: absolute;
-  left: 56%;
+  left: 60%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -148,7 +152,7 @@ label.error {
 
 
   position: absolute;
-  left: 75%;
+  left: 76%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }

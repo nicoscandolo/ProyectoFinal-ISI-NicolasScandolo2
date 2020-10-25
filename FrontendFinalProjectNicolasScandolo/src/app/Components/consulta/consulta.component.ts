@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
@@ -14,6 +14,7 @@ import { Email } from 'src/app/Models/email.model';
 })
 export class ConsultaComponent implements OnInit {
   @Input() consulta: Consulta;
+  @Output() messageEvent = new EventEmitter<boolean>();
 
   private comentariosList: any = [];
   private errorMessage: string;
@@ -24,6 +25,7 @@ export class ConsultaComponent implements OnInit {
   email: Email;
   sendEmail: boolean;
   message: any;
+  Admin: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +62,12 @@ export class ConsultaComponent implements OnInit {
 /*     this.showcoments = false; */
     this.resetform();
     console.log(this.consulta);
+
+  //  const idProyecto = this.route.snapshot.params.query;
+    const idUsuario = this.route.snapshot.params.idUsuario;
+    const tipoU = this.route.snapshot.params.tipoUsuario;
+    const viewUser = this.route.snapshot.params.viewUser;
+    if (tipoU === 'true' || viewUser === 'true') { this.Admin = true; }
   }
 
   HideComents(id: number): void {
@@ -167,6 +175,26 @@ IncrementoComentariosConsulta() {
       /* this.spinner.show(); */
     }
   );
+}
+
+DeleteConsulta() {
+
+  this.service.deleteConsulta(this.consulta.idConsulta).subscribe(
+    res => {
+      console.log(res, 'se elimino la consulta');
+      setTimeout(() => {
+        this.messageEvent.emit(true);
+      }, 500);
+    },
+    err => {
+      console.log(err);
+      this.descripcion = 'Error. Intente cargar mas tarde';
+      /* this.spinner.show(); */
+    }
+  );
+
+
+
 }
 
 

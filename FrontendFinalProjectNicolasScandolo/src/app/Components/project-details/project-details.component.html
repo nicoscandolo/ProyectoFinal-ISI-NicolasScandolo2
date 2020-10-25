@@ -18,7 +18,7 @@
         <app-upload [disabled]="showProgress" (uploadStatus)="uploadStatus($event)"></app-upload>
       </div>
       <div *ngIf="this.view === 'true' || this.userView === 'true'">
-        <button class="buttonSolicitudes button2"  (click)="goToSolicitudes(project)">Solicitudes pendientes</button>
+        <button class="buttonSolicitudes button2"  (click)="goToSolicitudes(project)">  Ajustes  </button>
     </div>
     </div>
   </div>
@@ -32,7 +32,7 @@
 
 <!-- /////////////////////////////////////////////////////////////// -->
 <div class="container mt-2">
-<h1 class="display-5 font-weight-normal" style="text-align: center;">Tu Workspace</h1>
+<h1 class="display-5 font-weight-normal" style="text-align: center;"  (click)="goToCarpetaCero()">Tu Workspace</h1>
 <hr>
 
 <div class="progress" *ngIf="showProgress">

@@ -2,9 +2,12 @@
 .big-banner
 {
 /*   background-color: rgb(228, 224, 224); */
-  background-image: url("src\Images\def-blog-4.jpg");
+  /* background-image: url("src\Images\def-blog-4.jpg"); */
+  background-image: url("src\Images\bg-masthead.jpg");
+
   background-size: cover;
-  height:100%
+  height:100% !important;
+  width: 100% !important;
 }
 
 input .ng-touched .ng-invalid {

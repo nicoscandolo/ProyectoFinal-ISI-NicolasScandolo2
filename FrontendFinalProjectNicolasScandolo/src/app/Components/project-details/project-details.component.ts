@@ -83,7 +83,14 @@ export class ProjectDetailsComponent implements OnInit {
     }, 500);
   }
 
-
+  goToCarpetaCero() {
+    const idProyecto = this.activatedRoute.snapshot.params.query;
+    const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+    const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
+    const viewUser = this.activatedRoute.snapshot.params.viewUser;
+    this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', idProyecto, viewUser, 0]);
+    this.getFiles();
+  }
 
   goToConsultas() {
     const idProyecto = this.activatedRoute.snapshot.params.query;

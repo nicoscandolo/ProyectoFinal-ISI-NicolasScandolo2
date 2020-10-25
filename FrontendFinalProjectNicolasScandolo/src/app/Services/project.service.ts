@@ -43,6 +43,10 @@ export class ProjectService {
     return this.http.post(this.rootURL + 'UsuariosProjecto/', usuarioProyecto);
   }
 
+  deleteConsulta(idConsulta) {
+    return this.http.delete(this.rootURL + 'Consulta/' + idConsulta);
+  }
+
   deleteRequestUsuario(idProyecto, idUsuario) {
     return this.http.delete(this.rootURL + 'requesttoproyecto/' + idProyecto + '/' + idUsuario);
   }
@@ -73,6 +77,10 @@ export class ProjectService {
 
   searchProjectsList(id) {
     return this.http.get(this.rootURL + 'UsuariosProjecto/' + id);
+  }
+
+  GetUsersOfProjects(idProyecto) {
+    return this.http.get(this.rootURL + 'UsuariosProjecto/users/' + idProyecto);
   }
 
   searchRequestsUsuario(idUsuario) {

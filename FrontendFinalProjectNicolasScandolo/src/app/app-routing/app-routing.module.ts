@@ -17,10 +17,16 @@ import { AuthGuard } from '../auth.guard';
 import { ConsultasListComponent } from '../Components/consultas-list/consultas-list.component';
 import { ConsultaAddComponent } from '../Components/consulta-add/consulta-add.component';
 import { SolicitudesPendientesComponent } from '../Components/solicitudes-pendientes/solicitudes-pendientes.component';
+import { UserProfileComponent } from '../Components/user-profile/user-profile.component';
+import { LandingPageComponent } from '../Components/landing-page/landing-page.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
+  {
+    path: 'landingpage',
+    component: LandingPageComponent,
+  },
   {
     path: 'landingpage/:idUsuario/:tipoUsuario',
     component: ProjectsListComponent,
@@ -62,7 +68,16 @@ const routes: Routes = [
   {
     path: 'modal',
     component: ConsultaAddComponent
- }
+ },
+ {
+  path: 'landingpage/:idUsuario/:tipoUsuario/perfil',
+  component: UserProfileComponent
+},
+{
+  path: 'landingpage/:idUsuario/:tipoUsuario/perfil',
+  component: NavbarComponent
+}
+
 
 /*   {
     path: "addmovie",

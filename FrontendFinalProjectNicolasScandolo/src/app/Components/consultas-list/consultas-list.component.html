@@ -1,4 +1,4 @@
-
+<div class="entero">
 <div class="bottom-three">
   <div class="container p-5 my-3 border" >
     <h1 class="text-center" >Consultas</h1>
@@ -54,7 +54,7 @@
   <div *ngIf="consultasListSearch.length" class="container mt-2">
   <div class="card-deck">
     <app-consulta
-      *ngFor="let consulta of consultasListSearch"
+      *ngFor="let consulta of consultasListSearch"  (messageEvent)="receiveMessage($event)"
       [consulta]="consulta"
     ></app-consulta>
   </div>
@@ -73,3 +73,4 @@
 </div>
 
 
+</div>

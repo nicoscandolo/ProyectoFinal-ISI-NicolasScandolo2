@@ -20,9 +20,19 @@ width: 100%;
 }
 
 
+.entero {
+  background-image: url("src\Images\bg-masthead.jpg");
+
+  background-size: auto;
+
+}
+
 
 .bottom-three {
   margin-bottom: 3cm;
+
+
+
 }
 
 .bottom-two {
@@ -60,4 +70,17 @@ width: 100%;
   background-color: #008CBA;
   color: white;
   box-shadow: 0 16px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+
+.big-banner
+{
+/*   background-color: rgb(228, 224, 224); */
+  /* background-image: url("src\Images\def-blog-4.jpg"); */
+  background-image: url("src\Images\bg-masthead.jpg");
+
+  background-size: cover;
+  height:100% !important;
+  width: 100% !important;
 }

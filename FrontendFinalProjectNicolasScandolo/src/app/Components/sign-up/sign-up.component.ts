@@ -43,6 +43,7 @@ export class SignUpComponent implements OnInit {
       Password: '',
       isAdmin: false,
       ImagenUsuarioPath: '',
+      Email: '',
     };
   }
 

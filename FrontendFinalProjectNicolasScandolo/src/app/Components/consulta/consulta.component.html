@@ -4,7 +4,9 @@
  <div class="container d-flex justify-content-center">
      <div class="col-sm-8 justify-content-center">
          <div class="panel panel-white post panel-shadow">
+           <div *ngIf="Admin"> <button type="button" style="position: absolute; margin-left: 138%; top: 1%" (click)="DeleteConsulta()" > &times; </button></div>
              <div class="post-heading">
+
                  <div class="pull-left image">
                      <img src="https://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
                  </div>

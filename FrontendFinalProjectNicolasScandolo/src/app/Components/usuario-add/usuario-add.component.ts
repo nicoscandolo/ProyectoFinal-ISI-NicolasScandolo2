@@ -72,7 +72,7 @@ export class UsuarioAddComponent implements OnInit {
   }
 
   closeDialog() {
-    this.nombre = '';
+    this.nameToSearch = '';
     this.vc.clear();
     document.body.removeChild(this.backdrop);
   }

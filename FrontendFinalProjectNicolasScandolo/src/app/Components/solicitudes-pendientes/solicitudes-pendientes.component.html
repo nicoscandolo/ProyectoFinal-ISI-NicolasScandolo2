@@ -2,7 +2,7 @@
 <div class="bottom-three">
   <div class="container p-5 my-3 border" >
     <h1 class="text-center" >¡Hey!</h1>
-    <p class="text-center" style="font-size:25px;">Aqui puedes agregar un usuario a tu proyecto</p>
+    <p class="text-center" style="font-size:25px;">Aqui puedes ver los usuarios adheridos al proyecto, agregar nuevos y aceptar/rechazar solicitudes</p>
     <hr>
     <div  class="bottom-two">
       <div class="center">
@@ -14,11 +14,28 @@
 </div>
 
 
-<h1 class="display-5 font-weight-normal" style="text-align: center;">Solicitudes pendientes</h1>
 
 
 
-<div *ngIf="solicitudesList.length" class="container mt-2">
+<div class="margen">
+  <div class="container mt-2">
+    <div class="dropdown col-md-4 mx-auto"  >
+  <!--     <h6 >Filtrar por</h6> -->
+    <button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      Mostrar: {{ActualDropDown}}
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item"  (click)="Mostrar('Usuarios')">Usuarios</a>
+        <a class="dropdown-item"  (click)="Mostrar('Solicitudes pendientes')">Solicitudes pendientes</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+<div *ngIf="solicitudesList.length && ActualDropDown === 'Solicitudes pendientes'" class="container mt-2">
   <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
   <div class="row my-3">
 
@@ -27,6 +44,20 @@
        [solicitudes]="solicitudes"
        class="col-4"
      ></app-solicitud-pendiente>
+
+  </div>
+ </div>
+
+
+ <div *ngIf="UsuariosList.length && ActualDropDown === 'Usuarios'" class="container mt-2">
+  <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
+  <div class="row my-3">
+
+     <app-usuarios
+       *ngFor="let usuarios of UsuariosList"  (messageEvent)="receiveMessage($event)"
+       [usuarios]="usuarios"
+       class="col-4"
+     ></app-usuarios>
 
   </div>
  </div>

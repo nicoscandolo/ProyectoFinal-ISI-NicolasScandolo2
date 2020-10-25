@@ -64,6 +64,36 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
 
 
+
+        // GET: api/UsuariosProjecto/users/2
+        [HttpGet("users/{idProyecto}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetUsuarioProjecto(int idProyecto)
+        {
+
+            var usuariosProjecto = await _context.UsuariosProyectos.Where(b => b.IdProjecto == idProyecto).ToListAsync();
+
+            if (usuariosProjecto == null)
+            {
+                return NotFound();
+            };
+
+
+            List<Usuario> Usuarios = new List<Usuario>();
+
+
+            foreach (UsuariosProjecto usProyecto in usuariosProjecto)
+            {
+                Usuario usu = await _context.Usuarios.Where(b => b.IdUsuario == usProyecto.IdUsuario).FirstOrDefaultAsync();
+                Usuarios.Add(usu);
+                
+            }
+
+            return Usuarios;
+        }
+
+
+
+
         // GET: api/UsuariosProjecto/5/2
         [HttpGet("{idProyecto}/{idUsuario}")]
         public async Task<ActionResult<IEnumerable<object>>> GetUsuarioProjecto(int idProyecto, int idUsuario)

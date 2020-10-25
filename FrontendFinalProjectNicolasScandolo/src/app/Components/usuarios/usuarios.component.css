@@ -1,0 +1,16 @@
+img {
+  border-radius: 50%;
+}
+
+
+.margen {
+  margin-top: 10px;
+}
+
+.marginbottom {
+  margin-bottom: 0.8cm;
+}
+
+h6:hover {
+  cursor: pointer;
+}
