@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit {
       err => {
         this.sendEmail = false;
         console.log(err);
-        if (err.status !== 0) { this.errorMessage = err.error.message; }
+        if (err.status !== 0) { this.errorMessage = err; }
 
         if (err.status === 0) {
           this.errorMessage = 'Unable to connect with server';

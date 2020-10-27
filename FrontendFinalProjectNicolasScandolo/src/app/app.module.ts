@@ -28,6 +28,7 @@ import { SolicitudesPendientesComponent } from './Components/solicitudes-pendien
 import { UsuarioAddComponent } from './Components/usuario-add/usuario-add.component';
 import { SolicitudPendienteComponent } from './Components/solicitud-pendiente/solicitud-pendiente.component';
 import { UsuariosComponent } from './Components/usuarios/usuarios.component';
+import { PageErrorComponent } from './Components/page-error/page-error.component';
 /* import { NgxSpinnerService } from 'ngx-spinner'; */
 
 
@@ -55,7 +56,8 @@ import { UsuariosComponent } from './Components/usuarios/usuarios.component';
     SolicitudesPendientesComponent,
     UsuarioAddComponent,
     SolicitudPendienteComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    PageErrorComponent
   ],
   imports: [
     BrowserModule,

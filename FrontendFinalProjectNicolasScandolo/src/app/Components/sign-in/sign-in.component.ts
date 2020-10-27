@@ -45,19 +45,19 @@ export class SignInComponent implements OnInit {
 
     // devuelve un observable por eso le pongo el .susbscribe ya que me va a devolver el observable como exito o error
     this.authService.signIn(form.value).subscribe(
-      ( res: Usuario ) => {
-        console.log(res.idUsuario);
+      ( res: any ) => {
+        console.log(res.user.idUsuario);
         console.log(res);
-
+        localStorage.setItem('token', res.token);
         // Setear token en el localStorage
         // localStorage.setItem('token', res.data.token);
         // Redireccionar
-        this.router.navigate(['/landingpage/' + res.idUsuario + '/' + res.isAdmin]);
+        this.router.navigate(['/landingpage/' + res.user.idUsuario + '/' + res.user.isAdmin]);
         this.resetform(form);
       },
       err => {
         console.log(err);
-        if (err.status !== 0) { this.errorMessage = err.error.message; }
+        if (err.status !== 0) { this.errorMessage = err; }
 
         if (err.status === 0) {
           this.errorMessage = 'Unable to connect with server';

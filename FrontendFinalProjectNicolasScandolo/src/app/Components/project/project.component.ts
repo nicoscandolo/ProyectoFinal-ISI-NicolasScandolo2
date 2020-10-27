@@ -19,6 +19,7 @@ export class ProjectComponent implements OnInit {
   message: any;
   sendEmail: boolean;
   public email: Email;
+  ViewAdmin: any;
 
   constructor(private route: Router,
               private activatedRoute: ActivatedRoute,
@@ -32,6 +33,8 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.tipo);
+    this.ViewAdmin = this.activatedRoute.snapshot.params.tipoUsuario;
+
   }
 
   goToDetails(project: any) {
@@ -48,6 +51,21 @@ export class ProjectComponent implements OnInit {
         setTimeout(() => {
           this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', project.idProyecto, this.userViewProject, 0]);
         }, 500);
+
+        break;
+      }
+      case 'Acceso admin': {
+
+        this.getUserType( project.idProyecto);
+        console.log( project.idProyecto);
+        console.log(this.userViewProject, 'a ver que onda el userrr');
+        const idUsuario = this.activatedRoute.snapshot.params.idUsuario;
+        const tipoU = this.activatedRoute.snapshot.params.tipoUsuario;
+
+        console.log('waiting go to project', this.userViewProject );
+        setTimeout(() => {
+          this.route.navigate(['landingpage', idUsuario, tipoU, 'project-details', project.idProyecto, false, 0]);
+        }, 1500);
 
         break;
       }

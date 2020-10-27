@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using WebFinalProjectNicolasScandolo3.Models;
 
 namespace WebFinalProjectNicolasScandolo3.Controllers
@@ -14,10 +19,11 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly TodoContext _context;
-
-        public UsuarioController(TodoContext context)
+        private readonly ApplicationSettings _appSettings;
+        public UsuarioController(TodoContext context, IOptions<ApplicationSettings> appSettings)
         {
             _context = context;
+            _appSettings = appSettings.Value;
         }
 
         // GET: api/Usuario
@@ -29,6 +35,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/Usuario/5
         [HttpGet("{id}")]
+        
         public async Task<ActionResult<Usuario>> GetUsuario(long id)
         {
              var usuario = await _context.Usuarios.FindAsync(id);
@@ -43,7 +50,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // POST: api/signin
         [HttpPost("signin")]
-        public ActionResult<Usuario> Signin(Usuario usuarioRequest)
+        public ActionResult<Object> Signin(Usuario usuarioRequest)
         {
             Usuario user = (from x in _context.Usuarios
                             where x.Nombre == usuarioRequest.Nombre &
@@ -53,9 +60,25 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             if (user == null)
             {
                 return NotFound();
+            } else
+            {
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[] {
+
+                        new Claim("UserID", user.IdUsuario.ToString())
+                    }),
+                    Expires = DateTime.UtcNow.AddMinutes(5),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.WriteToken(securityToken);
+                return Ok(new { token , user } );
+
             }
 
-            return user;
+          
         }
 
 

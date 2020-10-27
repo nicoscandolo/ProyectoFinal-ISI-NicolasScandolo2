@@ -71,6 +71,20 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
             return proyecto;
         }
 
+        // GET: api/Proyecto/5
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectos()
+        {
+            var proyecto = await _context.Proyectos.ToListAsync();
+
+            if (proyecto == null)
+            {
+                return NotFound();
+            }
+
+            return proyecto;
+        }
+
         // PUT: api/Proyecto/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

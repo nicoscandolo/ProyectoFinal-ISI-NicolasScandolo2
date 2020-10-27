@@ -13,6 +13,8 @@ export class ProjectsListComponent implements OnInit {
   private ProjectsListSearch: any = [];
   private AllProjectsList: any = [];
   private AllProjectsListSearch: any = [];
+  private AllProjectsAdminList: any = [];
+  private AllProjectsAdminListSearch: any = [];
   private ProjectsFiltered: any = [];
 
   private errorMessage: string;
@@ -25,6 +27,8 @@ export class ProjectsListComponent implements OnInit {
   SolicitudesProyectosSearch: any = [];
   messageFromProject: any;
   ActualUser: string;
+  AccesoAdmin: string;
+  tipoUsu: any;
 
 
   constructor(
@@ -35,10 +39,12 @@ export class ProjectsListComponent implements OnInit {
       this.MisProyectos = 'Mis proyectos';
       this.TodosLosProyectos = 'Todos los proyectos';
       this.SolicitudesEnviadas = 'Solicitudes enviadas';
+      this.AccesoAdmin = 'Acceso admin';
      }
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params.idUsuario;
+    this.tipoUsu = this.activatedRoute.snapshot.params.tipoUsuario;
     this.getUsuario(id);
     this.searchProjectsList(id);
   }
@@ -116,6 +122,27 @@ export class ProjectsListComponent implements OnInit {
     );
 
 
+    if (this.tipoUsu === 'true') {
+
+    this.service.searchAllProjectsAdminList().subscribe(
+      (response: any) => {
+       /*  console.log(response);
+        console.log(response.data); */
+        this.AllProjectsAdminList = response;
+        this.AllProjectsAdminListSearch = response;
+       /*  console.log(testt); */
+        console.log(this.AllProjectsAdminList);
+      },
+      err => {
+        console.log(err);
+        if (err.status !== 0) { this.errorMessage = err.error.message; }
+        if (err.status === 0) {
+          this.errorMessage = 'Unable to connect with server';
+        }
+      }
+    );
+    }
+
   }
 
   goToCreateProject() {
@@ -138,6 +165,10 @@ export class ProjectsListComponent implements OnInit {
         this.ActualDropDown = 'Solicitudes enviadas';
         break;
       }
+      case 'Acceso admin': {
+        this.ActualDropDown = 'Acceso admin';
+        break;
+      }
       default: {
         this.ActualDropDown = 'Mis proyectos';
         break;
@@ -155,12 +186,8 @@ export class ProjectsListComponent implements OnInit {
     if (nameToSearch === '') {
       this.ProjectsListSearch = this.ProjectsList;
       this.AllProjectsListSearch = this.AllProjectsList;
+      this.AllProjectsAdminListSearch = this.AllProjectsAdminList;
       this.SolicitudesProyectosSearch = this.SolicitudesProyectos;
-/*       this.myArray = this.AllProjectsList.filter( el => !this.ProjectsList.includes( el ) );
-      console.log(this.myArray, 'luquiiiiii');
-
-      this.myArray = this.AllProjectsList.filter(item => item !== this.ProjectsList[2]);
-      console.log(this.myArray, 'A VERluquiiiiii'); */
 
     } else {
     switch (this.ActualDropDown) {
@@ -178,6 +205,20 @@ export class ProjectsListComponent implements OnInit {
 
 
         break;
+      }
+      case 'Acceso admin': {
+
+      // tslint:disable-next-line:only-arrow-functions
+      this.ProjectsFiltered = this.AllProjectsAdminListSearch.filter(function(Project) {
+        // tslint:disable-next-line:no-unused-expression
+        Project.name;
+        return (
+          Project.nombre.toLowerCase().indexOf(nameToSearch.toLowerCase()) !== -1
+        );
+      });
+      this.AllProjectsAdminListSearch = this.ProjectsFiltered;
+
+      break;
       }
       case 'Todos los proyectos': {
 

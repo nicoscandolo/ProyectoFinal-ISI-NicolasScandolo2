@@ -93,6 +93,10 @@ export class ProjectService {
     return this.http.get(this.rootURL + 'Proyecto/todos/' + idUsuario );
   }
 
+  searchAllProjectsAdminList() {
+    return this.http.get(this.rootURL + 'Proyecto' );
+  }
+
   searchFilesList(idProj, idCarp) {
     return this.http.get(this.rootURL + 'Documento/' + idProj + '/' + idCarp);
   }

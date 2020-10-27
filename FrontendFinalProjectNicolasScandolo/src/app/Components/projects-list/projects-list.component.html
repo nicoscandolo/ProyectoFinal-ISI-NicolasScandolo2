@@ -45,6 +45,7 @@
       <a class="dropdown-item"  (click)="UpdateProyectosList('Mis proyectos')">Mis proyectos</a>
       <a class="dropdown-item"  (click)="UpdateProyectosList('Todos los proyectos')">Todos los proyectos</a>
       <a class="dropdown-item cancelada"  (click)="UpdateProyectosList('Solicitudes enviadas')">Solicitudes enviadas</a>
+      <a class="dropdown-item" *ngIf = "tipoUsu === 'true'" (click)="UpdateProyectosList('Acceso admin')">Acceso admin total</a>
     </div>
   </div>
 </div>
@@ -120,7 +121,18 @@
    </div>
  </div>
 
+ <div *ngIf="AllProjectsAdminListSearch.length && ActualDropDown === 'Acceso admin'" class="container mt-2">
+  <!--  <h1 class="display-5 font-weight-normal" style="text-align: center;" href="#">{{ActualDropDown}}</h1> -->
 
+   <div class="card-deck">
+     <app-project
+       *ngFor="let project of  AllProjectsAdminListSearch" (messageEvent)="receiveMessage($event)"
+       [project]="project"
+       [tipo]="AccesoAdmin"
+       class="col-4"
+     ></app-project>
+   </div>
+ </div>
 
 
 </div>

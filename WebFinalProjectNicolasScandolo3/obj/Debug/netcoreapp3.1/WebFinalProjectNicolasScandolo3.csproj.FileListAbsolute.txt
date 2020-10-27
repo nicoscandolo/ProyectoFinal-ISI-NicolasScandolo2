@@ -329,5 +329,12 @@ C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalPro
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.csprojAssemblyReference.cache
 C:\Users\nicos\Desktop\PROYECTO-FINAL\WebFinalProjectNicolasScandolo\WebFinalProjectNicolasScandolo3\obj\Debug\netcoreapp3.1\WebFinalProjectNicolasScandolo3.MvcApplicationPartsAssemblyInfo.cache

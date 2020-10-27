@@ -19,10 +19,33 @@ import { ConsultaAddComponent } from '../Components/consulta-add/consulta-add.co
 import { SolicitudesPendientesComponent } from '../Components/solicitudes-pendientes/solicitudes-pendientes.component';
 import { UserProfileComponent } from '../Components/user-profile/user-profile.component';
 import { LandingPageComponent } from '../Components/landing-page/landing-page.component';
+import { PageErrorComponent } from '../Components/page-error/page-error.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
+  {
+    path: 'landingpage/20/:tipoUsuario',
+    redirectTo: 'forbbiden',  pathMatch: 'full'
+  },
+  {
+    path: 'landingpage/20/:tipoUsuario/project-details/:query/:viewUser/:carpeta/solicitudes',
+    redirectTo: 'forbbiden',  pathMatch: 'full'
+  },
+  {
+    path: 'landingpage/20/:tipoUsuario/project-details/:query/:viewUser/consultas',
+    redirectTo: 'forbbiden',  pathMatch: 'full'
+  },
+  {
+    path: 'landingpage/20/:tipoUsuario/project-details/:query/:viewUser/:carpeta',
+    redirectTo: 'forbbiden',  pathMatch: 'full'
+  },
+
+  {
+    path: 'forbbiden',
+    component: PageErrorComponent,
+  },
+
   {
     path: 'landingpage',
     component: LandingPageComponent,
@@ -77,6 +100,7 @@ const routes: Routes = [
   path: 'landingpage/:idUsuario/:tipoUsuario/perfil',
   component: NavbarComponent
 }
+
 
 
 /*   {

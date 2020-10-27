@@ -6,4 +6,5 @@ export class Usuario {
   FechaCreacion: Date;
   ImagenUsuarioPath: string;
   Email?: string;
+  user?: any;
 }
