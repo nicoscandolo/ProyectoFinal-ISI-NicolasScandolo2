@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFinalProjectNicolasScandolo3.DTOs;
 using WebFinalProjectNicolasScandolo3.Models;
 
 namespace WebFinalProjectNicolasScandolo3.Controllers
@@ -29,8 +31,13 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/ComentarioConsulta/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<ComentarioConsulta>>> GetComentarioConsulta(int id)
+        public async Task<ActionResult<IEnumerable<ComentarioConsultaDTO>>> GetComentarioConsulta(int id)
         {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<ComentarioConsulta, ComentarioConsultaDTO>();
+            });
+            IMapper iMapper = config.CreateMapper();
+
             var comentariosConsulta = await _context.ComentariosConsulta.Where(b => b.IdConsulta == id).ToListAsync();
 
             if (comentariosConsulta == null)
@@ -38,7 +45,20 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
                 return NotFound();
             }
 
-            return comentariosConsulta;
+            List<ComentarioConsultaDTO> comentariosConsultaFinal = new List<ComentarioConsultaDTO>();
+
+            foreach (ComentarioConsulta comConsulta in comentariosConsulta)
+            {
+                ComentarioConsultaDTO comentConsultaNew = new ComentarioConsultaDTO();
+                Usuario userComentario = await _context.Usuarios.Where(b => b.IdUsuario == comConsulta.IdUsuario).FirstOrDefaultAsync();
+                comentConsultaNew = iMapper.Map<ComentarioConsulta, ComentarioConsultaDTO>(comConsulta);
+                comentConsultaNew.pathUsuario = userComentario.ImagenUsuarioPath;
+                comentariosConsultaFinal.Add(comentConsultaNew);
+                comentConsultaNew = null;
+
+            }
+
+            return comentariosConsultaFinal;
         }
 
         // PUT: api/ComentarioConsulta/5

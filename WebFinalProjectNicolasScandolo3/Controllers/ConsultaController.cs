@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFinalProjectNicolasScandolo3.DTOs;
 using WebFinalProjectNicolasScandolo3.Models;
 
 namespace WebFinalProjectNicolasScandolo3.Controllers
@@ -29,8 +31,13 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
 
         // GET: api/Consulta/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Consulta>>> GetConsultasByProject(int id)
+        public async Task<ActionResult<IEnumerable<ConsultaDTO>>> GetConsultasByProject(int id)
         {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<ComentarioConsulta, ComentarioConsultaDTO>();
+            });
+            IMapper iMapper = config.CreateMapper();
+
             var consultas = await _context.Consultas.Where(b => b.IdProyecto == id).ToListAsync();
 
             if (consultas == null)
@@ -38,7 +45,37 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
                 return NotFound();
             }
 
-            return consultas;
+
+
+            List<ConsultaDTO> ConsultaFinal = new List<ConsultaDTO>();
+
+            foreach (Consulta conss in consultas)
+            {
+                ConsultaDTO ConsultaNew = new ConsultaDTO();
+                Usuario userComentario = await _context.Usuarios.Where(b => b.IdUsuario == conss.IdUsuario).FirstOrDefaultAsync();
+                ConsultaNew.pathUsuario = userComentario.ImagenUsuarioPath;
+                ConsultaNew.IdUsuario = conss.IdUsuario;
+                ConsultaNew.IdProyecto = conss.IdProyecto;
+                ConsultaNew.IdConsulta = conss.IdConsulta;
+                ConsultaNew.FechaCreacion = conss.FechaCreacion;
+                ConsultaNew.FechaModificacion = conss.FechaModificacion;
+                ConsultaNew.CantidadComentarios = conss.CantidadComentarios;
+                ConsultaNew.Asunto = conss.Asunto;
+                ConsultaNew.Descripcion = conss.Descripcion;
+                ConsultaNew.usuario = conss.usuario;
+                ConsultaNew.proyecto = conss.proyecto;
+
+
+
+
+                ConsultaFinal.Add(ConsultaNew);
+                ConsultaNew = null;
+
+            }
+
+
+
+            return ConsultaFinal;
         }
 
         // PUT: api/Consulta/5

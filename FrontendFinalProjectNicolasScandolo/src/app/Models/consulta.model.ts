@@ -8,4 +8,5 @@ IdUsuario: number;
 fechaCreacion: Date;
 fechaModificacion: Date;
 cantidadComentarios?: number;
+pathUsuario?: string;
 }

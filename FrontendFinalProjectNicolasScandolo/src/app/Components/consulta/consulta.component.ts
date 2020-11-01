@@ -51,6 +51,7 @@ export class ConsultaComponent implements OnInit {
       IdUsuario: this.route.snapshot.params.idUsuario,
       fechaCreacion: new Date(),
       fechaModificacion: new Date(),
+      pathUsuario: '',
     };
 
     console.log(this.ComentarioConsultaNew);

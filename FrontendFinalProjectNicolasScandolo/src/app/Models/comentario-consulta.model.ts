@@ -7,4 +7,5 @@ export class ComentarioConsulta {
   IdUsuario: number;
   fechaCreacion: Date;
   fechaModificacion: Date;
+  pathUsuario?: string;
 }
