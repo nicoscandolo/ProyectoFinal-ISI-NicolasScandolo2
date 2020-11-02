@@ -64,6 +64,7 @@ namespace WebFinalProjectNicolasScandolo3.Controllers
                 ConsultaNew.Descripcion = conss.Descripcion;
                 ConsultaNew.usuario = conss.usuario;
                 ConsultaNew.proyecto = conss.proyecto;
+                ConsultaNew.Puntuacion = conss.Puntuacion;
 
 
 
